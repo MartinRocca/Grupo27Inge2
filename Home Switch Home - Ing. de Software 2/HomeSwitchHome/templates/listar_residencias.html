@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="row">
+        {% for res in residencias %}
+            <div class="col s12 m6 l4">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">{{res.nombre}}</span>
+                  <p style="font-size:130%">{{res.localidad}}</p>
+                  <p>{{res.descripcion}}</p>
+                  <p>{{res.precio_base}}</p>
+                  <p>{{res.limite_personas}}</p>
+                  <p>{{res.nro_direccion}}</p>
+                  <p>{{res.calle}}</p>
+                  <p>{{res.cant.habitaciones}}</p>
+                </div>
+                <div class="card-action">
+                  <a href="http://127.0.0.1:8000/editar_residencia">Editar</a>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

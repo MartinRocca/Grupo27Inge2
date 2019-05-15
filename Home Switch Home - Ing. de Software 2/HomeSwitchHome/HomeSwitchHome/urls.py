@@ -14,14 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from HSH.views import (
     home_page,
     crear_residencia_page,
+    listar_residencias_page,
+    editar_residencia_page,
 )
 
 urlpatterns = [
     path('admin', admin.site.urls),
     path('', home_page),
     path('crear_residencia', crear_residencia_page),
+    path('ver_residencias', listar_residencias_page),
+    path('tinimce/', include('tinymce.urls')),
+    path('editar_residencia', editar_residencia_page),
 ]

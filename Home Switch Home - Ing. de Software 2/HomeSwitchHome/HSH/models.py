@@ -12,6 +12,31 @@ class Residencia(models.Model):
     nro_direccion = models.PositiveIntegerField()
     calle = models.CharField(max_length=100)
     cant_habitaciones = models.PositiveSmallIntegerField()
+    imagen_URL = models.URLField()
 
     class Meta:
         unique_together = (("localidad", "nro_direccion", "calle"),)
+
+
+class Usuario(models.Model):
+    email = models.EmailField(primary_key=True)
+    contraseña = models.CharField(max_length=20)
+    tarjeta_credito = models.CharField(max_length=16)
+    creditos = models.PositiveSmallIntegerField()
+    fecha_nac = models.DateField()
+    nombre = models.CharField(max_length=25)
+
+
+class Reserva(models.Model):
+    id_residencia = models.ForeignKey(Residencia, on_delete=models.SET_DEFAULT, default='None')
+    fecha = models.DateField()
+
+
+class Subasta(models.Model):
+    id_reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE)
+
+
+class Puja(models.Model):
+    id_subasta = models.ForeignKey(Subasta, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    monto = models.FloatField()
