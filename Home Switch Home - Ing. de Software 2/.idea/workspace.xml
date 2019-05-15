@@ -8,6 +8,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="FUSProjectUsageTrigger">
     <session id="1044935996">
       <usages-collector id="statistics.lifecycle.project">
@@ -63,23 +64,42 @@
                 <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h2#0;n#!!top" expanded="true" />
               </folding>
+=======
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HomeSwitchHome/templates/listar_residencias.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="778">
+              <caret line="48" column="58" selection-start-line="48" selection-start-column="58" selection-end-line="48" selection-end-column="58" />
+>>>>>>> 44824b31cdf5435fed275eedb34537eee9094fa1
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/HomeSwitchHome/templates/listar_residencias.html">
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <caret column="25" selection-start-column="25" selection-end-column="25" />
               <folding>
                 <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+=======
+        <entry file="file://$PROJECT_DIR$/HomeSwitchHome/HomeSwitchHome/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="31" column="1" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
+              <folding>
+                <element signature="e#638#670#0" expanded="true" />
+>>>>>>> 44824b31cdf5435fed275eedb34537eee9094fa1
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/HomeSwitchHome/templates/editar_residencia.html">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -98,6 +118,12 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="714">
               <caret line="42" column="64" selection-start-line="42" selection-start-column="64" selection-end-line="42" selection-end-column="64" />
+=======
+        <entry file="file://$PROJECT_DIR$/HomeSwitchHome/HSH/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="598">
+              <caret line="42" column="62" selection-start-line="42" selection-start-column="62" selection-end-line="42" selection-end-column="62" />
+>>>>>>> 44824b31cdf5435fed275eedb34537eee9094fa1
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -105,6 +131,7 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HomeSwitchHome/HomeSwitchHome/forms.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -140,6 +167,13 @@
                 <marker date="1557943545862" expanded="true" signature="1092:1097" ph="..." />
                 <marker date="1557943545862" expanded="true" signature="1190:1195" ph="..." />
               </folding>
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/HomeSwitchHome/templates/crear_residencia.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+>>>>>>> 44824b31cdf5435fed275eedb34537eee9094fa1
             </state>
           </provider>
         </entry>
@@ -150,6 +184,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/HomeSwitchHome/HSH/admin.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/HomeSwitchHome/HSH/consultas.py" />
         <option value="$PROJECT_DIR$/HomeSwitchHome/HomeSwitchHome/forms.py" />
         <option value="$PROJECT_DIR$/HomeSwitchHome/HomeSwitchHome/settings.py" />
@@ -160,6 +195,18 @@
         <option value="$PROJECT_DIR$/HomeSwitchHome/templates/base.html" />
         <option value="$PROJECT_DIR$/HomeSwitchHome/templates/home_page.html" />
         <option value="$PROJECT_DIR$/HomeSwitchHome/HSH/models.py" />
+=======
+        <option value="$PROJECT_DIR$/HomeSwitchHome/templates/home_page.html" />
+        <option value="$PROJECT_DIR$/HomeSwitchHome/templates/base.html" />
+        <option value="$PROJECT_DIR$/HomeSwitchHome/HSH/models.py" />
+        <option value="$PROJECT_DIR$/HomeSwitchHome/HSH/consultas.py" />
+        <option value="$PROJECT_DIR$/HomeSwitchHome/HomeSwitchHome/forms.py" />
+        <option value="$PROJECT_DIR$/HomeSwitchHome/HomeSwitchHome/settings.py" />
+        <option value="$PROJECT_DIR$/HomeSwitchHome/templates/crear_residencia.html" />
+        <option value="$PROJECT_DIR$/HomeSwitchHome/templates/listar_residencias.html" />
+        <option value="$PROJECT_DIR$/HomeSwitchHome/HSH/views.py" />
+        <option value="$PROJECT_DIR$/HomeSwitchHome/HomeSwitchHome/urls.py" />
+>>>>>>> 44824b31cdf5435fed275eedb34537eee9094fa1
       </list>
     </option>
   </component>
@@ -262,9 +309,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24920969" />
+=======
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966975" />
+>>>>>>> 44824b31cdf5435fed275eedb34537eee9094fa1
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -283,9 +336,6 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/HomeSwitchHome/HSH/admin.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -294,15 +344,30 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/HomeSwitchHome/HomeSwitchHome/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="122" column="6" lean-forward="true" selection-start-line="122" selection-start-column="6" selection-end-line="122" selection-end-column="6" />
+=======
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/HSH/consultas.py">
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/templates/home_page.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="14" lean-forward="true" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+>>>>>>> 44824b31cdf5435fed275eedb34537eee9094fa1
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/HSH/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state>
           <caret selection-end-line="2" selection-end-column="53" />
         </state>
@@ -321,10 +386,29 @@
           <folding>
             <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h2#0;n#!!top" expanded="true" />
+=======
+        <state relative-caret-position="289">
+          <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+          <folding>
+            <marker date="1557870482954" expanded="true" signature="90:95" ph="..." />
+            <marker date="1557870482954" expanded="true" signature="522:531" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/HomeSwitchHome/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+            <marker date="1557872986379" expanded="true" signature="93:94" ph="..." />
+>>>>>>> 44824b31cdf5435fed275eedb34537eee9094fa1
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/HomeSwitchHome/HomeSwitchHome/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -344,30 +428,59 @@
             <marker date="1557943545862" expanded="true" signature="1092:1097" ph="..." />
             <marker date="1557943545862" expanded="true" signature="1190:1195" ph="..." />
           </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/HomeSwitchHome/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="122" column="6" lean-forward="true" selection-start-line="122" selection-start-column="6" selection-end-line="122" selection-end-column="6" />
+>>>>>>> 44824b31cdf5435fed275eedb34537eee9094fa1
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/HomeSwitchHome/forms.py">
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/HSH/consultas.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="833">
           <caret line="49" column="16" lean-forward="true" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
             <marker date="1557872986379" expanded="true" signature="93:94" ph="..." />
+=======
+        <state>
+          <caret selection-end-line="2" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+>>>>>>> 44824b31cdf5435fed275eedb34537eee9094fa1
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/HomeSwitchHome/templates/listar_residencias.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="25" selection-start-column="25" selection-end-column="25" />
           <folding>
             <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/HSH/tests.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/HSH/apps.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/HSH/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="42" column="62" selection-start-line="42" selection-start-column="62" selection-end-line="42" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+>>>>>>> 44824b31cdf5435fed275eedb34537eee9094fa1
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/HomeSwitchHome/templates/editar_residencia.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -384,14 +497,36 @@
           <caret line="42" column="64" selection-start-line="42" selection-start-column="64" selection-end-line="42" selection-end-column="64" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/templates/listar_residencias.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="778">
+          <caret line="48" column="58" selection-start-line="48" selection-start-column="58" selection-end-line="48" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/HomeSwitchHome/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="1" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
+          <folding>
+            <element signature="e#638#670#0" expanded="true" />
+>>>>>>> 44824b31cdf5435fed275eedb34537eee9094fa1
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/HomeSwitchHome/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" column="4" lean-forward="true" selection-start-line="25" selection-start-column="4" selection-end-line="26" selection-end-column="18" />
+=======
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/templates/crear_residencia.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+>>>>>>> 44824b31cdf5435fed275eedb34537eee9094fa1
         </state>
       </provider>
     </entry>
