@@ -1,0 +1,49 @@
+<head>
+    {% load static %}
+    <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+    <!-- <link href="{% static 'HSH/css/materialize.scss' %}" rel="stylesheet">  No la puedo hacer andar-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">HomeSwitchHome</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="crear_residencia">Registrar Residencia</a></li>
+            <li><a href="/login">Login</a></li>
+          </ul>
+        </div>
+    </nav>
+
+
+    <div class="row">
+        {% for res in residencias %}
+            <div class="col s12 m6 l4">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">{{res.nombre}}</span>
+                  <p style="font-size:130%">{{res.localidad}}</p>
+                  <p>{{res.descripcion}}</p>
+                  <p>{{res.precio_base}}</p>
+                  <p>{{res.limite_personas}}</p>
+                  <p>{{res.nro_direccion}}</p>
+                  <p>{{res.calle}}</p>
+                  <p>{{res.cant.habitaciones}}</p>
+                </div>
+                <div class="card-action">
+                  <a href="#">This is a link</a>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+
+<script src="{% static 'tinymce/js/prism.js' %}"></script>

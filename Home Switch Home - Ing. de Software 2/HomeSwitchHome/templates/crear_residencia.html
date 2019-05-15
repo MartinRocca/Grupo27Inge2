@@ -1,6 +1,21 @@
-<h1>{{titulo}}</h1>
-<form method="POST" action="">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">Enviar</button>
-</form>
+<!-- {% extends "base.html" %} -->
+
+<!-- {% block content %} -->
+
+    <h1>{{titulo}}</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    <form method="POST" action='http://127.0.0.1:8000/crear_residencia' name="form_CrearResidencia" id="form_CrearResidencia" onSubmit="clearField();">
+        {% csrf_token %}
+        <table>
+        {{form.as_table}}
+        </table>
+        <input type="submit" value="Enviar"/>
+        <input type="reset" value="Cancelar"/>
+    </form>
+<!-- {% endblock %} -->
