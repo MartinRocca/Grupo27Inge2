@@ -7,8 +7,7 @@ from .consultas import validar_existencia
 # Create your views here.
 
 def home_page(request):
-    return render(request, "home_page.html", {"titulo": "Bienvenido a Home Switch Home"})
-
+    return render(request, "home_page.html", {"residencias": Residencia.objects.all})
 
 def crear_residencia_page(request):
     form = ResidenciaForm(request.POST or None)
@@ -21,8 +20,7 @@ def crear_residencia_page(request):
         # A Form instance has an is_valid() method, which runs validation routines for all its fields.
         # if all fields contain valid data, it will return True and place the form’s data in its cleaned_data attribute.
         if form.is_valid():
-            if not validar_existencia(form.cleaned_data['localidad'], form.cleaned_data['calle'],
-                                      form.cleaned_data['nro_direccion']):
+            if validar_existencia(form.cleaned_data['localidad']) == False:
                 r = Residencia()
                 r.localidad = form.cleaned_data['localidad']
                 r.nombre = form.cleaned_data['nombre']
@@ -34,6 +32,6 @@ def crear_residencia_page(request):
                 r.cant_habitaciones = form.cleaned_data['cant_habitaciones']
                 r.save()
             else:
-                print('Ya existe una residencia similar cargada en el sistema.')
-            # form = ResidenciaForm()
+                print('Ya existe una localidad similar cargada en el sistema.')
+            #form = ResidenciaForm()
     return render(request, template, context)
