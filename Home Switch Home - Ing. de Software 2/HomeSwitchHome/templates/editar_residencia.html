@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="centrar">
+        <div class="row">
+            <div class="col s12 m6 l3">
+                  <div class="card big">
+                    <div class="card-image">
+                      <img src={{res.imagen_URL}} class="img">
+                      <span class="card-title" style="font-size:200%">{{res.nombre}}</span>
+                    </div>
+                    <div class="card-content">
+                      <p>Localidad: {{res.localidad}}</p>
+                      <p class="truncate">Descripción: {{res.descripcion}}</p>
+                      <p>Precio: ${{res.precio_base}}</p>
+                      <p>Limite de personas: {{res.limite_personas}}</p>
+                      <p>Cantidad de habitaciones: {{res.cant.habitaciones}}</p>
+                      <p>Número de dirección: {{res.nro_direccion}}</p>
+                      <p>Calle: {{res.calle}}</p>
+                    </div>
+                  </div>
+                </div>
+        </div>
+    </div>
+    <div class="container">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        <form method="POST" action=''>
+            {% csrf_token %}
+                <h1>Editar residencia</h1>
+                <br>
+                {{form}}
+                <button class="btn" style="background-color:#90a4ae; color:white" type="submit"> actualizar</button>
+                <a class="btn" style="background-color:#90a4ae; color:white" href="/"> cancelar</a>
+        </form>
+    </div>
+{% endblock content %}
