@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><script>M.toast({html: "{{message}} Será redirigido a la página de inicio", classes: 'blue'});</script></li>
+        {% endfor %}
+    </ul>
+    <br>
+    <br>
+    <div class="center">
+    <div class="preloader-wrapper big active center-align">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <META HTTP-EQUIV="REFRESH" CONTENT="4;URL=http://127.0.0.1:8000/">
+    {% endif %}
+    <div class="row">
+        {% for sub in subastas %}
+                <div class="col s12 m6 l3">
+                  <div class="card big">
+                    <div class="card-image">
+                      <img src={{sub.id_reserva.id_residencia.imagen_URL}} class="img">
+                      <span class="card-title" style="font-size:200%">{{sub.id_reserva.id_residencia.nombre}}</span>
+                    </div>
+                    <div class="card-content">
+                      <br>
+                      <p style="font-size:130%;">Fecha: {{sub.id_reserva.fecha}}</p>
+                      <p style="font-size:130%;">Localidad: {{sub.id_reserva.id_residencia.localidad}}</p>
+                      <p style="font-size:130%;">Última puja: $ {{sub.obtener_monto_max}}</p>
+                      <br>
+                      <br>
+                    </div>
+                    <div class="card-action">
+                            <a href="pujar/{{sub.id}}">Pujar</a>
+                            <a href="cerrar_subasta/{{sub.id}}">Cerrar</a>
+                    </div>
+                  </div>
+                </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

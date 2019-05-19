@@ -1,0 +1,46 @@
+<head>
+    {% load static %}
+    <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+    <!-- <link href="{% static 'HSH/css/materialize.scss' %}" rel="stylesheet">  No la puedo hacer andar-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <style> .centrar {
+      display: flex;
+      justify-content: center;
+    }</style>
+    <style> .nav-wrapper {
+    background-color: #90a4ae;
+    font-size: 14px;
+    font-weight: bold;
+    }</style>
+    <style> .img {
+    max-height: 240px;
+    max-width: 400px;
+    }</style>
+    <style>.card {
+     width:400px;
+     height:500px;
+    }</style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-wrapper">
+          <a href="/" class="brand-logo"><img title="unLogo" src=/static/HSH-Logo.svg alt="Logo" width="100" height="60" /></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="http://127.0.0.1:8000/crear_residencia">Crear residencia</a></li>
+              <li><a href="http://127.0.0.1:8000/ver_residencias#">Ver residencias</a></li>
+              <li><a href="http://127.0.0.1:8000/ver_subastas">Ver subastas</a></li>
+          </ul>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+<script src="{% static 'tinymce/js/prism.js' %}"></script>

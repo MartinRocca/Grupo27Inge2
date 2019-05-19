@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="centrar">
+        <div class="row">
+            <div class="col s12 m6 l3">
+                  <div class="card big">
+                    <div class="card-image">
+                      <img src={{res.imagen_URL}} class="img">
+                      <span class="card-title" style="font-size:200%">{{res.nombre}}</span>
+                    </div>
+                    <div class="card-content">
+                      <p>Localidad: {{res.localidad}}</p>
+                      <p class="truncate">Descripción: {{res.descripcion}}</p>
+                      <p>Precio: ${{res.precio_base}}</p>
+                      <p>Limite de personas: {{res.limite_personas}}</p>
+                      <p>Cantidad de habitaciones: {{res.cant_habitaciones}}</p>
+                      <p>Número de dirección: {{res.nro_direccion}}</p>
+                      <p>Calle: {{res.calle}}</p>
+                    </div>
+                  </div>
+                </div>
+        </div>
+    </div>
+    <div class="container">
+        <form method="POST" action=''>
+            {% csrf_token %}
+                <h1>¿Desea eliminar la residencia?</h1>
+                <br>
+                <button onclick="M.toast({html: 'La residencia ha sido eliminada', classes: 'blue'})" class="btn" align="center" style="background-color:#90a4ae; color:white" type="submit"> confirmar</button>
+                <a class="btn" style="background-color:#90a4ae; color:white" href="/"> cancelar</a>
+        </form>
+    </div>
+{% endblock content %}

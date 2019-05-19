@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="row">
+        {% for res in residencias %}
+                <div class="col s12 m6 l3">
+                  <div class="card big">
+                    <div class="card-image">
+                      <img src={{res.imagen_URL}} class="img">
+                      <span class="card-title" style="font-size:200%">{{res.nombre}}</span>
+                    </div>
+                    <div class="card-content">
+                      <p>Localidad: {{res.localidad}}</p>
+                      <p class="truncate">Descripción: {{res.descripcion}}</p>
+                      <p>Precio: ${{res.precio_base}}</p>
+                      <p>Limite de personas: {{res.limite_personas}}</p>
+                      <p>Cantidad de habitaciones: {{res.cant_habitaciones}}</p>
+                      <p>Número de dirección: {{res.nro_direccion}}</p>
+                      <p>Calle: {{res.calle}}</p>
+                    </div>
+                    <div class="card-action">
+                            <a href="editar_residencia/{{res.id}}">Editar</a>
+                            <a href="eliminar_residencia/{{res.id}}">Eliminar</a>
+                    </div>
+                  </div>
+                </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

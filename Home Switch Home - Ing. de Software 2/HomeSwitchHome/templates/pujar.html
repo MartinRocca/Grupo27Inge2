@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><script>M.toast({html: "{{message}} Será redirigido a la página de inicio", classes: 'blue'});</script></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <br>
+    <br>
+    <div class="centrar">
+        <div class="row">
+            <div class="col s12 m6 l3">
+                <div class="card big">
+                    <div class="card-image">
+                        <img src={{sub.id_reserva.id_residencia.imagen_URL}} class="img">
+                        <span class="card-title" style="font-size:200%">{{sub.id_reserva.id_residencia.nombre}}</span>
+                    </div>
+                    <div class="card-content">
+                        <br>
+                        <p style="font-size:130%;">Fecha: {{sub.id_reserva.fecha}}</p>
+                        <p style="font-size:130%;">Localidad: {{sub.id_reserva.id_residencia.localidad}}</p>
+                        <p style="font-size:130%;">Última puja: $ {{sub.obtener_monto_max}}</p>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Pujar</h1>
+        <br>
+        <form method="POST" action='.'>
+            {% csrf_token %}
+            {{form}}
+            <button class="btn" style="background-color:#90a4ae; color:white" type="submit"> Confirmar Puja</button>
+            <a class="btn" style="background-color:#90a4ae; color:white" href="/"> cancelar</a>
+        </form>
+    </div>
+
+{% endblock content %}
