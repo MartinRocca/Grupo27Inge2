@@ -1,13 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><script>M.toast({html: "{{message}}", classes: 'blue'});</script></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <br>
     <br>
     <br>
     <div class="centrar">
@@ -31,14 +25,12 @@
         </div>
     </div>
     <div class="container">
-        <h1>Pujar</h1>
-        <br>
-        <form method="POST" action='.'>
+        <form method="POST" action=''>
             {% csrf_token %}
-            {{form.as_p}}
-            <button class="btn" style="background-color:#90a4ae; color:white" type="submit"> Confirmar Puja</button>
-            <a class="btn" style="background-color:#90a4ae; color:white" href="/"> cancelar</a>
+                <h1>¿Desea cerrar la subasta?</h1>
+                <br>
+                <button class="btn" align="center" style="background-color:#90a4ae; color:white" type="submit"> confirmar</button>
+                <a class="btn" style="background-color:#90a4ae; color:white" href="http://127.0.0.1:8000/ver_subastas"> cancelar</a>
         </form>
     </div>
-
 {% endblock content %}

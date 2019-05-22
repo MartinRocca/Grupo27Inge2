@@ -41,11 +41,15 @@
                       <br>
                     </div>
                     <div class="card-action">
-                            <a href="pujar/{{sub.id}}">Pujar</a>
+                            <a href="pujar/{{sub.id}}">Ver subasta</a>
                             <a href="cerrar_subasta/{{sub.id}}">Cerrar</a>
                     </div>
                   </div>
                 </div>
         {% endfor %}
     </div>
+    <div class="center-align">
+        <a class="btn" style="background-color:#90a4ae; color:white" href="http://127.0.0.1:8000/ver_subastas_finalizadas">Ver subastas finalizadas</a>
+    </div>
+
 {% endblock content %}

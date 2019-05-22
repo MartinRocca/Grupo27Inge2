@@ -63,46 +63,10 @@ class ResidenciaForm(forms.Form):
         r.imagen_URL = self.cleaned_data['imagen_URL']
         r.save()
 
+
 class PujaForm(forms.Form):
     email = forms.EmailField()
     monto = forms.FloatField()
-    subasta = forms.CharField(widget=forms.HiddenInput())
-
-    def clean_monto(self):
-        sub = Subasta.objects.get(id=self.cleaned_data.get('subasta'))
-        if sub.obtener_monto_max() > self.cleaned_data['monto']:
-            raise forms.ValidationError("El monto a pujar debe superar el valor de la última puja")
-        return self.cleaned_data['monto']
-
-    def save(self):
-        p = Puja()
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-        p.id_usuario = self.cleaned_data['email']
-        #sub = Subasta.objects.get(id=subasta)
-        print("self.cleaned_data['subasta']")
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-        #if sub.obtener_monto_max() > self.cleaned_data['monto']:
-        #    raise forms.ValidationError("El monto a pujar debe superar el valor de la última puja")
-        #p.monto = self.cleaned_data['monto']
-        p.monto = self.clean_monto()
-        p.id_subasta = Subasta.objects.get(id=subasta)
-        p.save()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 class UsuarioForm(forms.Form):

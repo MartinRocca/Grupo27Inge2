@@ -11,9 +11,27 @@ def validar_ubicacion(una_localidad, una_calle, un_numero):
         Residencia.objects.get(
             Q(localidad__iexact=una_localidad),
             Q(calle__iexact=una_calle),
-            Q(nro_direccion=un_numero)
+            Q(nro_direccion=un_numero),
+            Q(activa=True),
         )
         return True
+    except ObjectDoesNotExist:
+        return False
+
+def validar_ubicacion_editar(una_localidad, una_calle, un_numero, una_residencia):
+    # Si ya existe una residencia con la localidad, direccion y nombre
+    # pasados por parámetro, la funcion devuelve true. Caso contrario false.
+    try:
+        res = Residencia.objects.get(
+            Q(localidad__iexact=una_localidad),
+            Q(calle__iexact=una_calle),
+            Q(nro_direccion=un_numero),
+            Q(activa=True),
+        )
+        if res == una_residencia:
+            return False
+        else:
+            return True
     except ObjectDoesNotExist:
         return False
 
@@ -43,7 +61,6 @@ def generar_reservas(una_residencia):
         subasta.id_reserva = reserva
         subasta.fecha_inicio = fecha_subasta
         subasta.save()
-        subasta.generar_monto()
         fecha_reserva = fecha_reserva + timedelta(weeks=1)
         fecha_subasta = fecha_subasta + timedelta(weeks=1)
 

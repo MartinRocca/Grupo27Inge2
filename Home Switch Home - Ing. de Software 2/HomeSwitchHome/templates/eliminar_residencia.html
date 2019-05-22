@@ -29,9 +29,10 @@
         <form method="POST" action=''>
             {% csrf_token %}
                 <h1>¿Desea eliminar la residencia?</h1>
+                <p>Si existen subastas activas actualmente, se cancelaran y no se les asignará ningún ganador.</p>
                 <br>
-                <button onclick="M.toast({html: 'La residencia ha sido eliminada', classes: 'blue'})" class="btn" align="center" style="background-color:#90a4ae; color:white" type="submit"> confirmar</button>
-                <a class="btn" style="background-color:#90a4ae; color:white" href="/"> cancelar</a>
+                <button class="btn" align="center" style="background-color:#90a4ae; color:white" type="submit"> confirmar</button>
+                <a class="btn" style="background-color:#90a4ae; color:white" href="http://127.0.0.1:8000/ver_residencias#"> cancelar</a>
         </form>
     </div>
 {% endblock content %}

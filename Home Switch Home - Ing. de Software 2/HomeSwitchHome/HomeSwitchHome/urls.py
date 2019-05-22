@@ -23,6 +23,8 @@ from HSH.views import (
     eliminar_residencia_page,
     listar_subastas_page,
     pujar_page,
+    cerrar_subasta_page,
+    listar_subastas_finalizadas_page,
 )
 
 urlpatterns = [
@@ -34,5 +36,7 @@ urlpatterns = [
     path('editar_residencia/<residencia>/', editar_residencia_page, name='editar_residencia'),
     path('eliminar_residencia/<residencia>/', eliminar_residencia_page, name='eliminar_residencia'),
     path('ver_subastas', listar_subastas_page),
-    path('pujar/<int:subasta>/', pujar_page, name='pujar'),
+    path('pujar/<int:subasta_id>/', pujar_page, name='pujar'),
+    path('cerrar_subasta/<int:subasta_id>/', cerrar_subasta_page, name='cerrar_subasta'),
+    path('ver_subastas_finalizadas', listar_subastas_finalizadas_page),
 ]
