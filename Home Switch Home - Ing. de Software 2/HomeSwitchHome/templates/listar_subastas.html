@@ -4,7 +4,7 @@
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><script>M.toast({html: "{{message}} Será redirigido a la página de inicio", classes: 'blue'});</script></li>
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}><script>M.toast({html: "{{message}} Será redirigido a la página de inicio", classes: 'red , rounded'});</script></li>
         {% endfor %}
     </ul>
     <br>

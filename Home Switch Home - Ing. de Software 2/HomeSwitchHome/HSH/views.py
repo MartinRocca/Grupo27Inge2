@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from HomeSwitchHome.forms import ResidenciaForm, PujaForm
 from .models import Residencia, Subasta, Puja
 from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, validar_ubicacion_editar
@@ -43,7 +44,15 @@ def listar_residencias_page(request):
 
 def editar_residencia_page(request, residencia):
     template = "editar_residencia.html"
-    form = ResidenciaForm(request.POST or None)
+    datos = model_to_dict(Residencia.objects.filter(id=residencia)[0])
+    # Residencia.object.filter y .get me devuelven un dato de tipo QuerySet; este funciona similar a una lista de python
+    # regular, excepto que sus contenidos seran las tuplas que me devolvio la base de datos. filter(id=residencia) me
+    # devuelve solo una tupla (la que se quiere editar), la cual puedo usar para crear un diccionario con sus datos.
+
+    # Luego, puedo pasarle este diccionario al formulario cuando esta siendo creado, con el argumento 'initial= ', para
+    # que los valores que le paso en ese diccionario sean los predeterminados del formulario (Y asi aparescan escritos
+    # de entrada.
+    form = ResidenciaForm(request.POST or None, initial=datos)
     context = {"res": Residencia.objects.get(id=residencia), "form": form}
     if request.method == 'POST':
         if form.is_valid():
