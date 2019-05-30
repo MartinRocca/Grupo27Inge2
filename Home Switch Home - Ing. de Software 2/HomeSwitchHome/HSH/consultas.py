@@ -1,4 +1,4 @@
-from .models import Residencia, Reserva, Subasta, Puja
+from .models import Residencia, Reserva, Subasta, Puja, Usuario
 from django.db.models import Q, Max
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import datetime, timedelta
@@ -64,7 +64,6 @@ def generar_reservas(una_residencia):
         fecha_reserva = fecha_reserva + timedelta(weeks=1)
         fecha_subasta = fecha_subasta + timedelta(weeks=1)
 
-
 def obtener_subastas(fecha):
     try:
         subastas_activas = Subasta.objects.filter(
@@ -74,3 +73,11 @@ def obtener_subastas(fecha):
         return subastas_activas
     except ObjectDoesNotExist:
         return []
+
+def usuario_unico(email):
+    # Si no existe un usuario con el email pasado por parametro, la funcion devuelve true. Caso contrario false.
+    try:
+        Usuario.objects.get(Q(email__iexact=email))
+        return False
+    except ObjectDoesNotExist:
+        return True

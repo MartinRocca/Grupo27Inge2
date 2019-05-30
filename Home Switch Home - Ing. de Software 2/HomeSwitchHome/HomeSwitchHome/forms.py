@@ -1,5 +1,8 @@
 from django import forms
-from HSH.models import Residencia, Puja, Subasta
+from django.db.models import Q
+from django.core.exceptions import ObjectDoesNotExist
+from HSH.models import Residencia, Puja, Subasta, Usuario
+from datetime import datetime
 
 class ResidenciaForm(forms.Form):
     localidad = forms.CharField()
@@ -63,19 +66,55 @@ class ResidenciaForm(forms.Form):
         r.imagen_URL = self.cleaned_data['imagen_URL']
         r.save()
 
-
 class PujaForm(forms.Form):
-    email = forms.EmailField()
     monto = forms.FloatField()
 
 
-class UsuarioForm(forms.Form):
-    email = forms.EmailField()
-    contraseña = forms.CharField()
-    tarjeta_credito = forms.CharField()
-    creditos = forms.IntegerField()
-    fecha_nac = forms.DateField()
-    nombre = forms.CharField()
+class RegistroForm(forms.Form):
+    #email = forms.EmailField()
+    #contraseña = forms.CharField()
+    #nombre = forms.CharField()
+    #fecha_nacimiento = forms.DateField()
+    #nro_tarjeta_credito = forms.CharField()
+    marca_tarjeta_credito = forms.CharField(widget=forms.RadioSelect(choices=[('VISA', 'Visa'), ('AMERICAN EXPRESS', 'American Express'), ('MASTERCARD', 'Mastercard')]))
+    #nombre_titular_tarjeta = forms.CharField()
+    #fecha_vencimiento_tarjeta = forms.DateField()
+    #codigo_seguridad_tarjeta = forms.IntegerField(max_value=999)
 
-    def clean_contraseña(self):
-        contraseña = self.cleaned_data.get('contraseña')
+    def clean_fecha_nacimiento(self):
+        fecha = self.cleaned_data.get('fecha_nacimiento')
+        edad = (datetime.now()-fecha).days/365
+        if edad < 18:
+            raise forms.ValidationError('Debes tener 18 años o mas de edad para registrarte.')
+        return fecha
+
+    def clean_nro_tarjeta_credito(self):
+        n = self.cleaned_data.get('nro_tarjeta_credito')
+        if len(str(n)) != 16:
+            raise forms.ValidationError('El numero de tarjeta ingresado no es valido.')
+        return n
+
+    def clean_fecha_vencimiento_tarjeta(self):
+        venc = self.cleaned_data.get('fecha_vencimiento_tarjeta')
+        if venc < datetime.today():
+            raise forms.ValidationError('La tarjeta ingresada esta vencida.')
+        return venc
+
+    def clean_codigo_seguridad_tarjeta(self):
+        cod = self.cleaned_data.get('codigo_seguridad_tarjeta')
+        if len(str(cod)) != 3:
+            raise forms.ValidationError('El numero de seguridad ingresado no es valido.')
+        return cod
+
+    def save(self):
+        u = Usuario()
+        u.email = self.cleaned_data['email']
+        u.contraseña = self.cleaned_data['contraseña']
+        u.nombre = self.cleaned_data['nombre']
+        u.fecha_nacimiento = self.clean_fecha_nacimiento()
+        u.nro_tarjeta_credito = self.clean_nro_tarjeta_credito()
+        u.marca_tarjeta_credito = self.cleaned_data['marca_tarjeta_credito']
+        u.nombre_titular_tarjeta = self.cleaned_data['nombre_titular_tarjeta']
+        u.fecha_vencimiento_tarjeta = self.clean_fecha_vencimiento_tarjeta()
+        u.codigo_seguridad_tarjeta = self.clean_codigo_seguridad_tarjeta()
+        u.save()

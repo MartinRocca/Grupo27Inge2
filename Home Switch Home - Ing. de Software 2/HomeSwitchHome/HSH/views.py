@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import messages
 from django.forms.models import model_to_dict
-from HomeSwitchHome.forms import ResidenciaForm, PujaForm
+from HomeSwitchHome.forms import ResidenciaForm, PujaForm, RegistroForm
 from .models import Residencia, Subasta, Puja
-from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, validar_ubicacion_editar
+from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, validar_ubicacion_editar, usuario_unico
 import datetime
 
 
@@ -158,3 +158,19 @@ def cerrar_subasta_page(request, subasta_id):
         form = ResidenciaForm(request.POST or None)
     return render(request, template, context)
 
+def registro_page(request):
+    template = "registro_usuario.html"
+    form = RegistroForm(request.POST or None)
+    context = {"form": form, "titulo": "Registrarse"}
+    if request.method == 'POST':
+        if form.is_valid():
+            if usuario_unico(form.cleaned_data['email']):
+                usuario_registrado = form.save()
+                messages.success(request, 'Se ha registrado exitosamente en el sistema.')
+                form = RegistroForm(request.POST or None)
+                return redirect('http://127.0.0.1:8000/')
+            else:
+                messages.error(request, 'Ya existe una cuenta en el sistema con el email registrado.')
+    else:
+        form = RegistroForm(request.POST or None)
+    return render(request, template, context)

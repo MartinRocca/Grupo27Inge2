@@ -34,23 +34,12 @@ class Residencia(models.Model):
     def activada(self):
         return self.activa
 
-
-class Usuario(models.Model):
-    email = models.EmailField(primary_key=True)
-    contraseña = models.CharField(max_length=20)
-    tarjeta_credito = models.CharField(max_length=16)
-    creditos = models.PositiveSmallIntegerField()
-    fecha_nac = models.DateField()
-    nombre = models.CharField(max_length=25)
-
-
 class Reserva(models.Model):
     id_residencia = models.ForeignKey(Residencia, on_delete=models.CASCADE)
     fecha = models.DateField()
 
     class Meta:
         unique_together = (("id_residencia", "fecha"),)
-
 
 class Subasta(models.Model):
     id = models.AutoField(primary_key=True)
@@ -94,8 +83,21 @@ class Subasta(models.Model):
         except:
             pass
 
-
 class Puja(models.Model):
     id_subasta = models.ForeignKey(Subasta, on_delete=models.CASCADE)
     id_usuario = models.EmailField()
     monto = models.FloatField()
+
+class Usuario(models.Model):
+    email = models.EmailField(primary_key=True)
+    contraseña = models.CharField(max_length=20)
+    nombre = models.CharField(max_length=30)
+    fecha_nacimiento = models.DateField()
+    nro_tarjeta_credito = models.PositiveIntegerField()
+    marca_tarjeta_credito = models.CharField(max_length= 20, choices=[('VISA', 'Visa'), ('AMERICAN EXPRESS', 'American Express'), ('MASTERCARD', 'Mastercard')])
+    nombre_titular_tarjeta = models.CharField(max_length=30)
+    fecha_vencimiento_tarjeta = models.DateField()
+    codigo_seguridad_tarjeta = models.PositiveIntegerField()
+
+    creditos = models.IntegerField(default=2)
+    es_premium = models.BooleanField(default=False)
