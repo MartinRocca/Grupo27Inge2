@@ -2,18 +2,15 @@
 
 {% block content %}
     <div class="container">
-
-        <h1>{{titulo}}</h1>
-        <form method="POST" action='http://127.0.0.1:8000/registrarse/'>
+        <form method="POST" action='http://127.0.0.1:8000/registrar_admin/'>
             {% csrf_token %}
             <table style="width:66%; margin:auto;">
-                {{usuario_form.as_table}}
-                {{perfil_form.as_table}}
+                {{form.as_table}}
             </table>
             <br>
             <br>
             <div style="text-align:center;">
-                <button class="btn" style="background-color:#90a4ae; color:white" type="submit"> registrarse </button>
+                <button class="btn" style="background-color:#90a4ae; color:white" type="submit"> registrar </button>
                 <a class="btn" style="background-color:#90a4ae; color:white" href="/"> cancelar </a>
             </div>
         </form>

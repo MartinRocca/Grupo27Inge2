@@ -1,8 +1,11 @@
 from django.db import models
-from django.db.models import Max, Q
+from django.db.models import Max
+from django.db.models.signals import post_save
 from django.core.exceptions import ObjectDoesNotExist
-from datetime import datetime
 from django.utils import timezone
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.conf import settings
+from django.dispatch import receiver
 
 
 # Create your models here.
@@ -88,16 +91,60 @@ class Puja(models.Model):
     id_usuario = models.EmailField()
     monto = models.FloatField()
 
-class Usuario(models.Model):
-    email = models.EmailField(primary_key=True)
-    contraseña = models.CharField(max_length=20)
-    nombre = models.CharField(max_length=30)
-    fecha_nacimiento = models.DateField()
-    nro_tarjeta_credito = models.PositiveIntegerField()
-    marca_tarjeta_credito = models.CharField(max_length= 20, choices=[('VISA', 'Visa'), ('AMERICAN EXPRESS', 'American Express'), ('MASTERCARD', 'Mastercard')])
-    nombre_titular_tarjeta = models.CharField(max_length=30)
-    fecha_vencimiento_tarjeta = models.DateField()
-    codigo_seguridad_tarjeta = models.PositiveIntegerField()
-
+class Perfil(models.Model):
+    mi_usuario = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=50)
+    apellido = models.CharField(max_length=50)
+    fecha_nacimiento = models.DateField(null=True)
+    nro_tarjeta_credito = models.IntegerField(null=True)
+    marca_tarjeta_credito = models.CharField(max_length=30)
+    nombre_titular_tarjeta = models.CharField(max_length=120)
+    fecha_vencimiento_tarjeta = models.DateField(null=True)
+    codigo_seguridad_tarjeta = models.IntegerField(null=True)
     creditos = models.IntegerField(default=2)
-    es_premium = models.BooleanField(default=False)
+
+    class meta:
+        unique_together = ('nombre', 'apellido')
+
+class UsuarioManager(BaseUserManager):
+    use_in_migrations = True
+
+    def _create_user(self, email, password, **extra_fields):
+        if not email:
+            raise ValueError('Se necesita un email.')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_user(self, email, password, **extra_fields):
+        extra_fields.setdefault((('is_superuser', False),('is_admin', False),('mi_perfil', None)))
+        return self._create_user(email,password,**extra_fields)
+
+    def create_superuser(self, email, password, **extra_fields):
+        user = self._create_user(email, password, **extra_fields)
+        user.is_superuser = True
+        user.is_staff = True
+        user.is_premium = True
+        user.save(using=self._db)
+        return user
+
+
+class Usuario(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(unique=True, null=True)
+    is_premium = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_superuser = models.BooleanField(default=False)
+    objects = UsuarioManager()
+
+    USERNAME_FIELD = 'email'
+    EMAIL_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    def get_perfil(self):
+        try:
+            return Perfil.objects.get(mi_usuario=self)
+        except ObjectDoesNotExist:
+            return None

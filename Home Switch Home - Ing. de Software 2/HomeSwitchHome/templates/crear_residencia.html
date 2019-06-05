@@ -3,19 +3,16 @@
 {% block content %}
 
     <div class="container">
-        <h1>{{titulo}}</h1>
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}><script>M.toast({html: "{{message}}", classes: 'blue'});</script></li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+        <h1 style="text-align:center;">{{titulo}}</h1>
         <form method="POST" action='http://127.0.0.1:8000/crear_residencia'>
             {% csrf_token %}
-                {{form}}
+            <table style="width:66%; margin:auto;">{{form.as_table}}</table>
+            <br>
+            <br>
+            <div style="text-align:center;">
                 <button class="btn" style="background-color:#90a4ae; color:white" type="submit"> registrar</button>
                 <a class="btn" style="background-color:#90a4ae; color:white" href="/"> cancelar</a>
+            </div>
         </form>
     </div>
 

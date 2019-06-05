@@ -1,18 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><script>M.toast({html: "{{message}}", classes: 'blue'});</script></li>
-        {% endfor %}
-    {% endif %}
-    </ul>
     <br>
     <br>
     <br>
     <h2 style="text-align: center;">Bienvenido</h2>
     <br>
+    <br>
+    {% if user.is_authenticated %}
+        <h6 style="text-align:center;">Hola, {{user.email}}.</h6>
+    {% else %}
+        <h6 style="text-align:center;">Hola, usuario anonimo.</h6>
+    {% endif %}
     <br>
     <br>
     <p style="text-align: center; font-size: 15px;"><img title="unLogo" src="/static/HSH-Complete.svg" alt="Logo" width="400" height="150" /></p>

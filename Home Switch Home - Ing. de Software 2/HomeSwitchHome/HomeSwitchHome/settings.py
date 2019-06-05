@@ -154,3 +154,9 @@ STATICFILES_DIRS = (
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+AUTH_USER_MODEL = 'HSH.Usuario'
+
+LOGIN_URL = '/iniciar_sesion/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

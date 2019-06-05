@@ -1,19 +1,23 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect, HttpResponseRedirect, render_to_response
 from django.contrib import messages
+from django.contrib.auth import login, logout, authenticate
 from django.forms.models import model_to_dict
-from HomeSwitchHome.forms import ResidenciaForm, PujaForm, RegistroForm
-from .models import Residencia, Subasta, Puja
-from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, validar_ubicacion_editar, usuario_unico
+from django.contrib.auth.decorators import login_required
+from HomeSwitchHome.forms import ResidenciaForm, PujaForm, RegistroForm, PerfilForm
+from .models import Residencia, Subasta, Puja, Usuario, Perfil
+from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, validar_ubicacion_editar
 import datetime
 
 
 # Create your views here.
 
 def home_page(request):
-    return render(request, "home_page.html", {'titulo': "Bienvenido a HSH"})
-
+    return render(request, "home_page.html", {'titulo': "Bienvenido a HSH", 'user': request.user})
 
 def crear_residencia_page(request):
+    if request.user.is_staff == False:
+        messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
+        return redirect('/')
     template = "crear_residencia.html"
     form = ResidenciaForm(request.POST or None)
     context = {"form": form, "titulo": "Cargar residencia"}
@@ -29,20 +33,21 @@ def crear_residencia_page(request):
                 messages.success(request, 'La residencia se ha cargado exitosamente en el sistema.')
                 generar_reservas(residencia_cargada)
                 form = ResidenciaForm(request.POST or None)
-                return redirect("http://127.0.0.1:8000/crear_residencia")
+                return redirect('/')
             else:
                 messages.error(request, 'Ya existe una residencia similar cargada en el sistema.')
     else:
         form = ResidenciaForm(request.POST or None)
     return render(request, template, context)
 
-
 def listar_residencias_page(request):
     template = "listar_residencias.html"
     return render(request, template, {"residencias": Residencia.objects.filter(activa=True)})
 
-
 def editar_residencia_page(request, residencia):
+    if request.user.is_staff == False:
+        messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
+        return redirect('/')
     template = "editar_residencia.html"
     datos = model_to_dict(Residencia.objects.filter(id=residencia)[0])
     # Residencia.object.filter y .get me devuelven un dato de tipo QuerySet; este funciona similar a una lista de python
@@ -69,8 +74,10 @@ def editar_residencia_page(request, residencia):
         form = ResidenciaForm(request.POST or None)
     return render(request, template, context)
 
-
 def eliminar_residencia_page(request, residencia):
+    if request.user.is_staff == False:
+        messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
+        return redirect('/')
     template = "eliminar_residencia.html"
     residencia = Residencia.objects.get(id=residencia)
     context = {"res": residencia}
@@ -81,7 +88,6 @@ def eliminar_residencia_page(request, residencia):
     else:
         form = ResidenciaForm(request.POST or None)
     return render(request, template, context)
-
 
 def helper_listar_subastas():
     # fecha = datetime.now()
@@ -106,7 +112,6 @@ def helper_listar_subastas():
     info_return['codigo_error'] = 0
     return info_return
 
-
 def listar_subastas_page(request):
     template = "listar_subastas.html"
     info_return = helper_listar_subastas()
@@ -117,13 +122,14 @@ def listar_subastas_page(request):
     context = {"subastas": info_return['subastas']}
     return render(request, template, context)
 
-
 def listar_subastas_finalizadas_page(request):
+    if request.user.is_staff == False:
+        messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
+        return redirect('/')
     template = "listar_subastas_finalizadas.html"
     subastas = Subasta.objects.filter(esta_programada=False)
     context = {"subastas": subastas}
     return render(request, template, context)
-
 
 def pujar_page(request, subasta_id):
     template = "pujar.html"
@@ -147,6 +153,9 @@ def pujar_page(request, subasta_id):
     return render(request, template, context)
 
 def cerrar_subasta_page(request, subasta_id):
+    if request.user.is_staff == False:
+        messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
+        return redirect('/')
     template = "cerrar_subasta.html"
     subasta = Subasta.objects.get(id=subasta_id)
     context = {"sub": subasta}
@@ -159,18 +168,59 @@ def cerrar_subasta_page(request, subasta_id):
     return render(request, template, context)
 
 def registro_page(request):
-    template = "registro_usuario.html"
-    form = RegistroForm(request.POST or None)
-    context = {"form": form, "titulo": "Registrarse"}
+    if request.user.is_authenticated:
+        messages.warning(request, 'Ya tienes una sesion activa.')
+        return redirect('/')
     if request.method == 'POST':
-        if form.is_valid():
-            if usuario_unico(form.cleaned_data['email']):
-                usuario_registrado = form.save()
-                messages.success(request, 'Se ha registrado exitosamente en el sistema.')
-                form = RegistroForm(request.POST or None)
-                return redirect('http://127.0.0.1:8000/')
-            else:
-                messages.error(request, 'Ya existe una cuenta en el sistema con el email registrado.')
+        usuario_form = RegistroForm(request.POST)
+        perfil_form = PerfilForm(request.POST)
+        if usuario_form.is_valid() and perfil_form.is_valid():
+            usuario = Usuario()
+            usuario.email = usuario_form.clean_email()
+            usuario.set_password(usuario_form.clean_password2())
+            usuario.save()
+            perfil = Perfil(
+                nombre = perfil_form.cleaned_data.get('nombre'),
+                apellido = perfil_form.cleaned_data.get('apellido'),
+                fecha_nacimiento = perfil_form.clean_fecha_nacimiento(),
+                nro_tarjeta_credito = perfil_form.cleaned_data.get('nro_tarjeta_credito'),
+                marca_tarjeta_credito = perfil_form.cleaned_data.get('marca_tarjeta_credito'),
+                nombre_titular_tarjeta = perfil_form.cleaned_data.get('nombre_titular_tarjeta'),
+                fecha_vencimiento_tarjeta = perfil_form.clean_fecha_vencimiento_tarjeta(),
+                codigo_seguridad_tarjeta = perfil_form.cleaned_data.get('codigo_seguridad_tarjeta'),
+                mi_usuario = usuario,
+            )
+            perfil.save()
+            raw_password = usuario_form.clean_password2()
+            usuario = authenticate(email = usuario.email, password = raw_password)
+            login(request, usuario)
+            return redirect('/')
     else:
+        usuario_form = RegistroForm(request.POST)
+        perfil_form = PerfilForm(request.POST)
+    return render(request, 'registro.html', {'usuario_form': usuario_form, 'perfil_form': perfil_form})
+
+def ver_usuarios_page(request):
+    if request.user.is_staff == False:
+        messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
+        return redirect('/')
+    template = "listar_usuarios.html"
+    return render(request, template, {"usuarios": Usuario.objects.all()})
+
+def registro_admin_page(request):
+    if request.user.is_staff:
         form = RegistroForm(request.POST or None)
-    return render(request, template, context)
+        if request.method == 'POST':
+            if form.is_valid():
+                 admin = Usuario()
+                 admin.email = form.clean_email()
+                 admin.set_password(form.clean_password2())
+                 admin.is_staff = True
+                 admin.save()
+                 messages.success(request, 'Se ha creado el nuevo administrador exitosamente. Cierre esta sesion para iniciar sesion con el nuevo administrador.')
+        else:
+            form = RegistroForm(request.POST or None)
+    else:
+        messages.error(request, 'Solo administradores pueden acceder a esta funcion.')
+        return redirect('/')
+    return render(request, 'registro_admin.html', {'form': form})

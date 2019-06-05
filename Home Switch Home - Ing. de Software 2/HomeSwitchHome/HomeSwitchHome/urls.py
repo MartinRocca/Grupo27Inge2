@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
+
 from HSH.views import (
     home_page,
     crear_residencia_page,
@@ -25,7 +27,9 @@ from HSH.views import (
     pujar_page,
     cerrar_subasta_page,
     listar_subastas_finalizadas_page,
+    ver_usuarios_page,
     registro_page,
+    registro_admin_page,
 )
 
 urlpatterns = [
@@ -36,9 +40,13 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     path('editar_residencia/<residencia>/', editar_residencia_page, name='editar_residencia'),
     path('eliminar_residencia/<residencia>/', eliminar_residencia_page, name='eliminar_residencia'),
-    path('ver_subastas', listar_subastas_page),
+    path('ver_subastas/', listar_subastas_page),
     path('pujar/<int:subasta_id>/', pujar_page, name='pujar'),
     path('cerrar_subasta/<int:subasta_id>/', cerrar_subasta_page, name='cerrar_subasta'),
     path('ver_subastas_finalizadas', listar_subastas_finalizadas_page),
-    path('registrarse/', registro_page, name = 'registrarse')
+    path('ver_usuarios/', ver_usuarios_page),
+    path('iniciar_sesion/', auth_views.LoginView.as_view(template_name='login.html')),
+    path('cerrar_sesion/', auth_views.LogoutView.as_view(template_name='logout.html')),
+    path('registrarse/', registro_page),
+    path('registrar_admin/', registro_admin_page),
 ]

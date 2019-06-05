@@ -1,13 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}><script>M.toast({html: "{{message}}", classes: 'red , rounded'});</script></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
     <br>
     <br>
     <div class="centrar">

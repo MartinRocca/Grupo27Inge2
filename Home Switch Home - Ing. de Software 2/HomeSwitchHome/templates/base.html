@@ -5,6 +5,8 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+    <link href="{% static 'styles.css' %}" rel="stylesheet">
+
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -32,13 +34,35 @@
         <div class="nav-wrapper">
           <a href="/" class="brand-logo"><img title="unLogo" src=/static/HSH-Logo.svg alt="Logo" width="100" height="60" /></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><a href="http://127.0.0.1:8000/crear_residencia">Crear residencia</a></li>
-              <li><a href="http://127.0.0.1:8000/ver_residencias#">Ver residencias</a></li>
-              <li><a href="http://127.0.0.1:8000/ver_subastas">Ver subastas</a></li>
+              {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                  <li><a href="http://127.0.0.1:8000/cerrar_sesion/">Cerrar Sesion</a></li>
+                  <li><a href="http://127.0.0.1:8000/ver_usuarios/">Ver Usuarios</a> </li>
+                  <li><a href="http://127.0.0.1:8000/registrar_admin/">Registrar Administrador</a></li>
+                  <li><a href="http://127.0.0.1:8000/crear_residencia">Crear residencia</a></li>
+                  <li><a href="http://127.0.0.1:8000/ver_residencias#">Ver residencias</a></li>
+                  <li><a href="http://127.0.0.1:8000/ver_subastas/">Ver subastas</a></li>
+                {% else %}
+                  <li><a href="http://127.0.0.1:8000/cerrar_sesion/">Cerrar Sesion</a></li>
+                  <li><a href="http://127.0.0.1:8000/ver_residencias#">Ver residencias</a></li>
+                  <li><a href="http://127.0.0.1:8000/ver_subastas/">Ver subastas</a></li>
+                {% endif %}
+              {% else %}
+                <li><a href="http://127.0.0.1:8000/iniciar_sesion/">Iniciar Sesion</a></li>
+                <li><a href="http://127.0.0.1:8000/registrarse/">Registrarse</a> </li>
+                <li><a href="http://127.0.0.1:8000/ver_residencias#">Ver residencias</a></li>
+                <li><a href="http://127.0.0.1:8000/ver_subastas/">Ver subastas</a></li>
+              {% endif %}
           </ul>
         </div>
     </nav>
-
+    <ul class="messages">
+        {% if messages %}
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}><script>M.toast({html: "{{message}}", classes: 'red lighten-3 , rounded'});</script></li>
+            {% endfor %}
+        {% endif %}
+    </ul>
     {% block content %}
     {% endblock %}
 

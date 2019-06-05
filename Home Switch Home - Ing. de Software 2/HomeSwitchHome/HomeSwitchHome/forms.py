@@ -1,8 +1,9 @@
 from django import forms
-from django.db.models import Q
-from django.core.exceptions import ObjectDoesNotExist
-from HSH.models import Residencia, Puja, Subasta, Usuario
+from django.contrib.auth.forms import UserCreationForm
+from HSH.models import Residencia, Puja, Subasta, Perfil, Usuario
 from datetime import datetime
+from django.core.validators import RegexValidator
+from django.utils.translation import gettext, gettext_lazy as _
 
 class ResidenciaForm(forms.Form):
     localidad = forms.CharField()
@@ -69,52 +70,93 @@ class ResidenciaForm(forms.Form):
 class PujaForm(forms.Form):
     monto = forms.FloatField()
 
+class RegistroForm(UserCreationForm):
 
-class RegistroForm(forms.Form):
-    #email = forms.EmailField()
-    #contraseña = forms.CharField()
-    #nombre = forms.CharField()
-    #fecha_nacimiento = forms.DateField()
-    #nro_tarjeta_credito = forms.CharField()
-    marca_tarjeta_credito = forms.CharField(widget=forms.RadioSelect(choices=[('VISA', 'Visa'), ('AMERICAN EXPRESS', 'American Express'), ('MASTERCARD', 'Mastercard')]))
-    #nombre_titular_tarjeta = forms.CharField()
-    #fecha_vencimiento_tarjeta = forms.DateField()
-    #codigo_seguridad_tarjeta = forms.IntegerField(max_value=999)
+    class Meta:
+        model = Usuario
+        fields = [
+            'email',
+        ]
+
+    email = forms.EmailField(label='Email')
+    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput, max_length=50, strip=False)
+    password2 = forms.CharField(label='Repita su contraseña', widget=forms.PasswordInput, max_length=50, strip=False)
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        try:
+            coincidencia = Usuario.objects.get(email=email)
+        except Usuario.DoesNotExist:
+            return email
+        raise forms.ValidationError('Este mail ya se encuentra en uso.')
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError('Las contraseñas no coinciden.')
+        return password2
+
+class PerfilForm(forms.Form):
+
+    nombre = forms.CharField(label='Nombre', max_length=50)
+    apellido = forms.CharField(label='Apellido', max_length=50)
+    fecha_nacimiento = forms.DateField(
+        label='Fecha de nacimiento (formato DD/MM/AA)',
+        input_formats=["%d/%m/%y"],
+        error_messages={'invalid': 'Ingrese una fecha valida.'}
+    )
+    nro_tarjeta_credito = forms.CharField(
+        label='Numero de tarjeta de credito',
+        max_length=16,
+        min_length=16,
+        validators=[RegexValidator('^[0-9]*$', message='Solo se aceptan caracteres numericos.')]
+    )
+    marca_tarjeta_credito = forms.CharField(
+        label='Marca de tarjeta de credito',
+        widget=forms.RadioSelect(
+            choices=[
+                ('VISA', 'Visa'),
+                ('AMERICAN EXPRESS', 'American Express'),
+                ('MASTERCARD', 'Mastercard')
+            ]
+        )
+    )
+    nombre_titular_tarjeta = forms.CharField(label='Nombre del titular', max_length=120)
+    fecha_vencimiento_tarjeta = forms.DateField(
+        label='Fecha de vencimiento (formato DD/MM/AA)',
+        input_formats=["%d/%m/%y"],
+        error_messages={'invalid': 'Ingrese una fecha valida.'}
+    )
+    codigo_seguridad_tarjeta = forms.CharField(
+        label='Codigo de seguridad',
+        max_length=3,
+        min_length=3,
+        validators=[RegexValidator('^[0-9]*$', message='Solo se aceptan caracteres numericos.')]
+    )
 
     def clean_fecha_nacimiento(self):
         fecha = self.cleaned_data.get('fecha_nacimiento')
-        edad = (datetime.now()-fecha).days/365
+        edad = (datetime.now().date() - fecha).days / 365
         if edad < 18:
             raise forms.ValidationError('Debes tener 18 años o mas de edad para registrarte.')
         return fecha
 
-    def clean_nro_tarjeta_credito(self):
-        n = self.cleaned_data.get('nro_tarjeta_credito')
-        if len(str(n)) != 16:
-            raise forms.ValidationError('El numero de tarjeta ingresado no es valido.')
-        return n
-
     def clean_fecha_vencimiento_tarjeta(self):
         venc = self.cleaned_data.get('fecha_vencimiento_tarjeta')
-        if venc < datetime.today():
+        if venc < datetime.today().date():
             raise forms.ValidationError('La tarjeta ingresada esta vencida.')
         return venc
 
-    def clean_codigo_seguridad_tarjeta(self):
-        cod = self.cleaned_data.get('codigo_seguridad_tarjeta')
-        if len(str(cod)) != 3:
-            raise forms.ValidationError('El numero de seguridad ingresado no es valido.')
-        return cod
-
     def save(self):
-        u = Usuario()
-        u.email = self.cleaned_data['email']
-        u.contraseña = self.cleaned_data['contraseña']
-        u.nombre = self.cleaned_data['nombre']
-        u.fecha_nacimiento = self.clean_fecha_nacimiento()
-        u.nro_tarjeta_credito = self.clean_nro_tarjeta_credito()
-        u.marca_tarjeta_credito = self.cleaned_data['marca_tarjeta_credito']
-        u.nombre_titular_tarjeta = self.cleaned_data['nombre_titular_tarjeta']
-        u.fecha_vencimiento_tarjeta = self.clean_fecha_vencimiento_tarjeta()
-        u.codigo_seguridad_tarjeta = self.clean_codigo_seguridad_tarjeta()
-        u.save()
+        p = Perfil()
+        p.nombre = self.cleaned_data.get('nombre')
+        p.apellido = self.cleaned_data.get('apellido')
+        p.fecha_nacimiento = self.clean_fecha_nacimiento()
+        p.nro_tarjeta_credito = self.cleaned_data.get('nro_tarjeta_credito')
+        p.marca_tarjeta_credito = self.cleaned_data.get('marca_tarjeta_credito')
+        p.nombre_titular_tarjeta = self.cleaned_data.get('nombre_titular_tarjeta')
+        p.fecha_vencimiento_tarjeta = self.clean_fecha_vencimiento_tarjeta()
+        p.codigo_seguridad_tarjeta = self.cleaned_data.get('codigo_seguridad_tarjeta')
+        p.save()
+        return p
