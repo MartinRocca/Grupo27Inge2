@@ -78,7 +78,7 @@ class RegistroForm(UserCreationForm):
             'email',
         ]
 
-    email = forms.EmailField(label='Email')
+    email = forms.EmailField(label='Email', error_messages={'required':'Por favor ingrese su email.'})
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput, max_length=50, strip=False)
     password2 = forms.CharField(label='Repita su contraseña', widget=forms.PasswordInput, max_length=50, strip=False)
 
@@ -116,9 +116,9 @@ class PerfilForm(forms.Form):
         label='Marca de tarjeta de credito',
         widget=forms.RadioSelect(
             choices=[
-                ('VISA', 'Visa'),
-                ('AMERICAN EXPRESS', 'American Express'),
-                ('MASTERCARD', 'Mastercard')
+                ('Visa', 'Visa'),
+                ('American Express', 'American Express'),
+                ('Mastercard', 'Mastercard')
             ]
         )
     )

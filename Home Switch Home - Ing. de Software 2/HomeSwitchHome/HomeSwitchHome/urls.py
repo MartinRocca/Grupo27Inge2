@@ -30,6 +30,8 @@ from HSH.views import (
     ver_usuarios_page,
     registro_page,
     registro_admin_page,
+    perfil_page,
+    ayuda_premium_page
 )
 
 urlpatterns = [
@@ -49,4 +51,6 @@ urlpatterns = [
     path('cerrar_sesion/', auth_views.LogoutView.as_view(template_name='logout.html')),
     path('registrarse/', registro_page),
     path('registrar_admin/', registro_admin_page),
+    path('perfil/', perfil_page),
+    path('volverse_premium/', ayuda_premium_page),
 ]

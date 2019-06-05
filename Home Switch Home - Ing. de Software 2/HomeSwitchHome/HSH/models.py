@@ -102,6 +102,7 @@ class Perfil(models.Model):
     fecha_vencimiento_tarjeta = models.DateField(null=True)
     codigo_seguridad_tarjeta = models.IntegerField(null=True)
     creditos = models.IntegerField(default=2)
+    vencimiento_creditos = models.DateField(null=True)
 
     class meta:
         unique_together = ('nombre', 'apellido')

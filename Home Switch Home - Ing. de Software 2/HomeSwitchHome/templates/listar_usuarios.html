@@ -5,11 +5,18 @@
     <div class="row">
         {% for usuario in usuarios %}
                 <div class="col s12 m6 l3">
-                  <div class="card big">
+                  <div class="card small">
                     <span class="card-title" style="font-size:200%">{{usuario.email}}</span>
                     <div class="card-content">
-                      <p>Aqui iria la info del usuario...</p>
-                      <p>Pero tengo paja de escribirla ahora mismo.</p>
+                        {% if usuario.is_superuser %}
+                            <p>Es Superuser</p>
+                        {% elif usuario.is_staff %}
+                            <p>Es admin</p>
+                        {% elif usuario.is_premium %}
+                            <p>Es usuario Premium</p>
+                        {% else %}
+                            <p>Es usuario normal</p>
+                        {% endif %}
                     </div>
                   </div>
                 </div>

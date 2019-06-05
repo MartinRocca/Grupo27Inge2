@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from HomeSwitchHome.forms import ResidenciaForm, PujaForm, RegistroForm, PerfilForm
 from .models import Residencia, Subasta, Puja, Usuario, Perfil
 from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, validar_ubicacion_editar
-import datetime
+from datetime import datetime, timedelta
 
 
 # Create your views here.
@@ -92,7 +92,7 @@ def eliminar_residencia_page(request, residencia):
 def helper_listar_subastas():
     # fecha = datetime.now()
     # Creo una variable date donde el día sea lunes y si o si encuentre subastas.
-    fecha_lunes = datetime.datetime(2019, 5, 20)
+    fecha_lunes = datetime(2019, 5, 20)
     info_return = {}
     subastas_activas = []
     # if fecha.weekday() in [1, 2, 3]:
@@ -123,7 +123,7 @@ def listar_subastas_page(request):
     return render(request, template, context)
 
 def listar_subastas_finalizadas_page(request):
-    if request.user.is_staff == False:
+    if not request.user.is_staff:
         messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
         return redirect('/')
     template = "listar_subastas_finalizadas.html"
@@ -132,6 +132,11 @@ def listar_subastas_finalizadas_page(request):
     return render(request, template, context)
 
 def pujar_page(request, subasta_id):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Debes iniciar tu sesion para acceder a esta funcion.')
+        return redirect('/')
+    if request.user.is_staff:
+        return redirect('/')
     template = "pujar.html"
     form = PujaForm(request.POST or None)
     subasta = Subasta.objects.get(id=subasta_id)
@@ -153,7 +158,7 @@ def pujar_page(request, subasta_id):
     return render(request, template, context)
 
 def cerrar_subasta_page(request, subasta_id):
-    if request.user.is_staff == False:
+    if not request.user.is_staff:
         messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
         return redirect('/')
     template = "cerrar_subasta.html"
@@ -172,8 +177,8 @@ def registro_page(request):
         messages.warning(request, 'Ya tienes una sesion activa.')
         return redirect('/')
     if request.method == 'POST':
-        usuario_form = RegistroForm(request.POST)
-        perfil_form = PerfilForm(request.POST)
+        usuario_form = RegistroForm(request.POST or None)
+        perfil_form = PerfilForm(request.POST or None)
         if usuario_form.is_valid() and perfil_form.is_valid():
             usuario = Usuario()
             usuario.email = usuario_form.clean_email()
@@ -189,6 +194,7 @@ def registro_page(request):
                 fecha_vencimiento_tarjeta = perfil_form.clean_fecha_vencimiento_tarjeta(),
                 codigo_seguridad_tarjeta = perfil_form.cleaned_data.get('codigo_seguridad_tarjeta'),
                 mi_usuario = usuario,
+                vencimiento_creditos = (datetime.now() + timedelta(days=365.24))
             )
             perfil.save()
             raw_password = usuario_form.clean_password2()
@@ -196,12 +202,12 @@ def registro_page(request):
             login(request, usuario)
             return redirect('/')
     else:
-        usuario_form = RegistroForm(request.POST)
-        perfil_form = PerfilForm(request.POST)
+        usuario_form = RegistroForm()
+        perfil_form = PerfilForm()
     return render(request, 'registro.html', {'usuario_form': usuario_form, 'perfil_form': perfil_form})
 
 def ver_usuarios_page(request):
-    if request.user.is_staff == False:
+    if not request.user.is_staff:
         messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
         return redirect('/')
     template = "listar_usuarios.html"
@@ -224,3 +230,23 @@ def registro_admin_page(request):
         messages.error(request, 'Solo administradores pueden acceder a esta funcion.')
         return redirect('/')
     return render(request, 'registro_admin.html', {'form': form})
+
+def perfil_page(request):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Inicia tu sesion para poder ver tu perfil.')
+        return redirect('/iniciar_sesion/')
+    if request.user.is_staff:
+        # En blanco; Cuando hayamos implementado la HU 'Ver Usuario' de los administradores, deberia redireccionar a
+        # http://127.0.0.1:8000/pagina_de_ver_usuario/este_usuario
+        pass
+    template = 'perfil.html'
+    usuario = Usuario.objects.get(email=request.user.email)
+    perfil = usuario.get_perfil()
+    nrotarjeta = '** - ********** - ' + (str(perfil.nro_tarjeta_credito)[-4:])
+    return render(request, template, {'user': usuario, 'perfil': perfil, 'nrotarjeta': nrotarjeta})
+
+def ayuda_premium_page(request):
+    if request.user.is_staff:
+        messages.warning(request, 'Preguntale a tu jefe.')
+        return redirect('/')
+    return render(request, 'ayuda_premium.html', {})
