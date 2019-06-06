@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="centrar">
+        <div class="row">
+            <div class="col s12 m6 l3">
+                  <div class="card medium">
+                    <div class="card-content">
+                        <p>N° de tarjeta: {{perfil.nro_tarjeta_credito}}</p>
+                        <p>Marca: {{perfil.marca_tarjeta_credito}}</p>
+                        <p>Nombre del titular: {{perfil.nombre_titular_tarjeta}}</p>
+                        <p>Fecha de vencimiento: {{perfil.fecha_vencimiento_tarjeta|date:'d/m/y'}}</p>
+                        <p>Codigo de seguridad: {{perfil.codigo_seguridad_tarjeta}}</p>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <form method="POST" action=''>
+            {% csrf_token %}
+                <h1>Cambiar Tarjeta</h1>
+                <br>
+                {{form}}
+                <button class="btn" style="background-color:#90a4ae; color:white" type="submit"> actualizar</button>
+                <a class="btn" style="background-color:#90a4ae; color:white" href="/perfil"> cancelar</a>
+        </form>
+    </div>
+{% endblock content %}

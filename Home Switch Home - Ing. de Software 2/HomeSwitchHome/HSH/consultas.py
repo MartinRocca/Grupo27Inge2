@@ -1,4 +1,4 @@
-from .models import Residencia, Reserva, Subasta, Puja
+from .models import Residencia, Reserva, Subasta, Puja, Perfil
 from django.db.models import Q, Max
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import datetime, timedelta
@@ -73,3 +73,16 @@ def obtener_subastas(fecha):
         return subastas_activas
     except ObjectDoesNotExist:
         return []
+
+def validar_nombre_completo(un_nombre, un_apellido, una_fecha):
+    # Si ya existe un perfil con el mismo nombre, apellido y fecha de nacimiento que me pasan como parametro,
+    # Devuelve true, caso contrario false
+    try:
+        per = Perfil.objects.get(
+            Q(nombre__iexact=un_nombre),
+            Q(apellido__iexact=un_apellido),
+            Q(fecha_nacimiento=una_fecha)
+        )
+        return True
+    except ObjectDoesNotExist:
+        return False

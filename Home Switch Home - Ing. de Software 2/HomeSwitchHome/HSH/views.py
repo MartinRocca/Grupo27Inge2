@@ -1,11 +1,10 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect, render_to_response
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import messages
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, authenticate
 from django.forms.models import model_to_dict
-from django.contrib.auth.decorators import login_required
-from HomeSwitchHome.forms import ResidenciaForm, PujaForm, RegistroForm, PerfilForm
+from HomeSwitchHome.forms import ResidenciaForm, PujaForm, RegistroForm, PerfilForm, EditarPerfilForm, CambiarTarjetaForm
 from .models import Residencia, Subasta, Puja, Usuario, Perfil
-from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, validar_ubicacion_editar
+from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, validar_ubicacion_editar, validar_nombre_completo
 from datetime import datetime, timedelta
 
 
@@ -45,7 +44,7 @@ def listar_residencias_page(request):
     return render(request, template, {"residencias": Residencia.objects.filter(activa=True)})
 
 def editar_residencia_page(request, residencia):
-    if request.user.is_staff == False:
+    if not request.user.is_staff:
         messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
         return redirect('/')
     template = "editar_residencia.html"
@@ -65,7 +64,6 @@ def editar_residencia_page(request, residencia):
                                      form.cleaned_data['nro_direccion'], Residencia.objects.get(id=residencia)):
                 form.editar(residencia)
                 form = ResidenciaForm(request.POST or None)
-                print("Entra acá")
                 messages.success(request, 'La residencia se ha editado exitosamente.')
                 return redirect("/")
             else:
@@ -180,27 +178,34 @@ def registro_page(request):
         usuario_form = RegistroForm(request.POST or None)
         perfil_form = PerfilForm(request.POST or None)
         if usuario_form.is_valid() and perfil_form.is_valid():
-            usuario = Usuario()
-            usuario.email = usuario_form.clean_email()
-            usuario.set_password(usuario_form.clean_password2())
-            usuario.save()
-            perfil = Perfil(
-                nombre = perfil_form.cleaned_data.get('nombre'),
-                apellido = perfil_form.cleaned_data.get('apellido'),
-                fecha_nacimiento = perfil_form.clean_fecha_nacimiento(),
-                nro_tarjeta_credito = perfil_form.cleaned_data.get('nro_tarjeta_credito'),
-                marca_tarjeta_credito = perfil_form.cleaned_data.get('marca_tarjeta_credito'),
-                nombre_titular_tarjeta = perfil_form.cleaned_data.get('nombre_titular_tarjeta'),
-                fecha_vencimiento_tarjeta = perfil_form.clean_fecha_vencimiento_tarjeta(),
-                codigo_seguridad_tarjeta = perfil_form.cleaned_data.get('codigo_seguridad_tarjeta'),
-                mi_usuario = usuario,
-                vencimiento_creditos = (datetime.now() + timedelta(days=365.24))
-            )
-            perfil.save()
-            raw_password = usuario_form.clean_password2()
-            usuario = authenticate(email = usuario.email, password = raw_password)
-            login(request, usuario)
-            return redirect('/')
+            if not validar_nombre_completo(
+                perfil_form.cleaned_data.get('nombre'),
+                perfil_form.cleaned_data.get('apellido'),
+                perfil_form.cleaned_data.get('fecha_nacimiento')
+            ):
+                usuario = Usuario()
+                usuario.email = usuario_form.clean_email()
+                usuario.set_password(usuario_form.clean_password2())
+                usuario.save()
+                perfil = Perfil(
+                    nombre = perfil_form.cleaned_data.get('nombre'),
+                    apellido = perfil_form.cleaned_data.get('apellido'),
+                    fecha_nacimiento = perfil_form.clean_fecha_nacimiento(),
+                    nro_tarjeta_credito = perfil_form.cleaned_data.get('nro_tarjeta_credito'),
+                    marca_tarjeta_credito = perfil_form.cleaned_data.get('marca_tarjeta_credito'),
+                    nombre_titular_tarjeta = perfil_form.cleaned_data.get('nombre_titular_tarjeta'),
+                    fecha_vencimiento_tarjeta = perfil_form.clean_fecha_vencimiento_tarjeta(),
+                    codigo_seguridad_tarjeta = perfil_form.cleaned_data.get('codigo_seguridad_tarjeta'),
+                    mi_usuario = usuario,
+                    vencimiento_creditos = (datetime.now() + timedelta(days=365.24))
+                )
+                perfil.save()
+                raw_password = usuario_form.clean_password2()
+                usuario = authenticate(email = usuario.email, password = raw_password)
+                login(request, usuario)
+                return redirect('/')
+            else:
+                messages.error(request, 'Ya existe una cuenta para este usuario.')
     else:
         usuario_form = RegistroForm()
         perfil_form = PerfilForm()
@@ -250,3 +255,60 @@ def ayuda_premium_page(request):
         messages.warning(request, 'Preguntale a tu jefe.')
         return redirect('/')
     return render(request, 'ayuda_premium.html', {})
+
+def editar_perfil_page(request, perfil):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Debes iniciar tu sesion para acceder a esta pagina.')
+        return redirect('/')
+    mi_perfil = Perfil.objects.get(id=perfil)
+    if request.user.id != mi_perfil.mi_usuario.id:
+        messages.error(request, '¡No puedes editar el perfil de otro usuario!')
+        return redirect('/perfil/')
+    template = 'editar_perfil.html'
+    form = EditarPerfilForm(request.POST or None, initial={
+        'nombre': mi_perfil.nombre,
+        'apellido': mi_perfil.apellido,
+        'fecha_nacimiento': mi_perfil.fecha_nacimiento.strftime("%d/%m/%y"),
+    })
+    context = {'perfil': mi_perfil, 'form': form}
+    if request.method == 'POST':
+        if form.is_valid():
+            if not validar_nombre_completo(
+                form.cleaned_data.get('nombre'),
+                form.cleaned_data.get('apellido'),
+                form.clean_fecha_nacimiento()
+            ):
+                form.editar(perfil)
+                messages.success(request, 'Su perfil se ha editado exitosamente.')
+                return redirect('/perfil/')
+            else:
+                messages.error(request, 'Ya existe un usuario similar cargado en el sistema.')
+    else:
+        form = EditarPerfilForm()
+    return render(request, template, context)
+
+def cambiar_tarjeta_page(request, perfil):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Debes iniciar tu sesion para acceder a esta pagina.')
+        return redirect('/')
+    mi_perfil = Perfil.objects.get(id=perfil)
+    if request.user.id != mi_perfil.mi_usuario.id:
+        messages.error(request, '¡No puedes editar el perfil de otro usuario!')
+        return redirect('/perfil/')
+    template = 'cambiar_tarjeta.html'
+    form = CambiarTarjetaForm(request.POST or None, initial={
+        'nro_tarjeta_credito': mi_perfil.nro_tarjeta_credito,
+        'marca_tarjeta_credito': mi_perfil.marca_tarjeta_credito,
+        'nombre_titular_tarjeta': mi_perfil.nombre_titular_tarjeta,
+        'fecha_vencimiento_tarjeta': mi_perfil.fecha_vencimiento_tarjeta.strftime("%d/%m/%y"),
+        'codigo_seguridad_tarjeta': mi_perfil.codigo_seguridad_tarjeta
+    })
+    context = {'perfil': mi_perfil, 'form': form}
+    if request.method == 'POST':
+        if form.is_valid():
+            form.editar(perfil)
+            messages.success(request, 'Su tarjeta se ha cambiado exitosamente.')
+            return redirect('/perfil/')
+    else:
+        form = CambiarTarjetaForm()
+    return render(request, template, context)

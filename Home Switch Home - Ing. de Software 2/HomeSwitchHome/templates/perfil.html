@@ -18,21 +18,20 @@
                         {% endif %}
                         <br>
                         <p>Nombre completo: {{perfil.apellido}} {{perfil.nombre}}</p>
-                        <p>Fecha de nacimiento: {{perfil.fecha_nacimiento}}</p>
+                        <p>Fecha de nacimiento: {{perfil.fecha_nacimiento|date:'d/m/y'}}</p>
                         <p>Creditos: {{perfil.creditos}}</p>
-                        <p>Vencimiento de sus creditos: {{perfil.vencimiento_creditos}}</p>
+                        <p>Vencimiento de sus creditos: {{perfil.vencimiento_creditos|date:'d/m/y'}}</p>
                         <br>
                         <p>tarjeta: {{perfil.marca_tarjeta_credito}} {{nrotarjeta}}</p>
                         <div class="card-action">
-                            <a href="">Cambiar mi tarjeta...</a>
-                            <a href="">Editar Perfil</a>
+                            <a href="http://127.0.0.1:8000/editar_perfil/{{perfil.id}}">Editar Perfil</a>
+                            <a href="http://127.0.0.1:8000/cambiar_tarjeta/{{perfil.id}}">Cambiar mi tarjeta</a>
                         </div>
                     </div>
                   </div>
                 </div>
         </div>
     </div>
-    <br>
     <br>
     <br>
     <br>
