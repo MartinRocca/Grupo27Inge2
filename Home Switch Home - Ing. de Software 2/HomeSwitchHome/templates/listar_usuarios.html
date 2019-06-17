@@ -1,26 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
+ <body>
+    <div class="container">
+      <table>
+        <thead>
+          <tr>
+              <th>Correo electrónico</th>
+              <th>Tipo de usuario</th>
+              <th>Convertir a</th>
+          </tr>
+        </thead>
 
-    <div class="row">
-        {% for usuario in usuarios %}
-                <div class="col s12 m6 l3">
-                  <div class="card small">
-                    <span class="card-title" style="font-size:200%">{{usuario.email}}</span>
-                    <div class="card-content">
-                        {% if usuario.is_superuser %}
-                            <p>Es Superuser</p>
-                        {% elif usuario.is_staff %}
-                            <p>Es admin</p>
-                        {% elif usuario.is_premium %}
-                            <p>Es usuario Premium</p>
-                        {% else %}
-                            <p>Es usuario normal</p>
-                        {% endif %}
-                    </div>
-                  </div>
-                </div>
-        {% endfor %}
+        <tbody>
+          {% for usuario in usuarios %}
+          <tr>
+            <td>{{usuario.email}}</td>
+            {% if usuario.is_superuser %}
+              <td>Superuser</td>
+              <td> - </td>
+              {% elif usuario.is_staff %}
+              <td>Administrador</td>
+              <td>Eliminar</td>
+              {% elif usuario.is_premium %}
+              <td>Usuario Premium</td>
+              <td>Normal</td>
+              {% else %}
+              <td>Usuario normal</td>
+              <td>Premium</td>
+              {% endif %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-
+</body>
 {% endblock content %}

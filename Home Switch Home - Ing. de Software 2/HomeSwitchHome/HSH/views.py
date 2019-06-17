@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.forms.models import model_to_dict
-from HomeSwitchHome.forms import ResidenciaForm, PujaForm, RegistroForm, PerfilForm, EditarPerfilForm, CambiarTarjetaForm
+from HomeSwitchHome.forms import ResidenciaForm, PujaForm, RegistroForm, PerfilForm, EditarPerfilForm, \
+    CambiarTarjetaForm
 from .models import Residencia, Subasta, Puja, Usuario, Perfil
-from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, validar_ubicacion_editar, validar_nombre_completo
+from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, validar_ubicacion_editar, \
+    validar_nombre_completo
 from datetime import datetime, timedelta
 
 
@@ -12,6 +14,7 @@ from datetime import datetime, timedelta
 
 def home_page(request):
     return render(request, "home_page.html", {'titulo': "Bienvenido a HSH", 'user': request.user})
+
 
 def crear_residencia_page(request):
     if request.user.is_staff == False:
@@ -39,9 +42,11 @@ def crear_residencia_page(request):
         form = ResidenciaForm(request.POST or None)
     return render(request, template, context)
 
+
 def listar_residencias_page(request):
     template = "listar_residencias.html"
     return render(request, template, {"residencias": Residencia.objects.filter(activa=True)})
+
 
 def editar_residencia_page(request, residencia):
     if not request.user.is_staff:
@@ -61,7 +66,7 @@ def editar_residencia_page(request, residencia):
     if request.method == 'POST':
         if form.is_valid():
             if not validar_ubicacion_editar(form.cleaned_data['localidad'], form.cleaned_data['calle'],
-                                     form.cleaned_data['nro_direccion'], Residencia.objects.get(id=residencia)):
+                                            form.cleaned_data['nro_direccion'], Residencia.objects.get(id=residencia)):
                 form.editar(residencia)
                 form = ResidenciaForm(request.POST or None)
                 messages.success(request, 'La residencia se ha editado exitosamente.')
@@ -71,6 +76,7 @@ def editar_residencia_page(request, residencia):
     else:
         form = ResidenciaForm(request.POST or None)
     return render(request, template, context)
+
 
 def eliminar_residencia_page(request, residencia):
     if request.user.is_staff == False:
@@ -86,6 +92,7 @@ def eliminar_residencia_page(request, residencia):
     else:
         form = ResidenciaForm(request.POST or None)
     return render(request, template, context)
+
 
 def helper_listar_subastas():
     # fecha = datetime.now()
@@ -110,6 +117,7 @@ def helper_listar_subastas():
     info_return['codigo_error'] = 0
     return info_return
 
+
 def listar_subastas_page(request):
     template = "listar_subastas.html"
     info_return = helper_listar_subastas()
@@ -120,6 +128,7 @@ def listar_subastas_page(request):
     context = {"subastas": info_return['subastas']}
     return render(request, template, context)
 
+
 def listar_subastas_finalizadas_page(request):
     if not request.user.is_staff:
         messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
@@ -128,6 +137,7 @@ def listar_subastas_finalizadas_page(request):
     subastas = Subasta.objects.filter(esta_programada=False)
     context = {"subastas": subastas}
     return render(request, template, context)
+
 
 def pujar_page(request, subasta_id):
     if not request.user.is_authenticated:
@@ -155,6 +165,7 @@ def pujar_page(request, subasta_id):
         form = PujaForm(request.POST or None)
     return render(request, template, context)
 
+
 def cerrar_subasta_page(request, subasta_id):
     if not request.user.is_staff:
         messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
@@ -170,6 +181,7 @@ def cerrar_subasta_page(request, subasta_id):
         form = ResidenciaForm(request.POST or None)
     return render(request, template, context)
 
+
 def registro_page(request):
     if request.user.is_authenticated:
         messages.warning(request, 'Ya tienes una sesion activa.')
@@ -179,29 +191,29 @@ def registro_page(request):
         perfil_form = PerfilForm(request.POST or None)
         if usuario_form.is_valid() and perfil_form.is_valid():
             if not validar_nombre_completo(
-                perfil_form.cleaned_data.get('nombre'),
-                perfil_form.cleaned_data.get('apellido'),
-                perfil_form.cleaned_data.get('fecha_nacimiento')
+                    perfil_form.cleaned_data.get('nombre'),
+                    perfil_form.cleaned_data.get('apellido'),
+                    perfil_form.cleaned_data.get('fecha_nacimiento')
             ):
                 usuario = Usuario()
                 usuario.email = usuario_form.clean_email()
                 usuario.set_password(usuario_form.clean_password2())
                 usuario.save()
                 perfil = Perfil(
-                    nombre = perfil_form.cleaned_data.get('nombre'),
-                    apellido = perfil_form.cleaned_data.get('apellido'),
-                    fecha_nacimiento = perfil_form.clean_fecha_nacimiento(),
-                    nro_tarjeta_credito = perfil_form.cleaned_data.get('nro_tarjeta_credito'),
-                    marca_tarjeta_credito = perfil_form.cleaned_data.get('marca_tarjeta_credito'),
-                    nombre_titular_tarjeta = perfil_form.cleaned_data.get('nombre_titular_tarjeta'),
-                    fecha_vencimiento_tarjeta = perfil_form.clean_fecha_vencimiento_tarjeta(),
-                    codigo_seguridad_tarjeta = perfil_form.cleaned_data.get('codigo_seguridad_tarjeta'),
-                    mi_usuario = usuario,
-                    vencimiento_creditos = (datetime.now() + timedelta(days=365.24))
+                    nombre=perfil_form.cleaned_data.get('nombre'),
+                    apellido=perfil_form.cleaned_data.get('apellido'),
+                    fecha_nacimiento=perfil_form.clean_fecha_nacimiento(),
+                    nro_tarjeta_credito=perfil_form.cleaned_data.get('nro_tarjeta_credito'),
+                    marca_tarjeta_credito=perfil_form.cleaned_data.get('marca_tarjeta_credito'),
+                    nombre_titular_tarjeta=perfil_form.cleaned_data.get('nombre_titular_tarjeta'),
+                    fecha_vencimiento_tarjeta=perfil_form.clean_fecha_vencimiento_tarjeta(),
+                    codigo_seguridad_tarjeta=perfil_form.cleaned_data.get('codigo_seguridad_tarjeta'),
+                    mi_usuario=usuario,
+                    vencimiento_creditos=(datetime.now() + timedelta(days=365.24))
                 )
                 perfil.save()
                 raw_password = usuario_form.clean_password2()
-                usuario = authenticate(email = usuario.email, password = raw_password)
+                usuario = authenticate(email=usuario.email, password=raw_password)
                 login(request, usuario)
                 return redirect('/')
             else:
@@ -211,6 +223,7 @@ def registro_page(request):
         perfil_form = PerfilForm()
     return render(request, 'registro.html', {'usuario_form': usuario_form, 'perfil_form': perfil_form})
 
+
 def ver_usuarios_page(request):
     if not request.user.is_staff:
         messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
@@ -218,23 +231,26 @@ def ver_usuarios_page(request):
     template = "listar_usuarios.html"
     return render(request, template, {"usuarios": Usuario.objects.all()})
 
+
 def registro_admin_page(request):
     if request.user.is_staff:
         form = RegistroForm(request.POST or None)
         if request.method == 'POST':
             if form.is_valid():
-                 admin = Usuario()
-                 admin.email = form.clean_email()
-                 admin.set_password(form.clean_password2())
-                 admin.is_staff = True
-                 admin.save()
-                 messages.success(request, 'Se ha creado el nuevo administrador exitosamente. Cierre esta sesion para iniciar sesion con el nuevo administrador.')
+                admin = Usuario()
+                admin.email = form.clean_email()
+                admin.set_password(form.clean_password2())
+                admin.is_staff = True
+                admin.save()
+                messages.success(request,
+                                 'Se ha creado el nuevo administrador exitosamente. Cierre esta sesion para iniciar sesion con el nuevo administrador.')
         else:
             form = RegistroForm(request.POST or None)
     else:
         messages.error(request, 'Solo administradores pueden acceder a esta funcion.')
         return redirect('/')
     return render(request, 'registro_admin.html', {'form': form})
+
 
 def perfil_page(request):
     if not request.user.is_authenticated:
@@ -250,11 +266,13 @@ def perfil_page(request):
     nrotarjeta = '** - ********** - ' + (str(perfil.nro_tarjeta_credito)[-4:])
     return render(request, template, {'user': usuario, 'perfil': perfil, 'nrotarjeta': nrotarjeta})
 
+
 def ayuda_premium_page(request):
     if request.user.is_staff:
         messages.warning(request, 'Preguntale a tu jefe.')
         return redirect('/')
     return render(request, 'ayuda_premium.html', {})
+
 
 def editar_perfil_page(request, perfil):
     if not request.user.is_authenticated:
@@ -274,9 +292,9 @@ def editar_perfil_page(request, perfil):
     if request.method == 'POST':
         if form.is_valid():
             if not validar_nombre_completo(
-                form.cleaned_data.get('nombre'),
-                form.cleaned_data.get('apellido'),
-                form.clean_fecha_nacimiento()
+                    form.cleaned_data.get('nombre'),
+                    form.cleaned_data.get('apellido'),
+                    form.clean_fecha_nacimiento()
             ):
                 form.editar(perfil)
                 messages.success(request, 'Su perfil se ha editado exitosamente.')
@@ -286,6 +304,7 @@ def editar_perfil_page(request, perfil):
     else:
         form = EditarPerfilForm()
     return render(request, template, context)
+
 
 def cambiar_tarjeta_page(request, perfil):
     if not request.user.is_authenticated:
