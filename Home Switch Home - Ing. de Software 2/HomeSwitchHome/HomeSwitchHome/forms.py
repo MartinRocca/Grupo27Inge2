@@ -228,3 +228,19 @@ class CambiarTarjetaForm(forms.Form):
         p.fecha_vencimiento_tarjeta = self.clean_fecha_vencimiento_tarjeta()
         p.codigo_seguridad_tarjeta = self.cleaned_data.get('codigo_seguridad_tarjeta')
         p.save()
+
+class PrecioForm(forms.Form):
+    precio_Normal = forms.FloatField()
+    precio_Premium = forms.FloatField()
+
+    def clean_precio_Normal(self):
+        pNormal = self.cleaned_data.get('precio_Normal')
+        if pNormal < 0:
+            raise forms.ValidationError('Valor inválido')
+        return pNormal
+
+    def clean_precio_Premium(self):
+        pPremium = self.cleaned_data.get('precio_Premium')
+        if pPremium < 0:
+            raise forms.ValidationError('Valor inválido')
+        return pPremium

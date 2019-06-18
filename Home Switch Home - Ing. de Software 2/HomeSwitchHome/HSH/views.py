@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.forms.models import model_to_dict
-from HomeSwitchHome.forms import ResidenciaForm, PujaForm, RegistroForm, PerfilForm, EditarPerfilForm, \
+from HomeSwitchHome.forms import ResidenciaForm, PujaForm, RegistroForm, PrecioForm, PerfilForm, EditarPerfilForm, \
     CambiarTarjetaForm
-from .models import Residencia, Subasta, Puja, Usuario, Perfil
+from .models import Residencia, Subasta, Puja, Usuario, Perfil, Precio
 from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, validar_ubicacion_editar, \
     validar_nombre_completo
 from datetime import datetime, timedelta
@@ -330,4 +330,20 @@ def cambiar_tarjeta_page(request, perfil):
             return redirect('/perfil/')
     else:
         form = CambiarTarjetaForm()
+    return render(request, template, context)
+
+
+def config_precios_page(request):
+    if request.user.is_staff:
+        template = "configprecios.html"
+        precio = Precio.objects.get()
+        form = PrecioForm(request.POST or None, initial={
+            'precio_Normal': precio.precio_Normal,
+            'precio_Premium': precio.precio_Premium
+        })
+        context = {"form": form, "precio": precio}
+        if request.method == 'POST':
+            if form.is_valid():
+                precio.editar_precio(form.clean_precio_Normal(), form.clean_precio_Premium())
+                return redirect("/")
     return render(request, template, context)

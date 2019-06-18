@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <form method="POST" action=''>
+            {% csrf_token %}
+                <h1>Configurar precios</h1>
+                <br>
+                {{form}}
+                <button class="btn" style="background-color:#90a4ae; color:white" type="submit"> actualizar</button>
+                <a class="btn" style="background-color:#90a4ae; color:white" href="/"> cancelar</a>
+        </form>
+    </div>
+{% endblock content %}

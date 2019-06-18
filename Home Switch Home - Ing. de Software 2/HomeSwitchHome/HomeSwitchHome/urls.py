@@ -34,6 +34,7 @@ from HSH.views import (
     ayuda_premium_page,
     editar_perfil_page,
     cambiar_tarjeta_page,
+    config_precios_page
 )
 
 urlpatterns = [
@@ -57,4 +58,5 @@ urlpatterns = [
     path('volverse_premium/', ayuda_premium_page),
     path('editar_perfil/<perfil>/', editar_perfil_page, name='editar_perfil'),
     path('cambiar_tarjeta/<perfil>/', cambiar_tarjeta_page, name='cambiar_tarjeta'),
+    path('config_precios/', config_precios_page)
 ]

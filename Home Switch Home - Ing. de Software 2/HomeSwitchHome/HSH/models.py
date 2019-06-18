@@ -149,3 +149,13 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
             return Perfil.objects.get(mi_usuario=self)
         except ObjectDoesNotExist:
             return None
+
+
+class Precio(models.Model):
+    precio_Normal = models.FloatField()
+    precio_Premium = models.FloatField()
+
+    def editar_precio(self, unPrecioNormal, unPrecioPremium):
+        self.precio_Normal = unPrecioNormal
+        self.precio_Premium = unPrecioPremium
+        self.save()
