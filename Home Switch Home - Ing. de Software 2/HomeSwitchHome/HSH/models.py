@@ -40,6 +40,22 @@ class Residencia(models.Model):
 class Reserva(models.Model):
     id_residencia = models.ForeignKey(Residencia, on_delete=models.CASCADE)
     fecha = models.DateField()
+    usuario_ganador = models.EmailField(null=True)
+
+
+    def reservar(self, mailUsuario):
+        subasta = Subasta.objects.get(id_reserva=self)
+        subasta.esta_programada = False
+        subasta.save()
+        self.set_ganador(mailUsuario)
+
+    def set_ganador(self, mailUsuario):
+        self.usuario_ganador = Usuario.objects.get(email=mailUsuario)
+        self.save()
+        perfil_ganador = self.usuario.get_perfil()
+        perfil_ganador.creditos = perfil_ganador.creditos - 1
+        perfil_ganador.save()
+
 
     class Meta:
         unique_together = (("id_residencia", "fecha"),)
@@ -50,7 +66,6 @@ class Subasta(models.Model):
     fecha_inicio = models.DateField()
     esta_programada = models.BooleanField(default=True)
 
-    # hay que ver como hacer bien lo del premium, se podria agregar un campo más.
 
     def obtener_monto_max(self):
         try:
@@ -65,24 +80,28 @@ class Subasta(models.Model):
     def obtener_ganador(self):
         try:
             puja_ganadora = Puja.objects.filter(id_subasta=self).latest('monto')
+            while True:
+                if puja_ganadora.id_usuario.get_perfil().creditos >= 1:
+                    self.id_reserva.set_ganador(puja_ganadora.id_usuario)
+                    self.esta_programada = False
+                    self.save()
+                    break
+                else:
+                    Puja.objects.filter(id_subasta=self).latest('monto').delete()
+                    puja_ganadora = Puja.objects.filter(id_subasta=self).latest('monto')
             return puja_ganadora.id_usuario
         except:
             return "-"
 
     def cerrar_subasta(self):
-        try:
-            self.esta_programada = False
-            self.save()
-            # más adelante habría que verificar si el usuario tiene créditos y si es el caso, descontarle 1.
-        except:
-            pass
+        self.obtener_ganador()
+
 
     def cancelar_subasta(self):
         try:
             self.esta_programada = False
             Puja.objects.filter(id_subasta=self).delete()
             self.save()
-            # más adelante habría que verificar si el usuario tiene créditos y si es el caso, descontarle 1.
         except:
             pass
 
