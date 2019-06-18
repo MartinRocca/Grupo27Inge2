@@ -37,17 +37,21 @@
                     </div>
                     <div class="card-action">
                         {% if user.is_staff %}
-                            <a href="cerrar_subasta/{{sub.id}}">Cerrar</a>
+                            <a href="http://127.0.0.1:8000/cerrar_subasta/{{sub.id}}">Cerrar</a>
                         {% elif user.is_authenticated %}
-                            <a href="pujar/{{sub.id}}">Ver subasta</a>
+                            <a href="http://127.0.0.1:8000/pujar/{{sub.id}}">Ver subasta</a>
                         {% endif %}
                     </div>
                   </div>
                 </div>
         {% endfor %}
     </div>
-    <div class="center-align">
-        <a class="btn" style="background-color:#90a4ae; color:white" href="http://127.0.0.1:8000/ver_subastas_finalizadas">Ver subastas finalizadas</a>
-    </div>
+    {% if user.is_authenticated %}
+        {% if user.is_staff %}
+            <div class="center-align">
+                <a class="btn" style="background-color:#90a4ae; color:white" href="http://127.0.0.1:8000/ver_subastas_finalizadas">Ver subastas finalizadas</a>
+            </div>
+        {% endif %}
+    {% endif %}
 
 {% endblock content %}

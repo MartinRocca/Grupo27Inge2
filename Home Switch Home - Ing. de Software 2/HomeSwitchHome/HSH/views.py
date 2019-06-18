@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.forms.models import model_to_dict
-from HomeSwitchHome.forms import ResidenciaForm, PujaForm, RegistroForm, PrecioForm, PerfilForm, EditarPerfilForm, \
-    CambiarTarjetaForm
-from .models import Residencia, Subasta, Puja, Usuario, Perfil, Precio
+from django.db.models import Q
+from HomeSwitchHome.forms import ResidenciaForm, PujaForm, RegistroForm, PerfilForm, EditarPerfilForm, \
+    CambiarTarjetaForm, PrecioForm
+from .models import Residencia, Subasta, Puja, Usuario, Perfil, Reserva, Precio
 from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, validar_ubicacion_editar, \
     validar_nombre_completo
 from datetime import datetime, timedelta
@@ -97,7 +98,7 @@ def eliminar_residencia_page(request, residencia):
 def helper_listar_subastas():
     # fecha = datetime.now()
     # Creo una variable date donde el día sea lunes y si o si encuentre subastas.
-    fecha_lunes = datetime(2019, 5, 20)
+    fecha_lunes = datetime(2019, 6, 17)
     info_return = {}
     subastas_activas = []
     # if fecha.weekday() in [1, 2, 3]:
@@ -156,7 +157,7 @@ def pujar_page(request, subasta_id):
             else:
                 puja = Puja()
                 puja.monto = form.cleaned_data.get("monto")
-                puja.id_usuario = form.cleaned_data.get("email")
+                puja.id_usuario = request.user.email
                 puja.id_subasta = subasta
                 puja.save()
                 messages.success(request, 'Su puja se ha registrado en la subasta.')
@@ -229,7 +230,7 @@ def ver_usuarios_page(request):
         messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
         return redirect('/')
     template = "listar_usuarios.html"
-    return render(request, template, {"usuarios": Usuario.objects.all()})
+    return render(request, template, {"usuarios": Usuario.objects.filter(is_active=True)})
 
 
 def registro_admin_page(request):
@@ -347,3 +348,69 @@ def config_precios_page(request):
                 precio.editar_precio(form.clean_precio_Normal(), form.clean_precio_Premium())
                 return redirect("/")
     return render(request, template, context)
+
+
+def pasar_a_page(request, tipo, usuario):
+    if not request.user.is_staff:
+        messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
+        return redirect('/')
+    usu = Usuario.objects.get(id=usuario)
+    template = "pasar_a_page.html"
+    context = {"usu": usu}
+    if request.method == 'POST':
+        if tipo == "1":
+            usu.is_active = False
+        elif tipo == "2":
+            usu.is_premium = False
+        else:
+            usu.is_premium = True
+        usu.save()
+        messages.success(request, 'El cambio ha sido registrado.')
+        return redirect("http://127.0.0.1:8000/ver_usuarios/")
+    else:
+        form = ResidenciaForm(request.POST or None)
+    return render(request, template, context)
+
+
+def ver_residencia_page(request, residencia):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Debes iniciar tu sesion para acceder a esta pagina.')
+        return redirect('/')
+    template = "ver_residencia.html"
+    activas = obtener_subastas(datetime(2019, 6, 17))
+    res=Residencia.objects.get(id=residencia)
+    reservas=Reserva.objects.filter(id_residencia=res)
+    inactivas=Subasta.objects.filter(
+        ~Q(fecha_inicio=datetime(2019, 6, 17)),
+        Q(esta_programada=True),
+    )
+    subastas=[]
+    for rese in reservas:
+        subastas.append(Subasta.objects.get(id_reserva=rese))
+    context = {"res": res, "subastas": subastas, "activas": activas, "inactivas": inactivas}
+    if request.method == 'POST':
+        messages.success(request, 'La residencia se ha editado exitosamente.')
+        return redirect("/")
+    else:
+        form = ResidenciaForm(request.POST or None)
+    return render(request, template, context)
+
+
+def reservar_residencia_page(request, reserva):
+    if not request.user.is_authenticated:
+        if not request.user.is_premium:
+            messages.error(request, 'Debes ser un usuario premium para acceder a esta funcion.')
+            return redirect('/')
+    template = "reservar_residencia.html"
+    if request.method == 'POST':
+        if request.user.get_perfil().creditos>0:
+            res=Reserva.objects.get(id=reserva)
+            res.reservar(request.user.email)
+            messages.success(request, 'La reserva ha sido realizada exitosamente.')
+            return redirect("/")
+        else:
+            messages.error(request, 'No posee creditos suficientes para realizar esta reserva.')
+            return redirect("http://127.0.0.1:8000/ver_residencias")
+    else:
+        form = ResidenciaForm(request.POST or None)
+    return render(request, template)

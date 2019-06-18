@@ -50,9 +50,9 @@ class Reserva(models.Model):
         self.set_ganador(mailUsuario)
 
     def set_ganador(self, mailUsuario):
-        self.usuario_ganador = Usuario.objects.get(email=mailUsuario)
+        self.usuario_ganador = mailUsuario
         self.save()
-        perfil_ganador = self.usuario.get_perfil()
+        perfil_ganador = Usuario.objects.get(email=mailUsuario).get_perfil()
         perfil_ganador.creditos = perfil_ganador.creditos - 1
         perfil_ganador.save()
 
@@ -95,7 +95,8 @@ class Subasta(models.Model):
 
     def cerrar_subasta(self):
         self.obtener_ganador()
-
+        self.esta_programada=False
+        self.save()
 
     def cancelar_subasta(self):
         try:

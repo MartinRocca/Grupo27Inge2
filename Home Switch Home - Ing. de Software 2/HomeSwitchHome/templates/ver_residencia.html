@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="centrar">
+        <div class="row">
+            <div class="col s12 m6 l3">
+                  <div class="card big">
+                    <div class="card-image">
+                      <img src={{res.imagen_URL}} class="img">
+                      <span class="card-title" style="font-size:200%">{{res.nombre}}</span>
+                    </div>
+                    <div class="card-content">
+                      <p>Localidad: {{res.localidad}}</p>
+                      <p class="truncate">Descripción: {{res.descripcion}}</p>
+                      {% if user.is_authenticated %}
+                        {% if user.is_staff %}
+                            <p>Precio: ${{res.precio_base}}</p>
+                        {% endif %}
+                      {% endif %}
+                      <p>Limite de personas: {{res.limite_personas}}</p>
+                      <p>Cantidad de habitaciones: {{res.cant_habitaciones}}</p>
+                      <p>Número de dirección: {{res.nro_direccion}}</p>
+                      <p>Calle: {{res.calle}}</p>
+                    </div>
+                  </div>
+                </div>
+        </div>
+        <table class="striped">
+            <thead>
+              <tr>
+                  <th>Fecha</th>
+                  <th>Estado</th>
+              </tr>
+            </thead>
+
+            <tbody>
+                {% for sub in subastas %}
+                  <tr>
+                    <td>{{sub.id_reserva.fecha}}</td>
+                    {% if sub.esta_programada %}
+                      {% for act in activas %}
+                        {% if act == sub %}
+                            <td><a href="http://127.0.0.1:8000/pujar/{{sub.id}}">Ver subasta</a></td>
+                        {% endif %}
+                      {% endfor %}
+                      {% for ina in inactivas %}
+                        {% if ina == sub %}
+                            {% if user.is_premium %}
+                                <td><a href="http://127.0.0.1:8000/reservar_residencia/{{sub.id}}">Reservar residencia </a></td>
+                            {% else %}
+                                <td>No disponible</td>
+                            {% endif %}
+                        {% endif %}
+                      {% endfor %}
+                    {% else %}
+                      <td>No disponible</td>
+                    {% endif %}
+                  </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+
+{% endblock content %}

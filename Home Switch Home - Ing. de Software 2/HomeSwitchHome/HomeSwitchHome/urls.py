@@ -34,7 +34,10 @@ from HSH.views import (
     ayuda_premium_page,
     editar_perfil_page,
     cambiar_tarjeta_page,
-    config_precios_page
+    config_precios_page,
+    pasar_a_page,
+    reservar_residencia_page,
+    ver_residencia_page,
 )
 
 urlpatterns = [
@@ -45,6 +48,8 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     path('editar_residencia/<residencia>/', editar_residencia_page, name='editar_residencia'),
     path('eliminar_residencia/<residencia>/', eliminar_residencia_page, name='eliminar_residencia'),
+    path('ver_residencia/<residencia>/', ver_residencia_page, name='ver_residencia'),
+    path('reservar_residencia/<reserva>/', reservar_residencia_page, name='reservar_residencia'),
     path('ver_subastas/', listar_subastas_page),
     path('pujar/<int:subasta_id>/', pujar_page, name='pujar'),
     path('cerrar_subasta/<int:subasta_id>/', cerrar_subasta_page, name='cerrar_subasta'),
@@ -58,5 +63,6 @@ urlpatterns = [
     path('volverse_premium/', ayuda_premium_page),
     path('editar_perfil/<perfil>/', editar_perfil_page, name='editar_perfil'),
     path('cambiar_tarjeta/<perfil>/', cambiar_tarjeta_page, name='cambiar_tarjeta'),
-    path('config_precios/', config_precios_page)
+    path('config_precios/', config_precios_page),
+    path('pasar_a/<tipo>/<usuario>/', pasar_a_page, name='pasar_a'),
 ]

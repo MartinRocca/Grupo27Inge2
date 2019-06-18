@@ -18,10 +18,14 @@
                       <p>Número de dirección: {{res.nro_direccion}}</p>
                       <p>Calle: {{res.calle}}</p>
                     </div>
-                      {% if user.is_authenticated and user.is_staff %}
+                      {% if user.is_authenticated %}
                         <div class="card-action">
+                            {% if user.is_staff %}
                                 <a href="editar_residencia/{{res.id}}">Editar</a>
                                 <a href="eliminar_residencia/{{res.id}}">Eliminar</a>
+                            {% else %}
+                                <a href="ver_residencia/{{res.id}}">Ver Detalle</a>
+                            {% endif %}
                         </div>
                       {% endif %}
                   </div>

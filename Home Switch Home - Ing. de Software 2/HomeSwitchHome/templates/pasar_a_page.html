@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container" style="text-align:center;">
+        <form method="POST" action=''>
+            {% csrf_token %}
+                <h1>¿Desea registrar el cambio?</h1>
+                <br>
+                <button class="btn" align="center" style="background-color:#90a4ae; color:white" type="submit"> confirmar</button>
+                <a class="btn" style="background-color:#90a4ae; color:white" href="http://127.0.0.1:8000/ver_usuarios/"> cancelar</a>
+        </form>
+    </div>
+{% endblock content %}
