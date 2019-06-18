@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from HSH.models import Residencia, Puja, Subasta, Perfil, Usuario
 from datetime import datetime
 from django.core.validators import RegexValidator
@@ -78,7 +78,7 @@ class RegistroForm(UserCreationForm):
             'email',
         ]
 
-    email = forms.EmailField(label='Email', error_messages={'required':'Por favor ingrese su email.'})
+    email = forms.EmailField(label='Email')
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput, max_length=50, strip=False)
     password2 = forms.CharField(label='Repita su contraseña', widget=forms.PasswordInput, max_length=50, strip=False)
 
@@ -96,6 +96,15 @@ class RegistroForm(UserCreationForm):
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError('Las contraseñas no coinciden.')
         return password2
+
+class CustomAuthForm(AuthenticationForm):
+    error_messages = {
+        'invalid_login': _(
+            "Por favor ingrese un email y contraseña validos. "
+            "Note que ambos campos diferencian entre mayusculas y minusculas."
+        ),
+        'inactive': _("Esta cuenta fue borrada.")
+    }
 
 class PerfilForm(forms.Form):
 

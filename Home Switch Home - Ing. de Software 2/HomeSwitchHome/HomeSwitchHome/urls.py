@@ -16,7 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-
 from HSH.views import (
     home_page,
     crear_residencia_page,
@@ -38,6 +37,7 @@ from HSH.views import (
     pasar_a_page,
     reservar_residencia_page,
     ver_residencia_page,
+    CustomLoginView
 )
 
 urlpatterns = [
@@ -55,7 +55,7 @@ urlpatterns = [
     path('cerrar_subasta/<int:subasta_id>/', cerrar_subasta_page, name='cerrar_subasta'),
     path('ver_subastas_finalizadas', listar_subastas_finalizadas_page),
     path('ver_usuarios/', ver_usuarios_page),
-    path('iniciar_sesion/', auth_views.LoginView.as_view(template_name='login.html')),
+    path('iniciar_sesion/', CustomLoginView.as_view(template_name='login.html')),
     path('cerrar_sesion/', auth_views.LogoutView.as_view(template_name='logout.html')),
     path('registrarse/', registro_page),
     path('registrar_admin/', registro_admin_page),

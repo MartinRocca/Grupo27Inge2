@@ -24,7 +24,9 @@
               <td> - </td>
               {% elif usuario.is_staff %}
               <td>Administrador</td>
-              <td><a href="http://127.0.0.1:8000/pasar_a/1/{{usuario.id}}">Eliminar</a></td>
+                {% if not usuario.id == request.user.id %}
+                    <td><a href="http://127.0.0.1:8000/pasar_a/1/{{usuario.id}}">Eliminar</a></td>
+                {% endif %}
               {% elif usuario.is_premium %}
               <td>Usuario Premium</td>
               <td><a href="http://127.0.0.1:8000/pasar_a/2/{{usuario.id}}">Normal</a></td>

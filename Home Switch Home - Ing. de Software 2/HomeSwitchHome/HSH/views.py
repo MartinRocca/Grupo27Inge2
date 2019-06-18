@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.views import LoginView
 from django.forms.models import model_to_dict
 from django.db.models import Q
 from HomeSwitchHome.forms import ResidenciaForm, PujaForm, RegistroForm, PerfilForm, EditarPerfilForm, \
-    CambiarTarjetaForm, PrecioForm
+    CambiarTarjetaForm, PrecioForm, CustomAuthForm
 from .models import Residencia, Subasta, Puja, Usuario, Perfil, Reserva, Precio
 from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, validar_ubicacion_editar, \
     validar_nombre_completo
@@ -224,6 +225,8 @@ def registro_page(request):
         perfil_form = PerfilForm()
     return render(request, 'registro.html', {'usuario_form': usuario_form, 'perfil_form': perfil_form})
 
+class CustomLoginView(LoginView):
+    authentication_form = CustomAuthForm
 
 def ver_usuarios_page(request):
     if not request.user.is_staff:
