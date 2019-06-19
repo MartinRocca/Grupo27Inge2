@@ -253,6 +253,7 @@ def registro_admin_page(request):
                 admin.is_staff = True
                 admin.save()
                 messages.success(request, 'Se ha creado el nuevo administrador exitosamente.')
+                return redirect('/')
         else:
             form = RegistroForm(request.POST or None)
     else:

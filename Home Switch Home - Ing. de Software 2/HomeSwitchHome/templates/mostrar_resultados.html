@@ -1,7 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for sem in semanas %}
-    <l1>{{sem.fecha}}</l1>
-{% endfor %}
+    <h2>Resultado de su busqueda:</h2>
+    <table class="striped">
+        <thead>
+          <tr>
+              <th>Nombre residencia</th>
+              <th>Fecha</th>
+              <th>Reservar</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            {% for sem in semanas %}
+              <tr>
+                <td>
+                    <a href="http://127.0.0.1:8000/ver_residencia/{{sem.id_residencia.id}}">{{sem.id_residencia.nombre}}</a>
+                </td>
+                <td>{{sem.fecha|date:'d/m/Y'}}</td>
+                {% if user.is_premium %}
+                  <td><a href="http://127.0.0.1:8000/reservar_residencia/{{sem.id}}">Reservar residencia</a></td>
+                {% else %}
+                  <td>Debe ser Premium</td>
+                {% endif %}
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock content %}

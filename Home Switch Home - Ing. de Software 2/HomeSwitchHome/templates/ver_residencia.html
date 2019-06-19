@@ -39,7 +39,7 @@
             <tbody>
                 {% for sub in subastas %}
                   <tr>
-                    <td>{{sub.id_reserva.fecha}}</td>
+                    <td>{{sub.id_reserva.fecha|date:'d/m/Y'}}</td>
                     {% if sub.esta_programada %}
                       {% for act in activas %}
                         {% if act == sub %}

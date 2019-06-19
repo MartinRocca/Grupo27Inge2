@@ -29,7 +29,7 @@
                     </div>
                     <div class="card-content">
                       <br>
-                      <p style="font-size:130%;">Fecha: {{sub.id_reserva.fecha}}</p>
+                      <p style="font-size:130%;">Fecha: {{sub.id_reserva.fecha|date:'d/m/Y'}}</p>
                       <p style="font-size:130%;">Localidad: {{sub.id_reserva.id_residencia.localidad}}</p>
                       <p style="font-size:130%;">Última puja: $ {{sub.obtener_monto_max}}</p>
                       <br>
