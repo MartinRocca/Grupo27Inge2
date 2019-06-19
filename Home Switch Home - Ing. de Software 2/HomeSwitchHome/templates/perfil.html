@@ -18,11 +18,11 @@
                         {% endif %}
                         <br>
                         <p>Nombre completo: {{perfil.apellido}} {{perfil.nombre}}</p>
-                        <p>Fecha de nacimiento: {{perfil.fecha_nacimiento|date:'d/m/y'}}</p>
+                        <p>Fecha de nacimiento: {{perfil.fecha_nacimiento|date:'d/m/Y'}}</p>
                         <p>Creditos: {{perfil.creditos}}</p>
                         <p>Vencimiento de sus creditos: {{perfil.vencimiento_creditos|date:'d/m/y'}}</p>
                         <br>
-                        <p>tarjeta: {{perfil.marca_tarjeta_credito}} {{nrotarjeta}}</p>
+                        <p>Tarjeta: {{perfil.marca_tarjeta_credito}} {{nrotarjeta}}</p>
                         <div class="card-action">
                             <a href="http://127.0.0.1:8000/editar_perfil/{{perfil.id}}">Editar Perfil</a>
                             <a href="http://127.0.0.1:8000/cambiar_tarjeta/{{perfil.id}}">Cambiar mi tarjeta</a>
@@ -45,7 +45,20 @@
     <br>
     <div style="padding:20;">
         {% if not user.is_premium %}
-            Actualmente, no eres un usuario premium. Como usuario premium, tu podrias reservar residencias directamente, sin preocuparte por perder en la subasta. ¿Quieres volverte premium? Haz click <a href="http://127.0.0.1:8000/volverse_premium/">aqui</a> para saber como.
+            Actualmente, no eres un usuario premium. Como usuario premium, podrias reservar residencias directamente, sin preocuparte por participar en las subastas.
+            ¿Quieres volverte premium? Haz click <a href="#ayuda" class="modal-trigger">aqui</a> para saber como.
         {% endif %}
+    </div>
+    <div class="modal" id="ayuda">
+        <div class="modal-content">
+            <h4>Como hacerse premium</h4>
+            <h6>Para volverse un usuario premium, solo necesita acercarse a una de nuestras sucursales con su DNI, credenciales de su cuenta de HomeSwitchHome,
+                y un monto de ${{precio.precio_Premium}}. Los usuarios premium pagan una arrienda ligeramente mayor a la de los usuarios normales, pero pueden reservar semanas
+                individuales de las residencias del sitio antes que estas entren en subasta. No se pierda esta oportunidad,
+                unase ya al programa premium.</h6>
+            <div class="modal-footer">
+                <a href="#" class="modal-close btn" style="background-color:#90a4ae; color:white">Cerrar</a>
+            </div>
+        </div>
     </div>
 {% endblock content %}

@@ -37,7 +37,7 @@ from HSH.views import (
     pasar_a_page,
     reservar_residencia_page,
     ver_residencia_page,
-    CustomLoginView
+    CustomLoginView,
 )
 
 urlpatterns = [

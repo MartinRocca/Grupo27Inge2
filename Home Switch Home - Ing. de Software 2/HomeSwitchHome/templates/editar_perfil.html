@@ -4,27 +4,16 @@
     <br>
     <br>
     <br>
-    <div class="centrar">
-        <div class="row">
-            <div class="col s12 m6 l3">
-                  <div class="card medium">
-                    <div class="card-content">
-                      <p>Nombre: {{perfil.nombre}}</p>
-                      <p>Apellido: {{perfil.apellido}}</p>
-                      <p>Fecha de Nacimiento: {{perfil.fecha_nacimiento|date:'d/m/y'}}</p>
-                    </div>
-                  </div>
-            </div>
-        </div>
-    </div>
     <div class="container">
         <form method="POST" action=''>
             {% csrf_token %}
-                <h1>Editar perfil</h1>
+                <h3 style="text-align:center;">Editar perfil</h3>
                 <br>
-                {{form}}
-                <button class="btn" style="background-color:#90a4ae; color:white" type="submit"> actualizar</button>
-                <a class="btn" style="background-color:#90a4ae; color:white" href="/perfil"> cancelar</a>
+                <table style="width:66%; margin:auto;">{{ form.as_table }}</table>
+                <div style="text-align:center;">
+                    <button class="btn" style="background-color:#90a4ae; color:white" type="submit"> actualizar</button>
+                    <a class="btn" style="background-color:#90a4ae; color:white" href="/perfil"> cancelar</a>
+                </div>
         </form>
     </div>
 {% endblock content %}

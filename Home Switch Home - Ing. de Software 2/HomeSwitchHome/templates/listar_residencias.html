@@ -13,6 +13,11 @@
                     <div class="card-content">
                       <p>Localidad: {{res.localidad}}</p>
                       <p class="truncate">Descripción: {{res.descripcion}}</p>
+                      {% if user.is_authenticated %}
+                        {% if user.is_staff %}
+                            <p>Precio: ${{res.precio_base}}</p>
+                        {% endif %}
+                      {% endif %}
                       <p>Limite de personas: {{res.limite_personas}}</p>
                       <p>Cantidad de habitaciones: {{res.cant_habitaciones}}</p>
                       <p>Número de dirección: {{res.nro_direccion}}</p>

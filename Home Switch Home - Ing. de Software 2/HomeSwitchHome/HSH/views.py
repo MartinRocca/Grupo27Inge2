@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.views import LoginView
 from django.forms.models import model_to_dict
 from django.db.models import Q
+from django.contrib.auth import views as auth_views
 from HomeSwitchHome.forms import ResidenciaForm, PujaForm, RegistroForm, PerfilForm, EditarPerfilForm, \
     CambiarTarjetaForm, PrecioForm, CustomAuthForm
 from .models import Residencia, Subasta, Puja, Usuario, Perfil, Reserva, Precio
@@ -99,7 +100,7 @@ def eliminar_residencia_page(request, residencia):
 def helper_listar_subastas():
     # fecha = datetime.now()
     # Creo una variable date donde el día sea lunes y si o si encuentre subastas.
-    fecha_lunes = datetime(2019, 6, 17)
+    fecha_lunes = datetime(2019, 7, 8)
     info_return = {}
     subastas_activas = []
     # if fecha.weekday() in [1, 2, 3]:
@@ -156,13 +157,16 @@ def pujar_page(request, subasta_id):
             if form.cleaned_data.get("monto") < subasta.obtener_monto_max():
                 messages.error(request, 'Debe ingresar un monto mayor a la última puja.')
             else:
-                puja = Puja()
-                puja.monto = form.cleaned_data.get("monto")
-                puja.id_usuario = request.user.email
-                puja.id_subasta = subasta
-                puja.save()
-                messages.success(request, 'Su puja se ha registrado en la subasta.')
-                return HttpResponseRedirect(request.path_info)
+                if request.user.get_perfil().creditos == 0:
+                    messages.error(request, 'No posee ningun credito para pujar.')
+                else:
+                    puja = Puja()
+                    puja.monto = form.cleaned_data.get("monto")
+                    puja.id_usuario = request.user.email
+                    puja.id_subasta = subasta
+                    puja.save()
+                    messages.success(request, 'Su puja se ha registrado en la subasta.')
+                    return HttpResponseRedirect(request.path_info)
     else:
         form = PujaForm(request.POST or None)
     return render(request, template, context)
@@ -198,6 +202,7 @@ def registro_page(request):
                     perfil_form.cleaned_data.get('fecha_nacimiento')
             ):
                 usuario = Usuario()
+                usuario.fecha_registro = datetime.now()
                 usuario.email = usuario_form.clean_email()
                 usuario.set_password(usuario_form.clean_password2())
                 usuario.save()
@@ -233,7 +238,7 @@ def ver_usuarios_page(request):
         messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
         return redirect('/')
     template = "listar_usuarios.html"
-    return render(request, template, {"usuarios": Usuario.objects.filter(is_active=True)})
+    return render(request, template, {"usuarios": Usuario.objects.filter(is_active=True), "perfiles": Perfil.objects.filter()})
 
 
 def registro_admin_page(request):
@@ -242,12 +247,12 @@ def registro_admin_page(request):
         if request.method == 'POST':
             if form.is_valid():
                 admin = Usuario()
+                admin.fecha_registro = datetime.now()
                 admin.email = form.clean_email()
                 admin.set_password(form.clean_password2())
                 admin.is_staff = True
                 admin.save()
-                messages.success(request,
-                                 'Se ha creado el nuevo administrador exitosamente. Cierre esta sesion para iniciar sesion con el nuevo administrador.')
+                messages.success(request, 'Se ha creado el nuevo administrador exitosamente.')
         else:
             form = RegistroForm(request.POST or None)
     else:
@@ -268,12 +273,12 @@ def perfil_page(request):
     usuario = Usuario.objects.get(email=request.user.email)
     perfil = usuario.get_perfil()
     nrotarjeta = '** - ********** - ' + (str(perfil.nro_tarjeta_credito)[-4:])
-    return render(request, template, {'user': usuario, 'perfil': perfil, 'nrotarjeta': nrotarjeta})
+    return render(request, template, {'user': usuario, 'perfil': perfil, 'nrotarjeta': nrotarjeta, 'precio':Precio.objects.get()})
 
 
 def ayuda_premium_page(request):
     if request.user.is_staff:
-        messages.warning(request, 'Preguntale a tu jefe.')
+        messages.error(request, 'Preguntale a tu jefe.')
         return redirect('/')
     return render(request, 'ayuda_premium.html', {})
 
@@ -290,7 +295,7 @@ def editar_perfil_page(request, perfil):
     form = EditarPerfilForm(request.POST or None, initial={
         'nombre': mi_perfil.nombre,
         'apellido': mi_perfil.apellido,
-        'fecha_nacimiento': mi_perfil.fecha_nacimiento.strftime("%d/%m/%y"),
+        'fecha_nacimiento': mi_perfil.fecha_nacimiento.strftime("%d/%m/%Y"),
     })
     context = {'perfil': mi_perfil, 'form': form}
     if request.method == 'POST':
@@ -349,6 +354,7 @@ def config_precios_page(request):
         if request.method == 'POST':
             if form.is_valid():
                 precio.editar_precio(form.clean_precio_Normal(), form.clean_precio_Premium())
+                messages.success(request, 'Los precios han sido actualizados exitosamente.')
                 return redirect("/")
     return render(request, template, context)
 
@@ -380,11 +386,11 @@ def ver_residencia_page(request, residencia):
         messages.error(request, 'Debes iniciar tu sesion para acceder a esta pagina.')
         return redirect('/')
     template = "ver_residencia.html"
-    activas = obtener_subastas(datetime(2019, 6, 17))
+    activas = obtener_subastas(datetime(2019, 7, 8))
     res=Residencia.objects.get(id=residencia)
     reservas=Reserva.objects.filter(id_residencia=res)
     inactivas=Subasta.objects.filter(
-        ~Q(fecha_inicio=datetime(2019, 6, 17)),
+        ~Q(fecha_inicio=datetime(2019, 7, 8)),
         Q(esta_programada=True),
     )
     subastas=[]

@@ -4,11 +4,13 @@
     <div class="container">
         <form method="POST" action=''>
             {% csrf_token %}
-                <h1>Configurar precios</h1>
+            <div class="container">
+                <h1 style="text-align:center;">Configurar precios</h1>
                 <br>
                 {{form}}
                 <button class="btn" style="background-color:#90a4ae; color:white" type="submit"> actualizar</button>
                 <a class="btn" style="background-color:#90a4ae; color:white" href="/"> cancelar</a>
+            </div>
         </form>
     </div>
 {% endblock content %}

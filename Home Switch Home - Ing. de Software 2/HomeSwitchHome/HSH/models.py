@@ -40,7 +40,7 @@ class Residencia(models.Model):
 class Reserva(models.Model):
     id_residencia = models.ForeignKey(Residencia, on_delete=models.CASCADE)
     fecha = models.DateField()
-    usuario_ganador = models.EmailField(null=True)
+    usuario_ganador = models.EmailField(default='-')
 
 
     def reservar(self, mailUsuario):
@@ -77,11 +77,16 @@ class Subasta(models.Model):
         except ObjectDoesNotExist:
             return self.id_reserva.id_residencia.precio_base
 
+    def mostrar_ganador(self):
+        return self.id_reserva.usuario_ganador
+
     def obtener_ganador(self):
         try:
             puja_ganadora = Puja.objects.filter(id_subasta=self).latest('monto')
             while True:
-                if puja_ganadora.id_usuario.get_perfil().creditos >= 1:
+                usuario_ganador = Usuario.objects.get(email=puja_ganadora.id_usuario)
+                print(puja_ganadora)
+                if usuario_ganador.get_perfil().creditos >= 1:
                     self.id_reserva.set_ganador(puja_ganadora.id_usuario)
                     self.esta_programada = False
                     self.save()
@@ -158,6 +163,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
+    fecha_registro = models.DateField(null=True)
     objects = UsuarioManager()
 
     USERNAME_FIELD = 'email'

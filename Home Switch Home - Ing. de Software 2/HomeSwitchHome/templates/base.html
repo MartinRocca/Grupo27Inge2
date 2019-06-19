@@ -10,6 +10,13 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.modal').modal();
+        });
+    </script>
     <style> .centrar {
       display: flex;
       justify-content: center;
@@ -30,29 +37,32 @@
 </head>
 
 <body>
+
     <nav>
         <div class="nav-wrapper">
           <a href="/" class="brand-logo"><img title="unLogo" src=/static/HSH-Logo.svg alt="Logo" width="100" height="60" /></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
               {% if user.is_authenticated %}
                 {% if user.is_staff %}
-                  <li><a href="http://127.0.0.1:8000/cerrar_sesion/">Cerrar Sesion</a></li>
+                  <li><a href="http://127.0.0.1:8000/ver_residencias#">Ver residencias</a></li>
+                  <li><a href="http://127.0.0.1:8000/ver_subastas/">Ver subastas</a></li>
                   <li><a href="http://127.0.0.1:8000/ver_usuarios/">Ver Usuarios</a> </li>
                   <li><a href="http://127.0.0.1:8000/registrar_admin/">Registrar Administrador</a></li>
                   <li><a href="http://127.0.0.1:8000/crear_residencia">Crear residencia</a></li>
-                  <li><a href="http://127.0.0.1:8000/ver_residencias#">Ver residencias</a></li>
-                  <li><a href="http://127.0.0.1:8000/ver_subastas/">Ver subastas</a></li>
                   <li><a href="http://127.0.0.1:8000/config_precios/">Configurar Precios</a></li>
+                  <!--<li><a href="http://127.0.0.1:8000/cerrar_sesion/">Cerrar Sesion</a></li>-->
+                  <li><a href="#cerrar" class="modal-trigger">Cerrar Sesion</a></li>
                 {% else %}
-                  <li><a href="http://127.0.0.1:8000/cerrar_sesion/">Cerrar Sesion</a></li>
-                  <li><a href="http://127.0.0.1:8000/perfil/">Perfil</a></li>
                   <li><a href="http://127.0.0.1:8000/ver_residencias#">Ver residencias</a></li>
                   <li><a href="http://127.0.0.1:8000/ver_subastas/">Ver subastas</a></li>
+                  <li><a href="http://127.0.0.1:8000/perfil/">Perfil</a></li>
+                  <!--<li><a href="http://127.0.0.1:8000/cerrar_sesion/">Cerrar Sesion</a></li>-->
+                  <li><a href="#cerrar" class="modal-trigger">Cerrar Sesion</a></li>
                 {% endif %}
               {% else %}
+                <li><a href="http://127.0.0.1:8000/ver_residencias#">Ver residencias</a></li>
                 <li><a href="http://127.0.0.1:8000/iniciar_sesion/">Iniciar Sesion</a></li>
                 <li><a href="http://127.0.0.1:8000/registrarse/">Registrarse</a> </li>
-                <li><a href="http://127.0.0.1:8000/ver_residencias#">Ver residencias</a></li>
               {% endif %}
           </ul>
         </div>
@@ -60,12 +70,29 @@
     <ul class="messages">
         {% if messages %}
             {% for message in messages %}
-                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}><script>M.toast({html: "{{message}}", classes: 'red lighten-3 , rounded'});</script></li>
+                {% if message.tags == 'success' %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}><script>M.toast({html: "{{message}}", classes: 'green lighten-3 , rounded'});</script></li>
+                {% elif message.tags == 'error' %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}><script>M.toast({html: "{{message}}", classes: 'red lighten-3 , rounded'});</script></li>
+                {% else %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}><script>M.toast({html: "{{message}}", classes: 'blue lighten-3 , rounded'});</script></li>
+                {% endif %}
             {% endfor %}
         {% endif %}
     </ul>
     {% block content %}
     {% endblock %}
+    <div class="modal" id="cerrar">
+        <div class="modal-content">
+            <div class="center">
+                <h3>¿Desea cerrar sesion?</h3>
+                <div class="center">
+                    <a href="http://127.0.0.1:8000/cerrar_sesion/" class="modal-close btn" style="background-color:#90a4ae; color:white">Confirmar</a>
+                    <a href="#" class="modal-close btn" style="background-color:#90a4ae; color:white">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 

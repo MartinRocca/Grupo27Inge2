@@ -111,8 +111,17 @@ class PerfilForm(forms.Form):
     nombre = forms.CharField(label='Nombre', max_length=50)
     apellido = forms.CharField(label='Apellido', max_length=50)
     fecha_nacimiento = forms.DateField(
-        label='Fecha de nacimiento (formato DD/MM/AA)',
-        input_formats=["%d/%m/%y","%D/%M/%y"],
+        label='Fecha de nacimiento (formato Dia/Mes/Año)',
+        input_formats=[
+            "%d/%m/%y",
+            "%D/%m/%y",
+            "%d/%M/%y",
+            "%d/%m/%Y",
+            "%D/%M/%y",
+            "%D/%m/%Y",
+            "%d/%M/%Y",
+            "%D/%M/%Y"
+        ],
         error_messages={'invalid': 'Ingrese una fecha valida.'}
     )
     nro_tarjeta_credito = forms.CharField(
@@ -174,8 +183,17 @@ class EditarPerfilForm(forms.Form):
     nombre = forms.CharField(label='Nombre', max_length=50)
     apellido = forms.CharField(label='Apellido', max_length=50)
     fecha_nacimiento = forms.DateField(
-        label='Fecha de nacimiento (formato DD/MM/AA)',
-        input_formats=["%d/%m/%y","%D/%M/%y"],
+        label='Fecha de nacimiento (formato Dia/Mes/Año)',
+        input_formats=[
+            "%d/%m/%y",
+            "%D/%m/%y",
+            "%d/%M/%y",
+            "%d/%m/%Y",
+            "%D/%M/%y",
+            "%D/%m/%Y",
+            "%d/%M/%Y",
+            "%D/%M/%Y"
+        ],
         error_messages={'invalid': 'Ingrese una fecha valida.'}
     )
 

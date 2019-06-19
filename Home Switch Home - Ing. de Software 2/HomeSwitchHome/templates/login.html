@@ -7,10 +7,11 @@
         <br>
         <h6 style="text-align:center;">Hola, {{user.email}}, parece que ya has iniciado tu sesion. <a href="http://127.0.0.1:8000/">¿Quieres volver a la pagina principal?</a></h6>
     {% else %}
+    <div class="container">
         <br>
         <br>
         <br>
-        <h4 style="text-align:center;">Iniciar Sesion</h4>
+        <h3 style="text-align:center;">Iniciar Sesion</h3>
         <br>
         <br>
         <br>
@@ -21,5 +22,6 @@
             <br>
             <div style="text-align:center;"><button class="btn" style="background-color:#90a4ae; color:white" type="submit">Ingresar</button></div>
         </form>
+    </div>
     {% endif %}
 {% endblock %}

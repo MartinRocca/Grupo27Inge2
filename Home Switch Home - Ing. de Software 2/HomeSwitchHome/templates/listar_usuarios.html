@@ -9,7 +9,10 @@
       <table class="striped">
         <thead>
           <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
               <th>Correo electrónico</th>
+              <th>Fecha de registro</th>
               <th>Tipo de usuario</th>
               <th>Convertir a</th>
           </tr>
@@ -18,21 +21,38 @@
         <tbody>
           {% for usuario in usuarios %}
           <tr>
-            <td>{{usuario.email}}</td>
+            {% for perfil in perfiles %}
+              {% if perfil.mi_usuario == usuario %}
+                <td>{{perfil.nombre}}</td>
+                <td>{{perfil.apellido}}</td>
+                <td>{{usuario.email}}</td>
+                <td>{{usuario.fecha_registro}}</td>
+              {% endif %}
+            {% endfor %}
             {% if usuario.is_superuser %}
+              <td>-</td>
+              <td>-</td>
+              <td>{{usuario.email}}</td>
+              <td>{{usuario.fecha_registro}}</td>
               <td>Superuser</td>
               <td> - </td>
               {% elif usuario.is_staff %}
+              <td>-</td>
+              <td>-</td>
+              <td>{{usuario.email}}</td>
+              <td>{{usuario.fecha_registro}}</td>
               <td>Administrador</td>
                 {% if not usuario.id == request.user.id %}
-                    <td><a href="http://127.0.0.1:8000/pasar_a/1/{{usuario.id}}">Eliminar</a></td>
+                    <td><a href="http://127.0.0.1:8000/pasar_a/1/{{usuario.id}}" class="red-text">Eliminar</a></td>
+                {% else %}
+                    <td>-</td>
                 {% endif %}
               {% elif usuario.is_premium %}
               <td>Usuario Premium</td>
               <td><a href="http://127.0.0.1:8000/pasar_a/2/{{usuario.id}}">Normal</a></td>
               {% else %}
               <td>Usuario normal</td>
-              <td><a href="http://127.0.0.1:8000/pasar_a/3/{{usuario.id}}">Premium</a></td>
+              <td><a href="http://127.0.0.1:8000/pasar_a/3/{{usuario.id}}" class="green-text">Premium</a></td>
               {% endif %}
           </tr>
           {% endfor %}
