@@ -86,3 +86,55 @@ def validar_nombre_completo(un_nombre, un_apellido, una_fecha):
         return True
     except ObjectDoesNotExist:
         return False
+
+def esta_en_rango(fDesde, fHasta, fecha):
+    if fHasta is None:
+        fHasta = fDesde + timedelta(days=60)
+    if fecha > fDesde and fecha < fHasta:
+        return True
+    else:
+        return False
+
+def obtener_semanas(lugar, fDesde, fHasta):
+    if lugar is None:
+        ## Hacemos el query en función a las fechas.
+        print('Hacemos el query en función a las fechas.')
+        reservas = Reserva.objects.filter(usuario_ganador=None)
+        reservas_disponibles = []
+        for reserva in reservas:
+            if esta_en_rango(fDesde, fHasta, reserva.fecha):
+                reservas_disponibles.append(reserva)
+        return reservas_disponibles
+    elif fDesde is not None:
+        ## Hacemos el query en función a las fechas y al lugar.
+        print('Hacemos el query en función a las fechas y al lugar.')
+        residencias = Residencia.objects.filter(
+            Q(localidad__iexact=lugar),
+            Q(activa=True),
+        )
+        reservas = []
+        for res in residencias:
+            reservas.extend(Reserva.objects.filter(id_residencia=res.id))
+        reservas_disponibles = []
+        for reserva in reservas:
+            if reserva.usuario_ganador is None and esta_en_rango(fDesde, fHasta, reserva.fecha):
+                reservas_disponibles.append(reserva)
+        return reservas_disponibles
+
+    else:
+        ## Hacemos el query en función al lugar.
+        print('Hacemos el query en función al lugar.')
+        residencias = Residencia.objects.filter(
+            Q(localidad__iexact=lugar),
+            Q(activa=True),
+        )
+        reservas = []
+        for res in residencias:
+            reservas.extend(Reserva.objects.filter(id_residencia=res.id))
+        ## Una vez conseguidas todas las reservas para las residencias encontradas, hay que seleccionar
+        ## solo aquellas que esten disponibles.
+        reservas_disponibles = []
+        for reserva in reservas:
+            if reserva.usuario_ganador is None:
+                reservas_disponibles.append(reserva)
+        return reservas_disponibles

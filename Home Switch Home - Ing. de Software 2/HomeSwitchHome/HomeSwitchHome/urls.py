@@ -38,6 +38,7 @@ from HSH.views import (
     reservar_residencia_page,
     ver_residencia_page,
     CustomLoginView,
+    buscar_residencia,
 )
 
 urlpatterns = [
@@ -65,4 +66,5 @@ urlpatterns = [
     path('cambiar_tarjeta/<perfil>/', cambiar_tarjeta_page, name='cambiar_tarjeta'),
     path('config_precios/', config_precios_page),
     path('pasar_a/<tipo>/<usuario>/', pasar_a_page, name='pasar_a'),
+    path('buscar_residencia/', buscar_residencia),
 ]

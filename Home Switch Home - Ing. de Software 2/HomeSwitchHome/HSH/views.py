@@ -5,10 +5,10 @@ from django.contrib.auth.views import LoginView
 from django.forms.models import model_to_dict
 from django.db.models import Q
 from django.contrib.auth import views as auth_views
-from HomeSwitchHome.forms import ResidenciaForm, PujaForm, RegistroForm, PerfilForm, EditarPerfilForm, \
+from HomeSwitchHome.forms import ResidenciaForm, PujaForm, BuscarResidenciasForm, RegistroForm, PerfilForm, EditarPerfilForm, \
     CambiarTarjetaForm, PrecioForm, CustomAuthForm
 from .models import Residencia, Subasta, Puja, Usuario, Perfil, Reserva, Precio
-from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, validar_ubicacion_editar, \
+from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, obtener_semanas, validar_ubicacion_editar, \
     validar_nombre_completo
 from datetime import datetime, timedelta
 
@@ -423,3 +423,19 @@ def reservar_residencia_page(request, reserva):
     else:
         form = ResidenciaForm(request.POST or None)
     return render(request, template)
+
+def buscar_residencia(request):
+    if request.user.is_authenticated:
+        form = BuscarResidenciasForm(request.POST or None)
+        template = "buscar_residencia.html"
+        context = {"form": form}
+        if request.method == 'POST':
+            if form.is_valid():
+                lugar = form.clean_lugar()
+                fecha_desde = form.clean_fecha_desde()
+                fecha_hasta = form.clean_fecha_hasta()
+                context2 = {"semanas": obtener_semanas(lugar, fecha_desde, fecha_hasta)}
+                return render(request, 'mostrar_resultados.html', context2)
+    else:
+        messages.error(request, 'Debes iniciar tu sesion para acceder a esta pagina.')
+    return render(request, template, context)

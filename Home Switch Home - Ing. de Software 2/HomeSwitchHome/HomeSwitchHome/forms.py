@@ -271,3 +271,48 @@ class PrecioForm(forms.Form):
         if pPremium < 0:
             raise forms.ValidationError('Valor inválido')
         return pPremium
+
+class BuscarResidenciasForm(forms.Form):
+    lugar = forms.CharField(label='Ingrese una localidad', required=False)
+    fecha_desde = forms.DateField(
+        label='Fecha desde (formato DD/MM/AA)',
+        input_formats=["%d/%m/%y", "%D/%M/%y"],
+        error_messages={'invalid': 'Ingrese una fecha valida.'}, required=False
+    )
+    fecha_hasta = forms.DateField(
+        label='Fecha hasta (formato DD/MM/AA)',
+        input_formats=["%d/%m/%y", "%D/%M/%y"],
+        error_messages={'invalid': 'Ingrese una fecha valida.'}, required=False
+    )
+
+    def clean_lugar(self):
+        lugar = self.cleaned_data.get('lugar')
+        if lugar == '':
+            return None
+        else:
+            return lugar
+
+
+    def clean_fecha_desde(self):
+        fecha_desde = self.cleaned_data.get('fecha_desde')
+        if fecha_desde is None:
+            return fecha_desde
+        else:
+            hoy = datetime.now()
+            if fecha_desde < hoy.date():
+                raise forms.ValidationError('Debes ingresar una fecha de inicio mayor.')
+        return fecha_desde
+
+    def clean_fecha_hasta(self):
+        fecha_hasta = self.cleaned_data.get('fecha_hasta')
+        if fecha_hasta is None:
+            return fecha_hasta
+        else:
+            fecha_desde = self.cleaned_data.get('fecha_desde')
+            if fecha_desde is None:
+                raise forms.ValidationError('Debes ingresar una fecha de inicio.')
+            elif fecha_desde > fecha_hasta:
+                raise forms.ValidationError('Rango de fechas inválido.')
+            elif abs(fecha_hasta-fecha_desde).days > 60:
+                raise forms.ValidationError('El rango entre las dos fecha puede ser, como máximo, de 2 meses.')
+        return fecha_hasta
