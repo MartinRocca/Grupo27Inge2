@@ -279,13 +279,6 @@ def perfil_page(request):
     return render(request, template, {'user': usuario, 'perfil': perfil, 'nrotarjeta': nrotarjeta, 'precio':Precio.objects.get()})
 
 
-def ayuda_premium_page(request):
-    if request.user.is_staff:
-        messages.error(request, 'Preguntale a tu jefe.')
-        return redirect('/')
-    return render(request, 'ayuda_premium.html', {})
-
-
 def editar_perfil_page(request, perfil):
     if not request.user.is_authenticated:
         messages.error(request, 'Debes iniciar tu sesion para acceder a esta pagina.')

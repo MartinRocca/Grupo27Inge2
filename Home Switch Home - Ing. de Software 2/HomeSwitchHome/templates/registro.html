@@ -14,11 +14,17 @@
             <table style="width:66%; margin:auto;">
                 {{usuario_form.as_table}}
                 {{perfil_form.as_table}}
+                <td>
+                    <div class="checkbox">
+                        <input id="check" name="checkbox" type="checkbox">
+                        <label for="check">Acepto los terminos y condiciones de uso del sitio HomeSwitchHome</label>
+                    </div>
+                </td>
             </table>
             <br>
             <br>
             <div style="text-align:center;">
-                <button class="btn" style="background-color:#90a4ae; color:white" type="submit"> registrarse </button>
+                <button class="btn" style="background-color:#90a4ae; color:white" type="submit" id="btncheck"> registrarse </button>
                 <a class="btn" style="background-color:#90a4ae; color:white" href="/"> cancelar </a>
             </div>
         </form>
