@@ -438,8 +438,12 @@ def buscar_residencia(request):
                 lugar = form.clean_lugar()
                 fecha_desde = form.clean_fecha_desde()
                 fecha_hasta = form.clean_fecha_hasta()
-                context2 = {"semanas": obtener_semanas(lugar, fecha_desde, fecha_hasta)}
-                return render(request, 'mostrar_resultados.html', context2)
+                if lugar is None and fecha_desde is None:
+                    messages.error(request, 'Por favor, ingrese los campos para realizar la busqueda.')
+                    return redirect('http://127.0.0.1:8000/buscar_residencia/')
+                else:
+                    context2 = {"semanas": obtener_semanas(lugar, fecha_desde, fecha_hasta)}
+                    return render(request, 'mostrar_resultados.html', context2)
     else:
         messages.error(request, 'Debes iniciar tu sesion para acceder a esta pagina.')
     return render(request, template, context)
