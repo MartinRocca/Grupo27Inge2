@@ -100,7 +100,7 @@ def eliminar_residencia_page(request, residencia):
 def helper_listar_subastas():
     # fecha = datetime.now()
     # Creo una variable date donde el día sea lunes y si o si encuentre subastas.
-    fecha_lunes = datetime(2019, 7, 8)
+    fecha_lunes = datetime(2019, 7, 15)
     info_return = {}
     subastas_activas = []
     # if fecha.weekday() in [1, 2, 3]:
@@ -230,8 +230,10 @@ def registro_page(request):
         perfil_form = PerfilForm()
     return render(request, 'registro.html', {'usuario_form': usuario_form, 'perfil_form': perfil_form})
 
+
 class CustomLoginView(LoginView):
     authentication_form = CustomAuthForm
+
 
 def ver_usuarios_page(request):
     if not request.user.is_staff:
@@ -387,11 +389,11 @@ def ver_residencia_page(request, residencia):
         messages.error(request, 'Debes iniciar tu sesion para acceder a esta pagina.')
         return redirect('/')
     template = "ver_residencia.html"
-    activas = obtener_subastas(datetime(2019, 7, 8))
+    activas = obtener_subastas(datetime(2019, 7, 15))
     res=Residencia.objects.get(id=residencia)
     reservas=Reserva.objects.filter(id_residencia=res)
     inactivas=Subasta.objects.filter(
-        ~Q(fecha_inicio=datetime(2019, 7, 8)),
+        ~Q(fecha_inicio=datetime(2019, 7, 15)),
         Q(esta_programada=True),
     )
     subastas=[]
@@ -424,6 +426,7 @@ def reservar_residencia_page(request, reserva):
     else:
         form = ResidenciaForm(request.POST or None)
     return render(request, template)
+
 
 def buscar_residencia(request):
     if request.user.is_authenticated:

@@ -99,7 +99,7 @@ def obtener_semanas(lugar, fDesde, fHasta):
     if lugar is None:
         ## Hacemos el query en función a las fechas.
         print('Hacemos el query en función a las fechas.')
-        reservas = Reserva.objects.filter(usuario_ganador=None)
+        reservas = Reserva.objects.filter(usuario_ganador='-')
         reservas_disponibles = []
         for reserva in reservas:
             if esta_en_rango(fDesde, fHasta, reserva.fecha):
@@ -117,7 +117,7 @@ def obtener_semanas(lugar, fDesde, fHasta):
             reservas.extend(Reserva.objects.filter(id_residencia=res.id))
         reservas_disponibles = []
         for reserva in reservas:
-            if reserva.usuario_ganador is None and esta_en_rango(fDesde, fHasta, reserva.fecha):
+            if reserva.usuario_ganador == '-' and esta_en_rango(fDesde, fHasta, reserva.fecha):
                 reservas_disponibles.append(reserva)
         return reservas_disponibles
 
@@ -128,13 +128,17 @@ def obtener_semanas(lugar, fDesde, fHasta):
             Q(localidad__iexact=lugar),
             Q(activa=True),
         )
+        print(residencias)
         reservas = []
         for res in residencias:
             reservas.extend(Reserva.objects.filter(id_residencia=res.id))
         ## Una vez conseguidas todas las reservas para las residencias encontradas, hay que seleccionar
         ## solo aquellas que esten disponibles.
+        print(reservas)
         reservas_disponibles = []
         for reserva in reservas:
-            if reserva.usuario_ganador is None:
-                reservas_disponibles.append(reserva)
+            if reserva.usuario_ganador == '-':
+                if Subasta.objects.get(id_reserva=reserva).fecha_inicio >= datetime.now().date():
+                    reservas_disponibles.append(reserva)
+        print(reservas_disponibles)
         return reservas_disponibles

@@ -19,56 +19,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/HSH/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="243" column="16" selection-start-line="243" selection-start-column="16" selection-end-line="243" selection-end-column="16" />
-              <folding>
-                <element signature="e#978#2392#0" />
-                <element signature="e#2437#2567#0" />
-                <element signature="e#2623#4369#0" />
-                <element signature="e#4427#4989#0" />
-                <element signature="e#5026#5870#0" />
-                <element signature="e#5912#6332#0" />
-                <element signature="e#6386#6729#0" />
-                <element signature="e#6773#8052#0" />
-                <element signature="e#8105#8649#0" />
-                <element signature="e#8684#10934#0" />
-                <element signature="e#10974#11010#0" />
-                <element signature="e#11048#11363#0" />
-                <element signature="e#12199#12918#0" />
-                <element signature="e#12958#13122#0" />
-                <element signature="e#13170#14486#0" />
-                <element signature="e#14536#15727#0" />
-                <element signature="e#15768#16433#0" />
-                <element signature="e#16482#17192#0" />
-                <element signature="e#17245#18159#0" />
-                <element signature="e#18214#19034#0" />
-                <element signature="e#19072#19771#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/registro_admin.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="66" selection-start-line="6" selection-start-column="66" selection-end-line="6" selection-end-column="66" />
-              <folding>
-                <element signature="n#style#0;n#h1#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -83,6 +34,7 @@
       <find>registro</find>
       <find>cerrar</find>
       <find>finalizadas</find>
+      <find>datetime</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -101,9 +53,8 @@
         <option value="$PROJECT_DIR$/templates/home_page.html" />
         <option value="$PROJECT_DIR$/templates/crear_residencia.html" />
         <option value="$PROJECT_DIR$/templates/editar_residencia.html" />
-        <option value="$PROJECT_DIR$/HSH/consultas.py" />
         <option value="$PROJECT_DIR$/templates/cambiar_tarjeta.html" />
-        <option value="$PROJECT_DIR$/../../../../Home Switch Home - Ing. de Software 2/HomeSwitchHome/HSH/views.py" />
+        <option value="$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/HSH/views.py" />
         <option value="$PROJECT_DIR$/templates/reservar_residencia.html" />
         <option value="$PROJECT_DIR$/HSH/migrations/custom_validators.py" />
         <option value="$PROJECT_DIR$/HomeSwitchHome/settings.py" />
@@ -114,29 +65,30 @@
         <option value="$PROJECT_DIR$/templates/registro.html" />
         <option value="$PROJECT_DIR$/templates/confirmar_logout.html" />
         <option value="$PROJECT_DIR$/HomeSwitchHome/urls.py" />
-        <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/HSH/models.py" />
         <option value="$PROJECT_DIR$/templates/editar_perfil.html" />
         <option value="$PROJECT_DIR$/templates/ayuda_premium.html" />
         <option value="$PROJECT_DIR$/HomeSwitchHome/forms.py" />
         <option value="$PROJECT_DIR$/templates/perfil.html" />
         <option value="$PROJECT_DIR$/templates/listar_residencias.html" />
-        <option value="$PROJECT_DIR$/templates/mostrar_resultados.html" />
         <option value="$PROJECT_DIR$/templates/cerrar_subasta.html" />
         <option value="$PROJECT_DIR$/templates/listar_subastas.html" />
         <option value="$PROJECT_DIR$/templates/listar_subastas_finalizadas.html" />
         <option value="$PROJECT_DIR$/templates/listar_usuarios.html" />
         <option value="$PROJECT_DIR$/templates/pujar.html" />
         <option value="$PROJECT_DIR$/templates/ver_residencia.html" />
+        <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/HSH/views.py" />
+        <option value="$PROJECT_DIR$/templates/mostrar_resultados.html" />
+        <option value="$PROJECT_DIR$/HSH/consultas.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-484" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1096" />
+    <option name="x" value="-485" />
+    <option name="y" value="-9" />
+    <option name="width" value="1937" />
+    <option name="height" value="1097" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -144,7 +96,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -171,6 +122,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -239,10 +191,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24920969" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24900925" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -254,7 +205,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32922733" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32956153" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -281,17 +232,17 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../../../Home Switch Home - Ing. de Software 2/HomeSwitchHome/HSH/models.py" />
-    <entry file="file://$PROJECT_DIR$/../../../../Home Switch Home - Ing. de Software 2/HomeSwitchHome/HomeSwitchHome/urls.py" />
-    <entry file="file://$PROJECT_DIR$/../../../../Home Switch Home - Ing. de Software 2/HomeSwitchHome/templates/listar_subastas_finalizadas.html" />
-    <entry file="file://$PROJECT_DIR$/../../../../Home Switch Home - Ing. de Software 2/HomeSwitchHome/templates/listar_residencias.html" />
-    <entry file="file://$PROJECT_DIR$/../../../../Home Switch Home - Ing. de Software 2/HomeSwitchHome/templates/listar_subastas.html" />
-    <entry file="file://$PROJECT_DIR$/../../../../Home Switch Home - Ing. de Software 2/HomeSwitchHome/templates/listar_usuarios.html" />
-    <entry file="file://$PROJECT_DIR$/../../../../Home Switch Home - Ing. de Software 2/HomeSwitchHome/HSH/admin.py" />
+    <entry file="file://$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/HSH/models.py" />
+    <entry file="file://$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/HomeSwitchHome/urls.py" />
+    <entry file="file://$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/templates/listar_subastas_finalizadas.html" />
+    <entry file="file://$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/templates/listar_residencias.html" />
+    <entry file="file://$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/templates/listar_subastas.html" />
+    <entry file="file://$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/templates/listar_usuarios.html" />
+    <entry file="file://$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/HSH/admin.py" />
     <entry file="file://$PROJECT_DIR$/urls.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../Home Switch Home - Ing. de Software 2/HomeSwitchHome/HSH/views.py" />
+    <entry file="file://$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/HSH/views.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/django/views/decorators/debug.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/django/views/decorators/csrf.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/django/contrib/auth/views.py" />
@@ -381,51 +332,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HSH/consultas.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-52">
-          <caret line="83" column="30" selection-start-line="83" selection-start-column="30" selection-end-line="83" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#62#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HomeSwitchHome/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="42" selection-start-line="42" selection-end-line="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="842">
-          <caret line="272" column="23" selection-start-line="272" selection-start-column="23" selection-end-line="272" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HSH/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="39" column="28" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" lean-forward="true" selection-start-column="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/mostrar_resultados.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -480,13 +390,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/eliminar_residencia.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/listar_residencias.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/cerrar_subasta.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -605,16 +508,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/listar_residencias.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-235">
+          <caret line="272" column="23" selection-start-line="272" selection-start-column="23" selection-end-line="272" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/mostrar_resultados.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HSH/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1952">
+          <caret line="17" column="56" lean-forward="true" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HSH/consultas.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="140" column="16" lean-forward="true" selection-start-line="140" selection-start-column="16" selection-end-line="140" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/HSH/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="243" column="16" selection-start-line="243" selection-start-column="16" selection-end-line="243" selection-end-column="16" />
+        <state relative-caret-position="207">
+          <caret line="394" column="22" lean-forward="true" selection-start-line="394" selection-start-column="22" selection-end-line="394" selection-end-column="22" />
           <folding>
+            <element signature="e#841#935#0" />
             <element signature="e#978#2392#0" />
             <element signature="e#2437#2567#0" />
             <element signature="e#2623#4369#0" />
             <element signature="e#4427#4989#0" />
-            <element signature="e#5026#5870#0" />
             <element signature="e#5912#6332#0" />
             <element signature="e#6386#6729#0" />
             <element signature="e#6773#8052#0" />
@@ -622,15 +573,15 @@
             <element signature="e#8684#10934#0" />
             <element signature="e#10974#11010#0" />
             <element signature="e#11048#11363#0" />
-            <element signature="e#12199#12918#0" />
-            <element signature="e#12958#13122#0" />
-            <element signature="e#13170#14486#0" />
-            <element signature="e#14536#15727#0" />
-            <element signature="e#15768#16433#0" />
-            <element signature="e#16482#17192#0" />
-            <element signature="e#17245#18159#0" />
-            <element signature="e#18214#19034#0" />
-            <element signature="e#19072#19771#0" />
+            <element signature="e#11404#12203#0" />
+            <element signature="e#12236#12955#0" />
+            <element signature="e#12995#13159#0" />
+            <element signature="e#13207#14523#0" />
+            <element signature="e#14573#15764#0" />
+            <element signature="e#15805#16470#0" />
+            <element signature="e#16519#17229#0" />
+            <element signature="e#18251#19071#0" />
+            <element signature="e#19109#19808#0" />
           </folding>
         </state>
       </provider>
