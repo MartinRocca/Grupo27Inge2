@@ -520,3 +520,17 @@ def ver_hotsale_page(request, hotsale):
     else:
         form = ResidenciaForm(request.POST or None)
     return render(request, template, context)
+
+def cerrar_hotsale_page(request, hotsale):
+    if request.user.is_staff:
+        hotsale = Hotsale.objects.get(id=hotsale)
+        template = 'cerrar_hotsale.html'
+        context = {"hotsale": hotsale}
+        if request.method == 'POST':
+            hotsale.esta_programado = False
+            hotsale.save()
+            messages.success(request, 'El hotsale se ha cancelado exitosamente.')
+            return redirect('http://127.0.0.1:8000/')
+    else:
+        return redirect('/')
+    return render(request, template, context)
