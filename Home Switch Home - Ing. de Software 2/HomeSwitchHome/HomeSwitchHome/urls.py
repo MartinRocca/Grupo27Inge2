@@ -42,6 +42,8 @@ from HSH.views import (
     ver_admins_page,
     ver_reservas_para_hotsale,
     configurar_hotsale_page,
+    listar_hotsales_page,
+    ver_hotsale_page,
 )
 
 urlpatterns = [
@@ -73,4 +75,6 @@ urlpatterns = [
     path('ver_administradores/', ver_admins_page),
     path('ver_reservas_para_hotsale/', ver_reservas_para_hotsale),
     path('crear_hotsale/<reserva>/', configurar_hotsale_page, name='configurar_hotsale'),
+    path('listar_hotsales/', listar_hotsales_page),
+    path('ver_hotsale/<hotsale>/', ver_hotsale_page, name='ver_hotsale'),
 ]

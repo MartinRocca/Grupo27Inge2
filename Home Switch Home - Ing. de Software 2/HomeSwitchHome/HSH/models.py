@@ -42,6 +42,7 @@ class Reserva(models.Model):
     fecha = models.DateField()
     usuario_ganador = models.EmailField(default='-')
 
+
     def reservar(self, mailUsuario):
         subasta = Subasta.objects.get(id_reserva=self)
         subasta.esta_programada = False
@@ -68,7 +69,6 @@ class Subasta(models.Model):
     id_reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE)
     fecha_inicio = models.DateField()
     esta_programada = models.BooleanField(default=True)
-
 
     def obtener_monto_max(self):
         try:

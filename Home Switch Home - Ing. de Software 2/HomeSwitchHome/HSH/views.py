@@ -5,10 +5,10 @@ from django.contrib.auth.views import LoginView
 from django.forms.models import model_to_dict
 from django.db.models import Q
 from django.contrib.auth import views as auth_views
-from HomeSwitchHome.forms import ResidenciaForm, PujaForm, HotsaleForm, BuscarResidenciasForm, RegistroForm, PerfilForm, EditarPerfilForm, \
+from HomeSwitchHome.forms import ResidenciaForm, PujaForm, HotsaleForm,BuscarResidenciasForm, RegistroForm, PerfilForm, EditarPerfilForm, \
     CambiarTarjetaForm, PrecioForm, CustomAuthForm
 from .models import Residencia, Subasta, Puja, Usuario, Perfil, Reserva, Precio, Hotsale
-from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, obtener_reservas_para_hotsale, obtener_semanas, validar_ubicacion_editar, \
+from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, obtener_semanas, validar_ubicacion_editar, \
     validar_nombre_completo
 from datetime import datetime, timedelta
 
@@ -437,7 +437,15 @@ def buscar_residencia(request):
                 lugar = form.clean_lugar()
                 fecha_desde = form.clean_fecha_desde()
                 fecha_hasta = form.clean_fecha_hasta()
-                context2 = {"semanas": obtener_semanas(lugar, fecha_desde, fecha_hasta)}
+                semanas = obtener_semanas(lugar, fecha_desde, fecha_hasta)
+                en_subasta = (helper_listar_subastas())['subastas']
+                actuales=[]
+                for en_sub in en_subasta:
+                    for sem in semanas:
+                        if en_sub.id_reserva == sem:
+                            semanas.remove(sem)
+                            actuales.append(sem)
+                context2 = {"semanas": semanas, "actuales": actuales}
                 return render(request, 'mostrar_resultados.html', context2)
     else:
         messages.error(request, 'Debes iniciar tu sesion para acceder a esta pagina.')
@@ -484,3 +492,11 @@ def configurar_hotsale_page(request, reserva):
         return render(request, template, context)
     else:
         return redirect('/')
+
+def listar_hotsales_page(request):
+    if not request.user.is_staff:
+        messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
+        return redirect('/')
+    template = "listar_hotsales.html"
+    context = {"hotsales": Hotsale.objects.filter(esta_programado=True)}
+    return render(request, template, context)

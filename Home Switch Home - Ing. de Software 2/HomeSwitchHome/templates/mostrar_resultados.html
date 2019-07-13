@@ -12,6 +12,15 @@
         </thead>
 
         <tbody>
+            {% for sem in actuales %}
+              <tr>
+                <td>
+                    <a href="http://127.0.0.1:8000/ver_residencia/{{sem.id_residencia.id}}">{{sem.id_residencia.nombre}}</a>
+                </td>
+                <td>{{sem.fecha|date:'d/m/Y'}}</td>
+                <td><a href="http://127.0.0.1:8000/pujar/{{sem.id}}">Ver Subasta</a></td>
+              </tr>
+            {% endfor %}
             {% for sem in semanas %}
               <tr>
                 <td>

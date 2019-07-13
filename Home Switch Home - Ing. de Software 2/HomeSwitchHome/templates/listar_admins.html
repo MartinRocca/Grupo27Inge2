@@ -11,7 +11,6 @@
           <tr>
               <th>Correo electrónico</th>
               <th>Fecha de registro</th>
-              <th>is_active</th>
               <th>Acciones</th>
           </tr>
         </thead>
@@ -26,7 +25,6 @@
               {% elif usuario.is_staff %}
               <td>{{usuario.email}}</td>
               <td>{{usuario.fecha_registro|date:'d/m/Y'}}</td>
-              <td>{{usuario.is_active}}</td>
                 {% if not usuario.id == request.user.id %}
                     <td><a href="http://127.0.0.1:8000/pasar_a/1/{{usuario.id}}" class="red-text">Eliminar</a></td>
                 {% else %}
