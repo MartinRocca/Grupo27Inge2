@@ -14,13 +14,39 @@
             <table style="width:66%; margin:auto;">
                 {{usuario_form.as_table}}
                 {{perfil_form.as_table}}
+                <tr>
+                    <th>
+                        <label for="id_terminos_y_condiciones">Acepto los <a href="#terminos" class="modal-trigger">terminos y condiciones</a> del sitio HomeSwitchHome</label>
+                    </th>
+                    <td>
+                        <label><input id="id_terminos_y_condiciones" type="checkbox" name="terminos_y_condiciones" required=""></label>
+                        <!-- Por alguna razon, el mismo arreglo que funciono antes con los botones de radio no funciona con los checkbox, y la unica manera
+                             de hacer que este boton se comporte correctamente es ponerlo dentro de un label.
+                         -->
+                    </td>
+                </tr>
             </table>
             <br>
             <br>
             <div style="text-align:center;">
-                <button class="btn" style="background-color:#90a4ae; color:white" type="submit"> registrarse </button>
+                <button class="btn" style="background-color:#90a4ae; color:white" type="submit" id="btncheck"> registrarse </button>
                 <a class="btn" style="background-color:#90a4ae; color:white" href="/"> cancelar </a>
             </div>
         </form>
+        <div class="modal" id="terminos">
+            <div class="modal-content">
+                <h4>Terminos y Condiciones de uso del Sitio</h4>
+                <h6>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut risus lectus. Donec id augue in risus pellentesque placerat. Pellentesque tincidunt, quam ac condimentum facilisis, justo libero scelerisque dolor, ac tincidunt dui nibh ac odio. Integer mattis pharetra mauris vitae rutrum. Fusce suscipit purus ante, at sagittis magna faucibus a. Nam pulvinar et urna ac ullamcorper. Cras imperdiet viverra aliquam. Etiam placerat placerat sodales. Sed id quam vel sapien ultrices facilisis eget sit amet urna. Aenean pulvinar, nisl a pretium ultricies, massa purus consequat nisi, eget mollis lorem metus at nunc. Nam nec est vitae sapien volutpat porta. In non odio pharetra erat vehicula porta. Maecenas diam mi, finibus vitae augue non, porta venenatis lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum, tortor quis commodo mattis, nisi nibh porttitor diam, non tempor ante tortor id purus.
+
+                    Aliquam in diam tristique, sollicitudin risus quis, fermentum enim. Aenean pulvinar sapien at eros hendrerit, eget posuere ipsum fermentum. Praesent eu aliquet ex, sit amet convallis diam. Suspendisse ligula lectus, luctus vitae varius eu, fringilla non lacus. Maecenas id mi hendrerit risus venenatis ornare quis sed orci. Aliquam elit odio, rhoncus vitae ornare in, gravida in lacus. Nullam ultrices volutpat congue. Mauris malesuada accumsan lobortis. Vestibulum non leo neque. Aliquam blandit diam in diam molestie condimentum. Maecenas in lectus vehicula, viverra mi id, rutrum sapien. Ut rutrum erat et sapien suscipit venenatis. Donec eget tempus eros.
+
+                    Praesent nunc ex, tincidunt eget orci eget, scelerisque ultrices libero. Curabitur sed dictum erat. Nunc feugiat nulla faucibus sapien egestas, sit amet varius nisl sollicitudin. Maecenas porta leo id libero iaculis ultrices. Cras finibus libero a sollicitudin sodales. In vitae pellentesque arcu, quis consectetur diam. Suspendisse bibendum erat sed suscipit pretium. Duis posuere elementum lacus quis iaculis. Phasellus interdum in nisi sit amet vestibulum. Vivamus lectus purus, condimentum ut imperdiet eget, posuere sit amet sapien. Nullam a mi sed ante imperdiet mollis. Curabitur egestas sollicitudin dui ut laoreet. Cras diam mauris, volutpat ut luctus ut, vehicula a erat. Maecenas sodales erat tortor, cursus sagittis odio luctus ultrices. Vivamus faucibus iaculis neque eget accumsan.
+                </h6>
+                <div class="modal-footer">
+                    <a href="#" class="modal-close btn" style="background-color:#90a4ae; color:white">Cerrar</a>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock content %}

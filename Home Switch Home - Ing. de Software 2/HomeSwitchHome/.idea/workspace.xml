@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="274c0120-6a87-4098-b5de-71883350e415" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/HSH/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/HSH/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cerrar_subasta.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cerrar_subasta.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/listar_subastas.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/listar_subastas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/listar_subastas_finalizadas.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/listar_subastas_finalizadas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/listar_usuarios.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/listar_usuarios.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/mostrar_resultados.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/mostrar_resultados.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pujar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pujar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/ver_residencia.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ver_residencia.html" afterDir="false" />
-    </list>
+    <list default="true" id="274c0120-6a87-4098-b5de-71883350e415" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +9,72 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HSH/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
+              <folding>
+                <element signature="e#841#935#0" />
+                <element signature="e#978#2392#0" />
+                <element signature="e#2437#2567#0" />
+                <element signature="e#2623#4369#0" />
+                <element signature="e#4427#4989#0" />
+                <element signature="e#5026#5871#0" />
+                <element signature="e#5913#6333#0" />
+                <element signature="e#6387#6730#0" />
+                <element signature="e#6774#8053#0" />
+                <element signature="e#8106#8650#0" />
+                <element signature="e#8685#10935#0" />
+                <element signature="e#10976#11012#0" />
+                <element signature="e#11051#11382#0" />
+                <element signature="e#11423#12222#0" />
+                <element signature="e#12255#12853#0" />
+                <element signature="e#12901#14217#0" />
+                <element signature="e#14267#15458#0" />
+                <element signature="e#15499#16164#0" />
+                <element signature="e#16213#17097#0" />
+                <element signature="e#17150#18066#0" />
+                <element signature="e#18121#18941#0" />
+                <element signature="e#18980#19667#0" />
+                <element signature="e#19698#19734#0" />
+                <element signature="e#19770#20061#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HomeSwitchHome/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="706">
+              <caret line="70" column="50" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
+              <folding>
+                <element signature="e#638#670#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+              <folding>
+                <element signature="n#style#0;n#h6#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -35,9 +90,11 @@
       <find>cerrar</find>
       <find>finalizadas</find>
       <find>datetime</find>
+      <find>perfil</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="IdeDocumentHistory">
@@ -48,39 +105,42 @@
         <option value="$PROJECT_DIR$/HSH/backends.py" />
         <option value="$PROJECT_DIR$/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/templates/registration/logout.html" />
-        <option value="$PROJECT_DIR$/static/styles.css" />
         <option value="$PROJECT_DIR$/templates/eliminar_residencia.html" />
         <option value="$PROJECT_DIR$/templates/home_page.html" />
         <option value="$PROJECT_DIR$/templates/crear_residencia.html" />
         <option value="$PROJECT_DIR$/templates/editar_residencia.html" />
-        <option value="$PROJECT_DIR$/templates/cambiar_tarjeta.html" />
         <option value="$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/HSH/views.py" />
         <option value="$PROJECT_DIR$/templates/reservar_residencia.html" />
         <option value="$PROJECT_DIR$/HSH/migrations/custom_validators.py" />
-        <option value="$PROJECT_DIR$/HomeSwitchHome/settings.py" />
         <option value="$PROJECT_DIR$/HSH/custom_validators.py" />
         <option value="$PROJECT_DIR$/templates/configprecios.html" />
         <option value="$PROJECT_DIR$/templates/registro_admin.html" />
-        <option value="$PROJECT_DIR$/templates/login.html" />
-        <option value="$PROJECT_DIR$/templates/registro.html" />
         <option value="$PROJECT_DIR$/templates/confirmar_logout.html" />
-        <option value="$PROJECT_DIR$/HomeSwitchHome/urls.py" />
-        <option value="$PROJECT_DIR$/HSH/models.py" />
         <option value="$PROJECT_DIR$/templates/editar_perfil.html" />
         <option value="$PROJECT_DIR$/templates/ayuda_premium.html" />
-        <option value="$PROJECT_DIR$/HomeSwitchHome/forms.py" />
-        <option value="$PROJECT_DIR$/templates/perfil.html" />
         <option value="$PROJECT_DIR$/templates/listar_residencias.html" />
         <option value="$PROJECT_DIR$/templates/cerrar_subasta.html" />
         <option value="$PROJECT_DIR$/templates/listar_subastas.html" />
         <option value="$PROJECT_DIR$/templates/listar_subastas_finalizadas.html" />
-        <option value="$PROJECT_DIR$/templates/listar_usuarios.html" />
         <option value="$PROJECT_DIR$/templates/pujar.html" />
         <option value="$PROJECT_DIR$/templates/ver_residencia.html" />
-        <option value="$PROJECT_DIR$/templates/base.html" />
-        <option value="$PROJECT_DIR$/HSH/views.py" />
         <option value="$PROJECT_DIR$/templates/mostrar_resultados.html" />
+        <option value="$PROJECT_DIR$/HomeSwitchHome/settings.py" />
+        <option value="$PROJECT_DIR$/templates/buscar_residencia.html" />
+        <option value="$PROJECT_DIR$/templates/cambiar_tarjeta.html" />
+        <option value="$PROJECT_DIR$/static/styles.css" />
+        <option value="$PROJECT_DIR$/templates/registro.html" />
         <option value="$PROJECT_DIR$/HSH/consultas.py" />
+        <option value="$PROJECT_DIR$/HSH/models.py" />
+        <option value="$PROJECT_DIR$/templates/perfil.html" />
+        <option value="$PROJECT_DIR$/templates/ayuda.html" />
+        <option value="$PROJECT_DIR$/templates/base.html" />
+        <option value="$PROJECT_DIR$/templates/listar_usuarios.html" />
+        <option value="$PROJECT_DIR$/HomeSwitchHome/forms.py" />
+        <option value="$PROJECT_DIR$/templates/listar_admins.html" />
+        <option value="$PROJECT_DIR$/HSH/views.py" />
+        <option value="$PROJECT_DIR$/HomeSwitchHome/urls.py" />
+        <option value="$PROJECT_DIR$/templates/login.html" />
       </list>
     </option>
   </component>
@@ -116,6 +176,30 @@
             <path>
               <item name="HomeSwitchHome" type="b2602c69:ProjectViewProjectNode" />
               <item name="HomeSwitchHome" type="462c0819:PsiDirectoryNode" />
+              <item name="HSH" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HomeSwitchHome" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HomeSwitchHome" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HomeSwitchHome" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HomeSwitchHome" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="HSH" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HomeSwitchHome" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HomeSwitchHome" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="HSH" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HomeSwitchHome" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HomeSwitchHome" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -128,7 +212,8 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="C:/Program Files/Git/bin/git.exe" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -191,13 +276,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24900925" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24849217" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32900432" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3281075" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32922733" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -205,7 +291,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32922733" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32956153" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32922733" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -232,31 +318,10 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/HSH/models.py" />
-    <entry file="file://$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/HomeSwitchHome/urls.py" />
-    <entry file="file://$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/templates/listar_subastas_finalizadas.html" />
-    <entry file="file://$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/templates/listar_residencias.html" />
-    <entry file="file://$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/templates/listar_subastas.html" />
-    <entry file="file://$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/templates/listar_usuarios.html" />
-    <entry file="file://$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/HSH/admin.py" />
-    <entry file="file://$PROJECT_DIR$/urls.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/Home Switch Home - Ing. de Software 2/HomeSwitchHome/HSH/views.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/django/views/decorators/debug.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/django/views/decorators/csrf.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/django/contrib/auth/views.py" />
     <entry file="file://$USER_HOME$/.PyCharmCE2019.1/system/python_stubs/1279560425/builtins.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/django/core/exceptions.py" />
-    <entry file="file://$PROJECT_DIR$/HSH/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1905" />
@@ -271,16 +336,6 @@
     <entry file="file://$PROJECT_DIR$/wsgi.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/HSH/custom_validators.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="36" lean-forward="true" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#112#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/confirmar_logout.html" />
     <entry file="file://$PROJECT_DIR$/templates/pasar_a_page.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -293,56 +348,117 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/logout.html">
+    <entry file="file://$PROJECT_DIR$/templates/editar_residencia.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" lean-forward="true" selection-start-column="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="43" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="43" />
+        <state relative-caret-position="51">
+          <caret line="3" column="8" lean-forward="true" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
           <folding>
-            <element signature="n#style#0;n#h6#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h3#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#form#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#form#0;n#div#1;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/ayuda_premium.html">
+    <entry file="file://$PROJECT_DIR$/templates/eliminar_residencia.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/listar_subastas_finalizadas.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="72" />
+        <state relative-caret-position="221">
+          <caret line="13" column="91" selection-start-line="13" selection-start-column="91" selection-end-line="13" selection-end-column="91" />
           <folding>
-            <element signature="n#style#0;n#h2#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#3;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/pujar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="93" selection-start-line="15" selection-start-column="93" selection-end-line="15" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/ver_residencia.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="41" column="42" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/reservar_residencia.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="15" lean-forward="true" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registro_admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="66" selection-start-line="6" selection-start-column="66" selection-end-line="6" selection-end-column="66" />
+          <folding>
+            <element signature="n#style#0;n#h1#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HSH/custom_validators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="43" lean-forward="true" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#112#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#230#239#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HomeSwitchHome/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="134" column="16" selection-start-line="134" selection-start-column="16" selection-end-line="134" selection-end-column="16" />
+        <state relative-caret-position="145">
+          <caret line="134" column="8" selection-start-line="134" selection-start-column="8" selection-end-line="134" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/urls.py">
+    <entry file="file://$PROJECT_DIR$/HSH/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        <state>
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/editar_residencia.html">
+    <entry file="file://$PROJECT_DIR$/HSH/apps.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HSH/tests.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/ayuda_premium.html" />
+    <entry file="file://$PROJECT_DIR$/templates/cambiar_tarjeta.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="8" lean-forward="true" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+        <state relative-caret-position="544">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
           <folding>
             <element signature="n#style#0;n#button#0;n#form#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#form#0;n#div#1;n#!!top" expanded="true" />
@@ -364,33 +480,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/crear_residencia.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="38" lean-forward="true" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#h1#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/configprecios.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="38" lean-forward="true" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#h1#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/eliminar_residencia.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/cerrar_subasta.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -406,37 +495,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/listar_subastas.html">
+    <entry file="file://$PROJECT_DIR$/HSH/migrations/0001_initial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="31" column="91" selection-start-line="31" selection-start-column="91" selection-end-line="31" selection-end-column="91" />
-        </state>
+        <state relative-caret-position="-612" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/listar_usuarios.html">
+    <entry file="file://$PROJECT_DIR$/templates/configprecios.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="42" column="55" selection-start-line="42" selection-start-column="55" selection-end-line="42" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/listar_subastas_finalizadas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="91" selection-start-line="13" selection-start-column="91" selection-end-line="13" selection-end-column="91" />
+        <state relative-caret-position="68">
+          <caret line="4" column="38" lean-forward="true" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
           <folding>
-            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#2;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#3;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/HSH/consultas.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="893">
+          <caret line="143" column="35" selection-start-line="143" selection-start-column="35" selection-end-line="143" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/home_page.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/perfil.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="56" lean-forward="true" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+        <state relative-caret-position="510">
+          <caret line="48" column="67" selection-start-line="48" selection-start-column="67" selection-end-line="48" selection-end-column="67" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -445,61 +535,166 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/buscar_residencia.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pujar.html">
+    <entry file="file://$PROJECT_DIR$/templates/listar_subastas.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="93" selection-start-line="15" selection-start-column="93" selection-end-line="15" selection-end-column="93" />
+        <state relative-caret-position="476">
+          <caret line="31" column="91" selection-start-line="31" selection-start-column="91" selection-end-line="31" selection-end-column="91" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/cambiar_tarjeta.html">
+    <entry file="file://$PROJECT_DIR$/templates/logout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="81" selection-start-line="15" selection-start-column="81" selection-end-line="15" selection-end-column="81" />
+        <state>
+          <caret column="28" lean-forward="true" selection-start-column="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/mostrar_resultados.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="16" lean-forward="true" selection-end-line="29" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/ayuda.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="63" selection-start-line="3" selection-start-column="63" selection-end-line="3" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/listar_usuarios.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="740">
+          <caret line="51" selection-start-line="51" selection-end-line="51" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/django/forms/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="367" column="8" selection-start-line="367" selection-start-column="8" selection-end-line="367" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="90" column="28" selection-start-line="90" selection-start-column="28" selection-end-line="90" selection-end-column="28" />
           <folding>
-            <element signature="n#style#0;n#button#0;n#form#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#form#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#3868#4124#0" />
+            <element signature="e#4161#7149#0" />
+            <element signature="e#7191#8275#0" />
+            <element signature="e#8319#10347#0" />
+            <element signature="e#10383#10858#0" />
+            <element signature="e#10905#12960#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/ver_residencia.html">
+    <entry file="file://$PROJECT_DIR$/templates/listar_admins.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="41" column="42" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
+        <state relative-caret-position="476">
+          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/reservar_residencia.html">
+    <entry file="file://$PROJECT_DIR$/HSH/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="15" lean-forward="true" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+        <state relative-caret-position="-1181">
+          <caret line="76" column="60" selection-start-line="76" selection-start-column="60" selection-end-line="76" selection-end-column="60" />
           <folding>
-            <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HSH/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
+          <folding>
+            <element signature="e#841#935#0" />
+            <element signature="e#978#2392#0" />
+            <element signature="e#2437#2567#0" />
+            <element signature="e#2623#4369#0" />
+            <element signature="e#4427#4989#0" />
+            <element signature="e#5026#5871#0" />
+            <element signature="e#5913#6333#0" />
+            <element signature="e#6387#6730#0" />
+            <element signature="e#6774#8053#0" />
+            <element signature="e#8106#8650#0" />
+            <element signature="e#8685#10935#0" />
+            <element signature="e#10976#11012#0" />
+            <element signature="e#11051#11382#0" />
+            <element signature="e#11423#12222#0" />
+            <element signature="e#12255#12853#0" />
+            <element signature="e#12901#14217#0" />
+            <element signature="e#14267#15458#0" />
+            <element signature="e#15499#16164#0" />
+            <element signature="e#16213#17097#0" />
+            <element signature="e#17150#18066#0" />
+            <element signature="e#18121#18941#0" />
+            <element signature="e#18980#19667#0" />
+            <element signature="e#19698#19734#0" />
+            <element signature="e#19770#20061#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="706">
+          <caret line="70" column="50" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
+          <folding>
+            <element signature="e#638#670#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/registro.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="53" lean-forward="true" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="54" />
+        <state relative-caret-position="680">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
           <folding>
             <element signature="n#style#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/registro_admin.html">
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="66" selection-start-line="6" selection-start-column="66" selection-end-line="6" selection-end-column="66" />
+        <state relative-caret-position="-158">
+          <caret line="49" column="94" selection-start-line="49" selection-start-column="94" selection-end-line="49" selection-end-column="94" />
           <folding>
-            <element signature="n#style#0;n#h1#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/buscar_residencia.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="38" lean-forward="true" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/crear_residencia.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="38" lean-forward="true" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#h1#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
@@ -510,78 +705,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/listar_residencias.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-235">
-          <caret line="272" column="23" selection-start-line="272" selection-start-column="23" selection-end-line="272" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/mostrar_resultados.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HSH/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1952">
-          <caret line="17" column="56" lean-forward="true" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
+        <state relative-caret-position="136">
+          <caret line="8" column="39" lean-forward="true" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HSH/consultas.py">
+    <entry file="file://$PROJECT_DIR$/static/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="140" column="16" lean-forward="true" selection-start-line="140" selection-start-column="16" selection-end-line="140" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#62#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="102">
+          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HSH/views.py">
+    <entry file="file://$PROJECT_DIR$/static/HSH/css/materialize.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="394" column="22" lean-forward="true" selection-start-line="394" selection-start-column="22" selection-end-line="394" selection-end-column="22" />
+        <state relative-caret-position="357">
+          <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
           <folding>
-            <element signature="e#841#935#0" />
-            <element signature="e#978#2392#0" />
-            <element signature="e#2437#2567#0" />
-            <element signature="e#2623#4369#0" />
-            <element signature="e#4427#4989#0" />
-            <element signature="e#5912#6332#0" />
-            <element signature="e#6386#6729#0" />
-            <element signature="e#6773#8052#0" />
-            <element signature="e#8105#8649#0" />
-            <element signature="e#8684#10934#0" />
-            <element signature="e#10974#11010#0" />
-            <element signature="e#11048#11363#0" />
-            <element signature="e#11404#12203#0" />
-            <element signature="e#12236#12955#0" />
-            <element signature="e#12995#13159#0" />
-            <element signature="e#13207#14523#0" />
-            <element signature="e#14573#15764#0" />
-            <element signature="e#15805#16470#0" />
-            <element signature="e#16519#17229#0" />
-            <element signature="e#18251#19071#0" />
-            <element signature="e#19109#19808#0" />
+            <element signature="n#style#0;n#h6#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -240,7 +240,7 @@ def ver_usuarios_page(request):
         messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
         return redirect('/')
     template = "listar_usuarios.html"
-    return render(request, template, {"usuarios": Usuario.objects.filter(is_active=True), "perfiles": Perfil.objects.filter()})
+    return render(request, template, {"usuarios": Usuario.objects.filter(is_active=True, is_staff=False), "perfiles": Perfil.objects.filter()})
 
 
 def registro_admin_page(request):
@@ -268,22 +268,18 @@ def perfil_page(request):
     if not request.user.is_authenticated:
         messages.error(request, 'Inicia tu sesion para poder ver tu perfil.')
         return redirect('/iniciar_sesion/')
-    if request.user.is_staff:
-        # En blanco; Cuando hayamos implementado la HU 'Ver Usuario' de los administradores, deberia redireccionar a
-        # http://127.0.0.1:8000/pagina_de_ver_usuario/este_usuario
-        pass
     template = 'perfil.html'
     usuario = Usuario.objects.get(email=request.user.email)
     perfil = usuario.get_perfil()
+    reservas = usuario.get_reservas()
     nrotarjeta = '** - ********** - ' + (str(perfil.nro_tarjeta_credito)[-4:])
-    return render(request, template, {'user': usuario, 'perfil': perfil, 'nrotarjeta': nrotarjeta, 'precio':Precio.objects.get()})
-
-
-def ayuda_premium_page(request):
-    if request.user.is_staff:
-        messages.error(request, 'Preguntale a tu jefe.')
-        return redirect('/')
-    return render(request, 'ayuda_premium.html', {})
+    return render(request, template, {
+        'user': usuario,
+        'perfil': perfil,
+        'nrotarjeta': nrotarjeta,
+        'precio':Precio.objects.get(),
+        'reservas': reservas
+    })
 
 
 def editar_perfil_page(request, perfil):
@@ -372,6 +368,9 @@ def pasar_a_page(request, tipo, usuario):
     if request.method == 'POST':
         if tipo == "1":
             usu.is_active = False
+            usu.save()
+            messages.success(request, 'El administrador ha sido eliminado.')
+            return redirect("http://127.0.0.1:8000/ver_administradores/")
         elif tipo == "2":
             usu.is_premium = False
         else:
@@ -429,21 +428,29 @@ def reservar_residencia_page(request, reserva):
 
 
 def buscar_residencia(request):
+    form = BuscarResidenciasForm(request.POST or None)
+    template = "buscar_residencia.html"
+    context = {"form": form}
     if request.user.is_authenticated:
-        form = BuscarResidenciasForm(request.POST or None)
-        template = "buscar_residencia.html"
-        context = {"form": form}
         if request.method == 'POST':
             if form.is_valid():
                 lugar = form.clean_lugar()
                 fecha_desde = form.clean_fecha_desde()
                 fecha_hasta = form.clean_fecha_hasta()
-                if lugar is None and fecha_desde is None:
-                    messages.error(request, 'Por favor, ingrese los campos para realizar la busqueda.')
-                    return redirect('http://127.0.0.1:8000/buscar_residencia/')
-                else:
-                    context2 = {"semanas": obtener_semanas(lugar, fecha_desde, fecha_hasta)}
-                    return render(request, 'mostrar_resultados.html', context2)
+                context2 = {"semanas": obtener_semanas(lugar, fecha_desde, fecha_hasta)}
+                return render(request, 'mostrar_resultados.html', context2)
     else:
         messages.error(request, 'Debes iniciar tu sesion para acceder a esta pagina.')
     return render(request, template, context)
+
+
+def ayuda_page(request):
+    return render(request, "ayuda.html")
+
+
+def ver_admins_page(request):
+    if not request.user.is_staff:
+        messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
+        return redirect('/')
+    template = "listar_admins.html"
+    return render(request, template, {"usuarios": Usuario.objects.filter(is_active=True, is_staff=True)})

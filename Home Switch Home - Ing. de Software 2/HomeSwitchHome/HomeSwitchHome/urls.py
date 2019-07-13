@@ -30,7 +30,6 @@ from HSH.views import (
     registro_page,
     registro_admin_page,
     perfil_page,
-    ayuda_premium_page,
     editar_perfil_page,
     cambiar_tarjeta_page,
     config_precios_page,
@@ -39,6 +38,8 @@ from HSH.views import (
     ver_residencia_page,
     CustomLoginView,
     buscar_residencia,
+    ayuda_page,
+    ver_admins_page,
 )
 
 urlpatterns = [
@@ -61,10 +62,11 @@ urlpatterns = [
     path('registrarse/', registro_page),
     path('registrar_admin/', registro_admin_page),
     path('perfil/', perfil_page),
-    path('volverse_premium/', ayuda_premium_page),
     path('editar_perfil/<perfil>/', editar_perfil_page, name='editar_perfil'),
     path('cambiar_tarjeta/<perfil>/', cambiar_tarjeta_page, name='cambiar_tarjeta'),
     path('config_precios/', config_precios_page),
     path('pasar_a/<tipo>/<usuario>/', pasar_a_page, name='pasar_a'),
     path('buscar_residencia/', buscar_residencia),
+    path('ayuda/', ayuda_page),
+    path('ver_administradores/', ver_admins_page),
 ]

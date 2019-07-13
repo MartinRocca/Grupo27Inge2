@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+ <body>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+      <table class="striped">
+        <thead>
+          <tr>
+              <th>Correo electrónico</th>
+              <th>Fecha de registro</th>
+              <th>is_active</th>
+              <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for usuario in usuarios %}
+          <tr>
+              {% if usuario.is_superuser %}
+              <td>{{usuario.email}}</td>
+              <td>{{usuario.fecha_registro|date:'d/m/Y'}}</td>
+              <td>{{usuario.is_active}}</td>
+              <td> - </td>
+              {% elif usuario.is_staff %}
+              <td>{{usuario.email}}</td>
+              <td>{{usuario.fecha_registro|date:'d/m/Y'}}</td>
+              <td>{{usuario.is_active}}</td>
+                {% if not usuario.id == request.user.id %}
+                    <td><a href="http://127.0.0.1:8000/pasar_a/1/{{usuario.id}}" class="red-text">Eliminar</a></td>
+                {% else %}
+                    <td>-</td>
+                {% endif %}
+              {% endif %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+</body>
+{% endblock content %}

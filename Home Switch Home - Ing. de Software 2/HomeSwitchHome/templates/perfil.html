@@ -34,6 +34,29 @@
     </div>
     <br>
     <br>
+    <div class="centrar">
+        <h3>Reservas actuales:</h3>
+    </div>
+    <div class="centrar">
+        {% if reservas %}
+            {% for res in reservas %}
+                <div class="row">
+                    <div class="card small">
+                        <div class="card-image">
+                            <img src={{res.id_residencia.imagen_URL}} class="img">
+                            <span class="card-title" style="font-size:200%">{{res.id_residencia.nombre}}</span>
+                        </div>
+                        <div class="card content" style="height:125px;text-align:center">
+                            <p>Fecha: {{res.fecha|date:'d/m/Y'}}</p>
+                            <p>Localidad: {{res.id_residencia.localidad}}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h6>Parece que aun no has conseguido ninguna reserva.</h6>
+        {% endif %}
+    </div>
     <br>
     <br>
     <br>

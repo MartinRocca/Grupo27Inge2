@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models import Max
 from django.db.models.signals import post_save
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.utils import timezone
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.conf import settings
@@ -55,7 +55,6 @@ class Reserva(models.Model):
         perfil_ganador = Usuario.objects.get(email=mailUsuario).get_perfil()
         perfil_ganador.creditos = perfil_ganador.creditos - 1
         perfil_ganador.save()
-
 
     class Meta:
         unique_together = (("id_residencia", "fecha"),)
@@ -145,7 +144,7 @@ class UsuarioManager(BaseUserManager):
         return user
 
     def create_user(self, email, password, **extra_fields):
-        extra_fields.setdefault((('is_superuser', False),('is_admin', False),('mi_perfil', None)))
+        extra_fields.setdefault((('is_superuser', False),('is_staff', False),('is_premium', False)))
         return self._create_user(email,password,**extra_fields)
 
     def create_superuser(self, email, password, **extra_fields):
@@ -175,6 +174,10 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
             return Perfil.objects.get(mi_usuario=self)
         except ObjectDoesNotExist:
             return None
+
+    def get_reservas(self):
+        return Reserva.objects.filter(usuario_ganador=self.email)
+
 
 
 class Precio(models.Model):

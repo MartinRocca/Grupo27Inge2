@@ -90,7 +90,7 @@ def validar_nombre_completo(un_nombre, un_apellido, una_fecha):
 def esta_en_rango(fDesde, fHasta, fecha):
     if fHasta is None:
         fHasta = fDesde + timedelta(days=60)
-    if fecha > fDesde and fecha < fHasta:
+    if fecha >= fDesde and fecha <= fHasta:
         return True
     else:
         return False

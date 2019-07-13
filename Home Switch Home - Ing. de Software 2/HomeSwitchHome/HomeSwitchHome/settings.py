@@ -128,11 +128,11 @@ AUTH_PASSWORD_VALIDATORS = [
     #    'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     #},
     {
-    'NAME': 'HSH.custom_validators.MyCustomMinimumLengthValidator',
+        'NAME': 'HSH.custom_validators.MyCustomMinimumLengthValidator',
             # app_name.file_name.validator_name
     },
     {
-    'NAME': 'HSH.custom_validators.MyCustomNumericPasswordValidator',
+        'NAME': 'HSH.custom_validators.MyCustomNumericPasswordValidator',
             # app_name.file_name.validator_name
     },
 ]

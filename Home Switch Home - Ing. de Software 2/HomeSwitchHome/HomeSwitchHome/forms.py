@@ -86,6 +86,9 @@ class RegistroForm(UserCreationForm):
         email = self.cleaned_data.get('email')
         try:
             coincidencia = Usuario.objects.get(email=email)
+            if coincidencia.is_active == False:
+                coincidencia.delete()
+                return email
         except Usuario.DoesNotExist:
             return email
         raise forms.ValidationError('Este mail ya se encuentra en uso.')
@@ -96,6 +99,8 @@ class RegistroForm(UserCreationForm):
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError('Las contraseñas no coinciden.')
         return password2
+
+
 
 class CustomAuthForm(AuthenticationForm):
     error_messages = {
@@ -142,8 +147,17 @@ class PerfilForm(forms.Form):
     )
     nombre_titular_tarjeta = forms.CharField(label='Nombre del titular', max_length=120)
     fecha_vencimiento_tarjeta = forms.DateField(
-        label='Fecha de vencimiento (formato DD/MM/AA)',
-        input_formats=["%d/%m/%y","%D/%M/&y"],
+        label='Fecha de vencimiento (formato Dia/Mes/Año)',
+        input_formats=[
+            "%d/%m/%y",
+            "%D/%m/%y",
+            "%d/%M/%y",
+            "%d/%m/%Y",
+            "%D/%M/%y",
+            "%D/%m/%Y",
+            "%d/%M/%Y",
+            "%D/%M/%Y"
+        ],
         error_messages={'invalid': 'Ingrese una fecha valida.'}
     )
     codigo_seguridad_tarjeta = forms.CharField(
@@ -230,8 +244,17 @@ class CambiarTarjetaForm(forms.Form):
     )
     nombre_titular_tarjeta = forms.CharField(label='Nombre del titular', max_length=120)
     fecha_vencimiento_tarjeta = forms.DateField(
-        label='Fecha de vencimiento (formato DD/MM/AA)',
-        input_formats=["%d/%m/%y", "%D/%M/&y"],
+        label='Fecha de vencimiento (formato Dia/Mes/Año)',
+        input_formats=[
+            "%d/%m/%y",
+            "%D/%m/%y",
+            "%d/%M/%y",
+            "%d/%m/%Y",
+            "%D/%M/%y",
+            "%D/%m/%Y",
+            "%d/%M/%Y",
+            "%D/%M/%Y"
+        ],
         error_messages={'invalid': 'Ingrese una fecha valida.'}
     )
     codigo_seguridad_tarjeta = forms.CharField(
@@ -275,13 +298,31 @@ class PrecioForm(forms.Form):
 class BuscarResidenciasForm(forms.Form):
     lugar = forms.CharField(label='Ingrese una localidad', required=False)
     fecha_desde = forms.DateField(
-        label='Fecha desde (formato DD/MM/AA)',
-        input_formats=["%d/%m/%y", "%D/%M/%y"],
+        label='Fecha desde (formato Dia/Mes/Año)',
+        input_formats=[
+            "%d/%m/%y",
+            "%D/%m/%y",
+            "%d/%M/%y",
+            "%d/%m/%Y",
+            "%D/%M/%y",
+            "%D/%m/%Y",
+            "%d/%M/%Y",
+            "%D/%M/%Y"
+        ],
         error_messages={'invalid': 'Ingrese una fecha valida.'}, required=False
     )
     fecha_hasta = forms.DateField(
-        label='Fecha hasta (formato DD/MM/AA)',
-        input_formats=["%d/%m/%y", "%D/%M/%y"],
+        label='Fecha hasta (formato Dia/Mes/Aaño)',
+        input_formats=[
+            "%d/%m/%y",
+            "%D/%m/%y",
+            "%d/%M/%y",
+            "%d/%m/%Y",
+            "%D/%M/%y",
+            "%D/%m/%Y",
+            "%d/%M/%Y",
+            "%D/%M/%Y"
+        ],
         error_messages={'invalid': 'Ingrese una fecha valida.'}, required=False
     )
 
