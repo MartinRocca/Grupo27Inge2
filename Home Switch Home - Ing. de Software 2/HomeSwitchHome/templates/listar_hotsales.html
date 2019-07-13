@@ -7,20 +7,20 @@
                 <div class="col s12 m6 l3">
                   <div class="card big">
                     <div class="card-image">
-                      <img src={{hot.id_reserva.imagen_URL}} class="img">
+                      <img src={{hot.id_reserva.id_residencia.imagen_URL}} class="img">
                       <span class="card-title" style="font-size:200%">{{hot.id_reserva.nombre}}</span>
                     </div>
                     <div class="card-content">
-                      <p>Localidad: {{hot.id_reserva.localidad}}</p>
+                      <p>Localidad: {{hot.id_reserva.id_residencia.localidad}}</p>
                       <p>Fecha: {{hot.id_reserva.fecha}}</p>
                       <p>Precio: ${{hot.precio}}</p>
                     </div>
                       {% if user.is_authenticated %}
                         <div class="card-action">
                             {% if user.is_staff %}
-                                <a href="cerrar_hotsale/{{hot.id}}">Cerrar</a>
+                                <a href="http://127.0.0.1:8000/cerrar_hotsale/{{hot.id}}">Cerrar</a>
                             {% else %}
-                                <a href="ver_hotsale/{{hot.id}}">Ver Detalle</a>
+                                <a href="http://127.0.0.1:8000/ver_hotsale/{{hot.id}}">Ver Detalle</a>
                             {% endif %}
                         </div>
                       {% endif %}

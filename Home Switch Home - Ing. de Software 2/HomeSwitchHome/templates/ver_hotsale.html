@@ -1,31 +1,40 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-    <div class="card big">
-      <div class="card-image">
-        <img src={{hotsale.id_reserva.imagen_URL}} class="img">
-        <span class="card-title" style="font-size:200%">{{hotsale.id_reserva.nombre}}</span>
-      </div>
-      <div class="card-content">
-        <p>Localidad: {{hotsale.id_reserva.localidad}}</p>
-        <p>Fecha: {{hotsale.id_reserva.fecha}}</p>
-        <p>Precio: ${{hotsale.precio}}</p>
-        <p class="truncate">Descripción: {{hotsale.id_residencia.descripcion}}</p>
-        <p>Limite de personas: {{hotsale.id_residencia.limite_personas}}</p>
-        <p>Cantidad de habitaciones: {{hotsale.id_residencia.cant_habitaciones}}</p>
-        <p>Número de dirección: {{hotsale.id_residencia.nro_direccion}}</p>
-        <p>Calle: {{hotsale.id_residencia.calle}}</p>
-      </div>
+    <div class="centrar">
+        <div class="row">
+            <div class="col s12 m6 l3">
+                <div class="card big">
+                  <div class="card-image">
+                    <img src={{hotsale.id_reserva.id_residencia.imagen_URL}} class="img">
+                    <span class="card-title" style="font-size:200%">{{hotsale.id_reserva.id_residencia.nombre}}</span>
+                  </div>
+                  <div class="card-content">
+                    <p>Localidad: {{hotsale.id_reserva.id_residencia.localidad}}</p>
+                    <p>Fecha: {{hotsale.id_reserva.fecha}}</p>
+                    <p>Precio: ${{hotsale.precio}}</p>
+                    <p class="truncate">Descripción: {{hotsale.id_reserva.id_residencia.descripcion}}</p>
+                    <p>Limite de personas: {{hotsale.id_reserva.id_residencia.limite_personas}}</p>
+                    <p>Cantidad de habitaciones: {{hotsale.id_reserva.id_residencia.cant_habitaciones}}</p>
+                    <p>Número de dirección: {{hotsale.id_reserva.id_residencia.nro_direccion}}</p>
+                    <p>Calle: {{hotsale.id_reserva.id_residencia.calle}}</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <form method="POST" action=''>
+                {% csrf_token %}
+                    <h1>¿Desea adquirir este hotsale?</h1>
+                    <br>
+                    <button class="btn" align="center" style="background-color:#90a4ae; color:white" type="submit"> confirmar</button>
+                    <a class="btn" style="background-color:#90a4ae; color:white" href="/listar_hotsales"> cancelar</a>
+            </form>
+        </div>
     </div>
-    <div class="container">
-        <form method="POST" action=''>
-            {% csrf_token %}
-                <h1>¿Desea adquirir esta reserva?</h1>
-                <br>
-                <button class="btn" align="center" style="background-color:#90a4ae; color:white" type="submit"> confirmar</button>
-                <a class="btn" style="background-color:#90a4ae; color:white" href="http://127.0.0.1:8000/ver_hotsales"> cancelar</a>
-        </form>
-    </div>
-
 {% endblock content %}

@@ -9,7 +9,7 @@ from HomeSwitchHome.forms import ResidenciaForm, PujaForm, HotsaleForm,BuscarRes
     CambiarTarjetaForm, PrecioForm, CustomAuthForm
 from .models import Residencia, Subasta, Puja, Usuario, Perfil, Reserva, Precio, Hotsale
 from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, obtener_semanas, validar_ubicacion_editar, \
-    validar_nombre_completo
+    validar_nombre_completo, obtener_reservas_para_hotsale
 from datetime import datetime, timedelta
 
 
@@ -463,6 +463,7 @@ def ver_admins_page(request):
     template = "listar_admins.html"
     return render(request, template, {"usuarios": Usuario.objects.filter(is_active=True, is_staff=True)})
 
+
 def ver_reservas_para_hotsale(request):
     if request.user.is_staff:
         template = 'ver_reservas_para_hotsale.html'
@@ -471,6 +472,7 @@ def ver_reservas_para_hotsale(request):
 
     else:
         return redirect('/')
+
 
 def configurar_hotsale_page(request, reserva):
     if request.user.is_staff:
@@ -493,10 +495,28 @@ def configurar_hotsale_page(request, reserva):
     else:
         return redirect('/')
 
+
 def listar_hotsales_page(request):
-    if not request.user.is_staff:
-        messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
+    if not request.user.is_authenticated:
         return redirect('/')
     template = "listar_hotsales.html"
     context = {"hotsales": Hotsale.objects.filter(esta_programado=True)}
+    return render(request, template, context)
+
+
+def ver_hotsale_page(request, hotsale):
+    if not request.user.is_authenticated:
+        return redirect('/')
+    template = "ver_hotsale.html"
+    hotsale = Hotsale.objects.get(id=hotsale)
+    context = {"hotsale": hotsale}
+    if request.method == 'POST':
+        hotsale.esta_programado=False
+        hotsale.id_reserva.usuario_ganador=request.user.email
+        hotsale.id_reserva.save()
+        hotsale.save()
+        messages.success(request, 'El hotsale se ha adquirido exitosamente.')
+        return redirect('http://127.0.0.1:8000/')
+    else:
+        form = ResidenciaForm(request.POST or None)
     return render(request, template, context)
