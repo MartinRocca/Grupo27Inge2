@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Residencia, Subasta, Puja, Reserva, Usuario, Precio
+from .models import Residencia, Subasta, Puja, Reserva, Usuario, Precio, Hotsale
 
 # Register your models here.
 
@@ -9,3 +9,4 @@ admin.site.register(Puja)
 admin.site.register(Reserva)
 admin.site.register(Usuario)
 admin.site.register(Precio)
+admin.site.register(Hotsale)

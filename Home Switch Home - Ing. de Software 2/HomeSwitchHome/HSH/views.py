@@ -5,10 +5,10 @@ from django.contrib.auth.views import LoginView
 from django.forms.models import model_to_dict
 from django.db.models import Q
 from django.contrib.auth import views as auth_views
-from HomeSwitchHome.forms import ResidenciaForm, PujaForm, BuscarResidenciasForm, RegistroForm, PerfilForm, EditarPerfilForm, \
+from HomeSwitchHome.forms import ResidenciaForm, PujaForm, HotsaleForm, BuscarResidenciasForm, RegistroForm, PerfilForm, EditarPerfilForm, \
     CambiarTarjetaForm, PrecioForm, CustomAuthForm
-from .models import Residencia, Subasta, Puja, Usuario, Perfil, Reserva, Precio
-from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, obtener_semanas, validar_ubicacion_editar, \
+from .models import Residencia, Subasta, Puja, Usuario, Perfil, Reserva, Precio, Hotsale
+from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, obtener_reservas_para_hotsale, obtener_semanas, validar_ubicacion_editar, \
     validar_nombre_completo
 from datetime import datetime, timedelta
 
@@ -454,3 +454,33 @@ def ver_admins_page(request):
         return redirect('/')
     template = "listar_admins.html"
     return render(request, template, {"usuarios": Usuario.objects.filter(is_active=True, is_staff=True)})
+
+def ver_reservas_para_hotsale(request):
+    if request.user.is_staff:
+        template = 'ver_reservas_para_hotsale.html'
+        context = {'reservas': obtener_reservas_para_hotsale()}
+        return render(request, template, context)
+
+    else:
+        return redirect('/')
+
+def configurar_hotsale_page(request, reserva):
+    if request.user.is_staff:
+        template = "configurar_hotsale.html"
+        form = HotsaleForm(request.POST or None)
+        res = Reserva.objects.get(id=reserva)
+        context = {'form': form }
+        if request.method == 'POST':
+            if form.is_valid():
+                precio = form.clean_precio()
+                hotsale = Hotsale()
+                hotsale.id_reserva = res
+                hotsale.precio = precio
+                hotsale.save()
+                messages.success(request, 'El hotsale se ha creado exitosamente.')
+                return redirect('http://127.0.0.1:8000/')
+        else:
+            form = ResidenciaForm(request.POST or None)
+        return render(request, template, context)
+    else:
+        return redirect('/')

@@ -42,7 +42,6 @@ class Reserva(models.Model):
     fecha = models.DateField()
     usuario_ganador = models.EmailField(default='-')
 
-
     def reservar(self, mailUsuario):
         subasta = Subasta.objects.get(id_reserva=self)
         subasta.esta_programada = False
@@ -58,6 +57,11 @@ class Reserva(models.Model):
 
     class Meta:
         unique_together = (("id_residencia", "fecha"),)
+
+class Hotsale(models.Model):
+    id_reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE)
+    precio = models.FloatField()
+    esta_programado = models.BooleanField(default=True)
 
 class Subasta(models.Model):
     id = models.AutoField(primary_key=True)

@@ -1,4 +1,4 @@
-from .models import Residencia, Reserva, Subasta, Puja, Perfil
+from .models import Residencia, Reserva, Subasta, Puja, Perfil, Hotsale
 from django.db.models import Q, Max
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import datetime, timedelta
@@ -142,3 +142,16 @@ def obtener_semanas(lugar, fDesde, fHasta):
                     reservas_disponibles.append(reserva)
         print(reservas_disponibles)
         return reservas_disponibles
+
+def obtener_reservas_para_hotsale():
+    reservas = Reserva.objects.filter(usuario_ganador='-')
+    print(reservas)
+    reservas_disponibles = []
+    for res in reservas:
+        subasta = Subasta.objects.get(id_reserva=res)
+        if not subasta.esta_programada and res.fecha > datetime.now().date():
+            try:
+                hot_sale = Hotsale.objects.get(id_reserva=res)
+            except ObjectDoesNotExist:
+                reservas_disponibles.append(res)
+    return reservas_disponibles

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from HSH.models import Residencia, Puja, Subasta, Perfil, Usuario
+from HSH.models import Residencia, Puja, Subasta, Perfil, Usuario, Hotsale
 from datetime import datetime
 from django.core.validators import RegexValidator
 from django.utils.translation import gettext, gettext_lazy as _
@@ -357,3 +357,12 @@ class BuscarResidenciasForm(forms.Form):
             elif abs(fecha_hasta-fecha_desde).days > 60:
                 raise forms.ValidationError('El rango entre las dos fecha puede ser, como máximo, de 2 meses.')
         return fecha_hasta
+
+class HotsaleForm(forms.Form):
+    precio = forms.FloatField()
+
+    def clean_precio(self):
+        precio = self.cleaned_data.get('precio')
+        if precio < 0:
+            raise forms.ValidationError('Valor inválido')
+        return precio
