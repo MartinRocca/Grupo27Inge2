@@ -145,7 +145,6 @@ def obtener_semanas(lugar, fDesde, fHasta):
 
 def obtener_reservas_para_hotsale():
     reservas = Reserva.objects.filter(usuario_ganador='-')
-    print(reservas)
     reservas_disponibles = []
     for res in reservas:
         subasta = Subasta.objects.get(id_reserva=res)
@@ -155,3 +154,15 @@ def obtener_reservas_para_hotsale():
             except ObjectDoesNotExist:
                 reservas_disponibles.append(res)
     return reservas_disponibles
+
+def obtener_subastas_finalizadas():
+    subastas = Subasta.objects.filter(esta_programada=False)
+    hotsales = Hotsale.objects.filter(esta_programado=False)
+    aux_reservas = []
+    for hot in hotsales:
+        aux_reservas.append(hot.id_reserva)
+    aux_subastas = []
+    for sub in subastas:
+        if sub.id_reserva not in aux_reservas:
+            aux_subastas.append(sub)
+    return aux_subastas

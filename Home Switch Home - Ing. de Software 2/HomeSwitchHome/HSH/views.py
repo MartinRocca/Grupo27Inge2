@@ -8,7 +8,7 @@ from django.contrib.auth import views as auth_views
 from HomeSwitchHome.forms import ResidenciaForm, PujaForm, HotsaleForm,BuscarResidenciasForm, RegistroForm, PerfilForm, EditarPerfilForm, \
     CambiarTarjetaForm, PrecioForm, CustomAuthForm
 from .models import Residencia, Subasta, Puja, Usuario, Perfil, Reserva, Precio, Hotsale
-from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, obtener_semanas, validar_ubicacion_editar, \
+from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, obtener_semanas, obtener_subastas_finalizadas, validar_ubicacion_editar, \
     validar_nombre_completo, obtener_reservas_para_hotsale
 from datetime import datetime, timedelta
 
@@ -128,17 +128,7 @@ def listar_subastas_page(request):
         messages.error(request, 'No hay subastas disponibles.')
     elif info_return['codigo_error'] == 2:
         messages.error(request, 'Hoy no es día de subastas. Por favor, vuelva el próximo lunes.')
-    context = {"subastas": info_return['subastas']}
-    return render(request, template, context)
-
-
-def listar_subastas_finalizadas_page(request):
-    if not request.user.is_staff:
-        messages.error(request, 'Solo los administradores pueden acceder a esta funcion.')
-        return redirect('/')
-    template = "listar_subastas_finalizadas.html"
-    subastas = Subasta.objects.filter(esta_programada=False)
-    context = {"subastas": subastas}
+    context = {"subastas": info_return['subastas'], "subastas_finalizadas": obtener_subastas_finalizadas()}
     return render(request, template, context)
 
 
@@ -467,7 +457,8 @@ def ver_admins_page(request):
 def ver_reservas_para_hotsale(request):
     if request.user.is_staff:
         template = 'ver_reservas_para_hotsale.html'
-        context = {'reservas': obtener_reservas_para_hotsale()}
+        hotsales = Hotsale.objects.filter(esta_programado=False)
+        context = {'reservas': obtener_reservas_para_hotsale(), 'hotsales_finalizados': hotsales}
         return render(request, template, context)
 
     else:

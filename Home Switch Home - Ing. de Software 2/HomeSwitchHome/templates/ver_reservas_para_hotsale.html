@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <head><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></head>
     {% if messages %}
         <br>
         <br>
@@ -19,6 +20,34 @@
         </div>
         <META HTTP-EQUIV="REFRESH" CONTENT="4;URL=http://127.0.0.1:8000/">
     {% endif %}
+    <ul class="collapsible">
+        <li>
+            <div class="collapsible-header"><i class="material-icons">arrow_drop_down_circle</i>Hotsales finalizados</div>
+            <div class="collapsible-body">
+                <div class="row">
+                    {% for hot in hotsales_finalizados %}
+                            <div class="col s12 m6 l3">
+                              <div class="card big">
+                                <div class="card-image">
+                                  <img src={{hot.id_reserva.id_residencia.imagen_URL}} class="img">
+                                  <span class="card-title" style="font-size:200%">{{hot.id_reserva.id_residencia.nombre}}</span>
+                                </div>
+                                <div class="card-content">
+                                  <br>
+                                  <p style="font-size:130%;">Fecha: {{hot.id_reserva.fecha|date:'d/m/Y'}}</p>
+                                  <p style="font-size:130%;">Localidad: {{hot.id_reserva.id_residencia.localidad}}</p>
+                                  <p style="font-size:130%;">Precio: $ {{hot.precio}}</p>
+                                  <p style="font-size:130%;">Ganador: {{hot.id_reserva.usuario_ganador}} </p>
+                                  <br>
+                                  <br>
+                                </div>
+                              </div>
+                            </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </li>
+    </ul>
     <div class="row">
         {% for res in reservas %}
                 <div class="col s12 m6 l3">
