@@ -13,25 +13,28 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HSH/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="740">
-              <caret line="545" column="32" selection-start-line="545" selection-start-column="32" selection-end-line="545" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#67#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="281">
+              <caret line="461" column="51" selection-start-line="461" selection-start-column="51" selection-end-line="461" selection-end-column="51" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/perfil.html">
+        <entry file="file://$PROJECT_DIR$/templates/ver_reservas_para_hotsale.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="22" column="87" selection-start-line="22" selection-start-column="87" selection-end-line="22" selection-end-column="87" />
+            <state relative-caret-position="34">
+              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/listar_hotsales.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="833">
+              <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -54,6 +57,7 @@
       <find>finalizadas</find>
       <find>datetime</find>
       <find>perfil</find>
+      <find>login</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -98,21 +102,22 @@
         <option value="$PROJECT_DIR$/HSH/models.py" />
         <option value="$PROJECT_DIR$/HSH/admin.py" />
         <option value="$PROJECT_DIR$/HSH/consultas.py" />
-        <option value="$PROJECT_DIR$/templates/listar_hotsales.html" />
         <option value="$PROJECT_DIR$/templates/ver_hotsale.html" />
         <option value="$PROJECT_DIR$/HomeSwitchHome/settings.py" />
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/static/styles.css" />
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/HomeSwitchHome/urls.py" />
-        <option value="$PROJECT_DIR$/HomeSwitchHome/forms.py" />
         <option value="$PROJECT_DIR$/templates/contactenos.html" />
-        <option value="$PROJECT_DIR$/HSH/views.py" />
         <option value="$PROJECT_DIR$/templates/perfil.html" />
+        <option value="$PROJECT_DIR$/HomeSwitchHome/forms.py" />
+        <option value="$PROJECT_DIR$/templates/listar_hotsales.html" />
+        <option value="$PROJECT_DIR$/HSH/views.py" />
+        <option value="$PROJECT_DIR$/templates/ver_reservas_para_hotsale.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-537" />
     <option name="y" value="-22" />
     <option name="width" value="1937" />
@@ -124,7 +129,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -145,17 +149,13 @@
             <path>
               <item name="HomeSwitchHome" type="b2602c69:ProjectViewProjectNode" />
               <item name="HomeSwitchHome" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HomeSwitchHome" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HomeSwitchHome" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -228,10 +228,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1761158" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17597471" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -410,20 +410,6 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/django/forms/forms.py" />
-    <entry file="file://$PROJECT_DIR$/templates/registro.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-          <folding>
-            <element signature="n#style#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/HSH/css/materialize.scss">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -495,9 +481,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/ver_reservas_para_hotsale.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/configurar_hotsale.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -516,16 +499,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="28" column="55" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/listar_hotsales.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="61" lean-forward="true" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="61" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -564,13 +537,6 @@
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/ver_hotsale.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -623,6 +589,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/perfil.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="22" column="87" selection-start-line="22" selection-start-column="87" selection-end-line="22" selection-end-column="87" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="111" column="5" selection-start-line="111" selection-start-column="5" selection-end-line="111" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -635,36 +638,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HomeSwitchHome/forms.py">
+    <entry file="file://$PROJECT_DIR$/templates/ver_hotsale.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="740">
-          <caret line="373" column="52" selection-start-line="373" selection-start-column="52" selection-end-line="373" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="510">
+          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HSH/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="740">
-          <caret line="545" column="32" selection-start-line="545" selection-start-column="32" selection-end-line="545" selection-end-column="32" />
+        <state relative-caret-position="281">
+          <caret line="461" column="51" selection-start-line="461" selection-start-column="51" selection-end-line="461" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/listar_hotsales.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
           <folding>
-            <element signature="e#0#67#0" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/perfil.html">
+    <entry file="file://$PROJECT_DIR$/templates/ver_reservas_para_hotsale.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="22" column="87" selection-start-line="22" selection-start-column="87" selection-end-line="22" selection-end-column="87" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="34">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
         </state>
       </provider>
     </entry>

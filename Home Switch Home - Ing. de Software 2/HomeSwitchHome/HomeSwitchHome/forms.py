@@ -110,7 +110,6 @@ class CustomAuthForm(AuthenticationForm):
         ),
         'inactive': _("Esta cuenta fue borrada.")
     }
-    recordarme = forms.BooleanField(required=False, widget=forms.CheckboxInput())
 
 class PerfilForm(forms.Form):
 

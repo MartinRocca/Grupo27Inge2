@@ -225,10 +225,6 @@ class CustomLoginView(LoginView):
     authentication_form = CustomAuthForm
 
     def form_valid(self, form):
-        recordarme = form.cleaned_data['recordarme']
-        if not recordarme:
-            self.request.session.set_expiry(0)
-            self.request.session.modified = True
         return super(CustomLoginView, self).form_valid(form)
 
 
@@ -464,8 +460,7 @@ def ver_admins_page(request):
 def ver_reservas_para_hotsale(request):
     if request.user.is_staff:
         template = 'ver_reservas_para_hotsale.html'
-        hotsales = Hotsale.objects.filter(esta_programado=False)
-        context = {'reservas': obtener_reservas_para_hotsale(), 'hotsales_finalizados': hotsales}
+        context = {'reservas': obtener_reservas_para_hotsale()}
         return render(request, template, context)
 
     else:
@@ -498,7 +493,8 @@ def listar_hotsales_page(request):
     if not request.user.is_authenticated:
         return redirect('/')
     template = "listar_hotsales.html"
-    context = {"hotsales": Hotsale.objects.filter(esta_programado=True)}
+    hotsales = Hotsale.objects.filter(esta_programado=False)
+    context = {"hotsales": Hotsale.objects.filter(esta_programado=True), 'hotsales_finalizados': hotsales}
     return render(request, template, context)
 
 
