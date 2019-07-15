@@ -110,6 +110,7 @@ class CustomAuthForm(AuthenticationForm):
         ),
         'inactive': _("Esta cuenta fue borrada.")
     }
+    recordarme = forms.BooleanField(required=False, widget=forms.CheckboxInput())
 
 class PerfilForm(forms.Form):
 
@@ -366,3 +367,8 @@ class HotsaleForm(forms.Form):
         if precio < 0:
             raise forms.ValidationError('Valor inválido')
         return precio
+
+class ContactoForm(forms.Form):
+    email = forms.EmailField()
+    asunto = forms.CharField()
+    mensaje = forms.CharField(widget=forms.Textarea)

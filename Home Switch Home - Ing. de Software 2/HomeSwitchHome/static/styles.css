@@ -3,5 +3,7 @@
     opacity: 100 !important;
 }
 [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+    position: relative !important;
     opacity: 100 !important;
+    pointer-events: auto !important;
 }

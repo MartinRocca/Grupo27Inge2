@@ -6,7 +6,7 @@ from django.forms.models import model_to_dict
 from django.db.models import Q
 from django.contrib.auth import views as auth_views
 from HomeSwitchHome.forms import ResidenciaForm, PujaForm, HotsaleForm,BuscarResidenciasForm, RegistroForm, PerfilForm, EditarPerfilForm, \
-    CambiarTarjetaForm, PrecioForm, CustomAuthForm
+    CambiarTarjetaForm, PrecioForm, CustomAuthForm, ContactoForm
 from .models import Residencia, Subasta, Puja, Usuario, Perfil, Reserva, Precio, Hotsale
 from .consultas import validar_ubicacion, obtener_subastas, generar_reservas, obtener_semanas, obtener_subastas_finalizadas, validar_ubicacion_editar, \
     validar_nombre_completo, obtener_reservas_para_hotsale
@@ -223,6 +223,13 @@ def registro_page(request):
 
 class CustomLoginView(LoginView):
     authentication_form = CustomAuthForm
+
+    def form_valid(self, form):
+        recordarme = form.cleaned_data['recordarme']
+        if not recordarme:
+            self.request.session.set_expiry(0)
+            self.request.session.modified = True
+        return super(CustomLoginView, self).form_valid(form)
 
 
 def ver_usuarios_page(request):
@@ -525,3 +532,16 @@ def cerrar_hotsale_page(request, hotsale):
     else:
         return redirect('/')
     return render(request, template, context)
+
+def contacto_page(request):
+    if request.user.is_staff:
+        return redirect('/')
+    if request.user.is_authenticated:
+        form = ContactoForm(request.POST or None, initial={'email':request.user.email})
+    else:
+        form = ContactoForm(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            messages.success(request, "Su mensaje ha sido enviado. Tendra su respuesta dentro de los proximos 7 dias laborables.")
+            return redirect('/')
+    return render(request, "contactenos.html", {'form': form})

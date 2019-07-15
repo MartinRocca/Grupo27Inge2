@@ -20,7 +20,7 @@
                         <p>Nombre completo: {{perfil.apellido}} {{perfil.nombre}}</p>
                         <p>Fecha de nacimiento: {{perfil.fecha_nacimiento|date:'d/m/Y'}}</p>
                         <p>Creditos: {{perfil.creditos}}</p>
-                        <p>Vencimiento de sus creditos: {{perfil.vencimiento_creditos|date:'d/m/y'}}</p>
+                        <p>Vencimiento de sus creditos: {% if perfil.creditos == 0 %} - {% else %}{{perfil.vencimiento_creditos|date:'d/m/y'}}{% endif %}</p>
                         <br>
                         <p>Tarjeta: {{perfil.marca_tarjeta_credito}} {{nrotarjeta}}</p>
                         <div class="card-action">
